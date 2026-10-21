@@ -2,7 +2,7 @@
 <h1 align="center">iiisland</h1>
 <p align="center">Your music, a glance away.<br>Playback controls and synced lyrics at the top of your Mac.</p>
 <p align="center"><a href="README.md">简体中文</a> · <strong>English</strong></p>
-<p align="center"><a href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">Download for Mac</a> · <a href="https://github.com/zplzmzmpl/iiisland-pub/issues">Report an issue</a></p>
+<p align="center"><a href="https://iiisland.pages.dev">Website</a> · <a href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">Download for Mac</a> · <a href="https://github.com/zplzmzmpl/iiisland-pub/issues">Report an issue</a></p>
 
 ![Preview of the iiisland product page](assets/website-preview.jpg)
 
