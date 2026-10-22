@@ -74,4 +74,8 @@ Use [Issues](https://github.com/zplzmzmpl/iiisland-pub/issues) to report problem
 
 Built on work from [boring.notch](https://github.com/TheBoredTeam/boring.notch), [LyricsX](https://github.com/MxIris-LyricsX-Project/LyricsX) and related open-source projects. See [third-party notices](NOTICE.md) for component origins and licenses.
 
-This repository contains product information, usage documentation, issue tracking and downloadable releases. Application source code is not included. Third-party rights and license terms continue to apply.
+This repository contains product information, usage documentation, issue tracking, downloadable releases and the website source. The macOS application source is not included. Third-party rights and license terms continue to apply.
+
+## Website source and automatic deployment
+
+The website source lives in [website/](website/) and uses plain HTML, CSS and JavaScript. Cloudflare Pages connects to this repository's `main` branch with `website` as the build output directory and no build command. Pushing website changes triggers an automatic deployment. See the [website maintenance guide](website/README.md) for configuration details.

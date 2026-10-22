@@ -74,4 +74,8 @@ ad0afa649a5d2d7c3f97ddac8c9823e5ae9f25385dd77298b7d8e68231ce56b7
 
 感谢 [boring.notch](https://github.com/TheBoredTeam/boring.notch)、[LyricsX](https://github.com/MxIris-LyricsX-Project/LyricsX) 及相关开源项目。组件来源与许可证见 [第三方致谢](NOTICE.md)。
 
-本仓库用于产品介绍、使用说明、问题反馈及安装包发布，不包含应用源码。第三方组件的权利与许可证继续适用。
+本仓库用于产品介绍、使用说明、问题反馈、安装包发布与官网源码维护，不包含 macOS 应用源码。第三方组件的权利与许可证继续适用。
+
+## 网页源码与自动部署
+
+官网源码位于 [website/](website/)，使用纯静态 HTML、CSS 和 JavaScript。Cloudflare Pages 连接本仓库的 `main` 分支，构建输出目录为 `website`，无需构建命令。推送网页更新即可自动部署，具体设置见 [网页维护说明](website/README.md)。
