@@ -64,6 +64,6 @@ footer{background:var(--paper);color:var(--ink)}
 .size-showcase.arrive .size-expanded{animation:size-expanded 4.8s ease infinite alternate both}
 @keyframes size-morph{0%,18%{clip-path:inset(0 19% 76% round 0 0 18px 18px)}35%,44%{clip-path:inset(0 9% 76% round 0 0 18px 18px)}67%,76%{clip-path:inset(0 9% 18% round 0 0 26px 26px)}100%{clip-path:inset(0 round 0 0 30px 30px)}}
 @keyframes size-compact{0%,34%{opacity:1}43%,100%{opacity:0}}
-@keyframes size-expanded{0%,46%{opacity:0;transform:translateY(-7px)}65%,100%{opacity:1;transform:translateY(0)}}
+@keyframes size-expanded{0%,62%{opacity:0;transform:translateY(-7px)}67%,100%{opacity:1;transform:translateY(0)}}
 @media(max-width:600px){.size-showcase{height:300px}.size-visual{width:calc(100% - 32px);height:190px}.size-expanded{top:30px;left:12%;right:12%;grid-template-columns:56px minmax(0,1fr);gap:22px 14px}.size-artwork{font-size:18px}.size-song p{font-size:16px}.size-song span{font-size:12px}.size-lyric{font-size:15px}.size-showcase figcaption{left:20px;right:20px;bottom:22px}.size-showcase figcaption p{font-size:22px}.size-showcase figcaption span{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.size-silhouette{clip-path:inset(0 round 0 0 30px 30px)}.size-compact{opacity:0}.size-expanded{opacity:1;transform:none}}
