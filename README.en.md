@@ -8,7 +8,7 @@
 
 *The image shows an interactive website illustration with original demo songs and lyrics. It is not a screenshot of a connected music player.*
 
-[Try the website](https://iiisland-pub.pages.dev): expand or collapse the island, switch tracks, adjust progress and volume, select a lyric line to seek, and choose a player to see its supported features. An automatic size animation shows that collapsed and expanded width and height can be adjusted in the app, with no controls to operate. The playback demo works on phones and computers and does not play audio.
+[Try the website](https://iiisland-pub.pages.dev): expand or collapse the island, switch tracks, adjust progress and volume, select a lyric line to seek, and choose a player to see its supported features. An automatically looping size animation shows that collapsed and expanded width and height can be adjusted in the app, with no controls to operate. The playback demo works on phones and computers and does not play audio.
 
 ## Keep your music within reach
 

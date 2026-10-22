@@ -45,7 +45,7 @@ footer{background:var(--paper);color:var(--ink)}
 
 
 
-/* A self-contained, one-shot size illustration: no controls or measured resizing. */
+/* A self-contained, looping size illustration: no controls or measured resizing. */
 .size-showcase{position:relative;margin:0;height:340px;background:#dce3de;border-radius:var(--radius-panel);overflow:clip}
 .size-visual{position:relative;margin:0 auto;width:min(82%,560px);height:210px;color:#f5f6f4;pointer-events:none}
 .size-silhouette{position:absolute;inset:0;background:var(--black);border-radius:0 0 30px 30px;transform-origin:top center}
@@ -59,9 +59,9 @@ footer{background:var(--paper);color:var(--ink)}
 .size-lyric{grid-column:1/-1;font-size:18px;line-height:1.5}
 .size-showcase figcaption{position:absolute;left:28px;right:28px;bottom:25px}
 .size-showcase figcaption p{font-size:24px;line-height:1.4;letter-spacing:-.035em}.size-showcase figcaption span{display:block;margin-top:7px;font-size:16px}
-.size-showcase.arrive .size-silhouette{animation:size-morph 4.8s cubic-bezier(.45,0,.2,1) both}
-.size-showcase.arrive .size-compact{animation:size-compact 4.8s ease both}
-.size-showcase.arrive .size-expanded{animation:size-expanded 4.8s ease both}
+.size-showcase.arrive .size-silhouette{animation:size-morph 4.8s cubic-bezier(.45,0,.2,1) infinite alternate both}
+.size-showcase.arrive .size-compact{animation:size-compact 4.8s ease infinite alternate both}
+.size-showcase.arrive .size-expanded{animation:size-expanded 4.8s ease infinite alternate both}
 @keyframes size-morph{0%,18%{transform:scale(.62,.24)}35%,44%{transform:scale(.82,.24)}67%,76%{transform:scale(.82,.82)}100%{transform:scale(1)}}
 @keyframes size-compact{0%,34%{opacity:1}43%,100%{opacity:0}}
 @keyframes size-expanded{0%,46%{opacity:0;transform:translateY(-7px)}65%,100%{opacity:1;transform:translateY(0)}}
