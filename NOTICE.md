@@ -1,8 +1,8 @@
 # Third-party notices / 第三方致谢
 
-iiisland incorporates or adapts work from the projects below. It runs as its own application and does not require separate boringNotch or LyricsX apps. This public distribution repository does not replace or alter the licenses of those components.
+iiisland incorporates or adapts work from the projects below. This public distribution repository does not replace or alter the licenses of those components.
 
-iiisland 使用或改编了以下项目的成果，以独立应用运行，无需另外启动 boringNotch 或 LyricsX。本公开发布仓库不改变这些组件的许可证。
+iiisland 使用或改编了以下项目的成果。本公开发布仓库不改变这些组件的许可证。
 
 | Project | License / source basis | Contribution |
 | --- | --- | --- |

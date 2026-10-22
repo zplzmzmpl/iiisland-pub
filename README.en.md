@@ -8,6 +8,8 @@
 
 *The image shows an interactive website illustration with original demo songs and lyrics. It is not a screenshot of a connected music player.*
 
+[Try the website](https://iiisland.pages.dev): expand or collapse the island, switch tracks, seek, select a lyric line, and preview appearance and size settings. The browser demo does not play audio.
+
 ## Keep your music within reach
 
 See the cover, check a lyric, or skip a track without switching windows. iiisland keeps your music at the top of the screen, compact while you work and ready to expand on hover or click.
@@ -17,7 +19,6 @@ See the cover, check a lyric, or skip a track without switching windows. iiislan
 - **Fit your screen.** Adjust collapsed and expanded width and height separately, with layouts for displays with or without a notch.
 - **Choose your look.** Use classic black or native Liquid Glass on macOS 26. Switch between day and night modes, with your choice remembered.
 - **Launch with your player.** Enable the option to open iiisland when a supported music player starts.
-- **One app to open.** Run iiisland.app without launching separate boringNotch or LyricsX apps.
 
 ## Player support
 
