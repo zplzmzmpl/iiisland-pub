@@ -6,14 +6,9 @@
     { title:'夜色慢慢', cover:'night', word:'夜色<br>慢慢', duration:142, lines:['街灯把影子，拉长一点','沿着旋律，走过这条街','夜色慢慢，心事也慢慢','等最后一盏灯，为你亮着'] }
   ];
   const players = { apple:'Apple Music', spotify:'Spotify', qq:'QQ 音乐', netease:'网易云音乐' };
-  const state = { track:0, playing:true, time:28, volume:65, open:true, lyrics:true, persist:true, appearance:'black', notched:true, collapsed:280, expanded:440, night:false, player:'apple', auto:true };
+  const state = { track:0, playing:true, time:28, volume:65, open:true, lyrics:true, persist:true, player:'apple', auto:true };
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
-  const hero = $('[data-demo="hero"]');
-  const mirror = hero.cloneNode(true);
-  mirror.dataset.demo = 'settings';
-  mirror.setAttribute('aria-label','外观设置中的音乐播放演示');
-  $('#settings-island-mount').append(mirror);
   const timeLabel = t => `${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
   const track = () => tracks[state.track];
   const lineIndex = () => Math.min(3, Math.floor(state.time / (track().duration / 4)));
@@ -52,18 +47,6 @@
     $('#lyric-state').textContent=!state.lyrics ? '歌词已隐藏，随时可以再打开。' : !state.playing && !state.persist ? '播放暂停，歌词也暂时收起。' : !state.playing ? '音乐暂停，最后一句仍在。' : '歌词就在岛的左侧。';
   }
 
-  function scalePreview() {
-    const stage=$('.settings-stage');
-    const mount=$('#settings-island-mount');
-    const available=Math.max(200,stage.clientWidth-32);
-    // A collapsed island shares the rail with lyrics; reserve their space before sizing it.
-    const desired=state.open?state.expanded:Math.min(state.collapsed,Math.max(104,Math.round(available*.42)));
-    const scale=state.open?Math.min(1,available/desired):1;
-    mount.style.width=String(desired*scale)+'px';
-    mount.style.height=String((state.open?(state.notched?266:248):44)*scale)+'px';
-    mirror.style.setProperty('--preview-scale',String(scale));
-    mirror.style.setProperty('--preview-actual-width',String(desired)+'px');
-  }
   function render() {
     const current = track();
     setText('title',current.title);
@@ -81,12 +64,6 @@
       closed.setAttribute('aria-hidden',String(state.open));
       closed.setAttribute('aria-expanded',String(state.open));
     });
-    $$('[data-preview]').forEach(el=>{
-      el.style.setProperty('--collapsed-width',`${state.collapsed}px`);
-      el.style.setProperty('--expanded-width',`${state.expanded}px`);
-      el.classList.toggle('is-glass',state.appearance==='glass');
-      el.classList.toggle('flat-layout',!state.notched);
-    });
     $$('.compact-island').forEach(el=>el.classList.toggle('is-paused',!state.playing));
     $$('[data-action="play"]').forEach(el=>{
       el.setAttribute('aria-label',state.playing?'暂停演示':'播放演示');
@@ -103,11 +80,6 @@
     $$('.volume').forEach(el=>{el.value=state.volume;el.setAttribute('aria-valuetext',`${state.volume}%`);});
     $$('[data-action="toggle"]').forEach(el=>el.setAttribute('aria-expanded',String(state.open)));
     $('#expand').innerHTML=state.open?'收起试试 <span aria-hidden="true">↑</span>':'展开试试 <span aria-hidden="true">↓</span>';
-    $('#preview-toggle').textContent=state.open?'查看收起态':'查看展开态';
-    $('#size-note').textContent=state.open?`展开 ${state.expanded} × 180 pt`:`收起 ${state.collapsed} × 33 pt`;
-    $('#theme-toggle').textContent=state.night?'切到日间':'切到夜间';
-    $('#theme-toggle').setAttribute('aria-pressed',String(state.night));
-    $('.settings-stage').classList.toggle('is-night',state.night);
     $$('[data-player]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.player===state.player)));
     $('#selected-player').textContent=players[state.player];
     const partial=['qq','netease'].includes(state.player);
@@ -116,7 +88,6 @@
     $('#extra-capability').textContent=partial?'暂不支持':'支持';
     $('#player-note').textContent=partial?'首次使用时，请先在播放器内播放歌曲。播放、切歌与进度控制取决于系统媒体焦点和可用能力。':'首次连接时，macOS 可能请求自动化授权。';
     $('#detection-note').textContent=state.auto?'应用内优先跟随最近开始播放的来源，全部暂停时保留当前来源。':`手动模式固定为 ${players[state.player]}，不会被其他播放器切走。`;
-    scalePreview();
     syncTimeline();
   }
 
@@ -172,20 +143,6 @@
   $('#lyrics-enabled').addEventListener('change',event=>{state.lyrics=event.target.checked;syncTimeline();});
   $('#persist-lyrics').addEventListener('change',event=>{state.persist=event.target.checked;syncTimeline();});
   $('#auto-detect').addEventListener('change',event=>{state.auto=event.target.checked;render();});
-  $('#custom-controls').addEventListener('input',event=>{
-    const el=event.target;
-    if(el.name==='appearance') state.appearance=el.value;
-    if(el.name==='screen') state.notched=el.value==='notched';
-    if(el.id==='collapsed-width') {state.collapsed=Number(el.value);$('#collapsed-value').textContent=`${state.collapsed} pt`;}
-    if(el.id==='expanded-width') {state.expanded=Number(el.value);$('#expanded-value').textContent=`${state.expanded} pt`;}
-    render();
-  });
-  $('#custom-controls').addEventListener('reset',()=>{
-    Object.assign(state,{appearance:'black',notched:true,collapsed:280,expanded:440,night:false});
-    $('#collapsed-value').textContent='280 pt';$('#expanded-value').textContent='440 pt';
-    render();announce('外观与尺寸已还原');
-  });
-  $('#theme-toggle').addEventListener('click',()=>{state.night=!state.night;render();});
   $$('.music-island').forEach(el=>{
     el.addEventListener('pointerenter',event=>{
       if(event.pointerType==='mouse'&&!hoverSuppressed&&!state.open) hoverTimer=setTimeout(()=>setOpen(true),220);
@@ -212,8 +169,7 @@
     const observer=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('arrive');observer.unobserve(entry.target);}});
     },{threshold:.12});
-    $$('.hero-intro h1,.hero-deck,.main-stage,.section-heading h2,.section-heading>p,.lyrics-sheet,.lyrics-options,.custom-controls,.custom-preview,.player-picker,.player-detail,.faq-heading,.install-heading,.install-action,.footer-mark').forEach(el=>observer.observe(el));
+    $$('.hero-intro h1,.hero-deck,.main-stage,.section-heading h2,.section-heading>p,.lyrics-sheet,.lyrics-options,.size-showcase,.player-picker,.player-detail,.faq-heading,.install-heading,.install-action,.footer-mark').forEach(el=>observer.observe(el));
   }
-  new ResizeObserver(scalePreview).observe($('.settings-stage'));
   render();
 })();

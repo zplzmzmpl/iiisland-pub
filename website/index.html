@@ -61,20 +61,15 @@
     </section>
 
     <section id="customize" class="customize chapter" aria-labelledby="customize-title">
-      <div class="section-heading"><h2 id="customize-title">调成你的样子</h2><p>切换外观、屏幕布局和尺寸，<br>看看它怎样融入你的桌面。</p></div>
-      <div class="customize-layout">
-        <form class="custom-controls" id="custom-controls" aria-label="灵动岛外观演示设置" data-ui>
-          <fieldset><legend>岛体外观</legend><div class="segmented"><label><input type="radio" name="appearance" value="black" checked><span>经典黑</span></label><label><input type="radio" name="appearance" value="glass"><span>液态玻璃</span></label></div><p class="field-note">玻璃外观以浅色示意，应用内需要 macOS 26。</p></fieldset>
-          <fieldset><legend>屏幕布局</legend><div class="segmented"><label><input type="radio" name="screen" value="notched" checked><span>有刘海</span></label><label><input type="radio" name="screen" value="flat"><span>无刘海</span></label></div></fieldset>
-          <div class="size-control"><label for="collapsed-width">收起宽度 <output id="collapsed-value" for="collapsed-width">280 pt</output></label><input type="range" id="collapsed-width" min="260" max="480" step="10" value="280"></div>
-          <div class="size-control"><label for="expanded-width">展开宽度 <output id="expanded-value" for="expanded-width">440 pt</output></label><input type="range" id="expanded-width" min="380" max="900" step="10" value="440"></div>
-          <button class="text-button reset-button" type="reset">还原设置 <span aria-hidden="true">↺</span></button>
-        </form>
-        <div class="custom-preview">
-          <div class="desktop-stage settings-stage" data-ui data-preview="settings" aria-label="设置实时预览"><div class="desktop-menu" aria-hidden="true"><span>你的桌面</span><span>外观预览</span></div><div class="island-rail"><div class="capsule" data-bind="capsule"></div><div id="settings-island-mount"></div><span class="rail-spacer" aria-hidden="true"></span></div><p class="preview-note" id="size-note">展开 440 × 180 pt</p></div>
-          <div class="preview-toolbar"><div class="preview-actions"><button class="text-button" id="preview-toggle" data-action="toggle" aria-expanded="true">查看收起态</button><button type="button" class="theme-toggle text-button" id="theme-toggle" aria-pressed="false">切到夜间</button></div><p class="small">预览随屏幕宽度适配</p></div>
+      <div class="section-heading"><h2 id="customize-title">调成你的样子</h2><p>收起与展开的宽高，都能自由调整。<br>让灵动岛适合你的屏幕与习惯。</p></div>
+      <figure class="size-showcase" aria-labelledby="size-caption">
+        <div class="size-visual" data-ui aria-hidden="true">
+          <div class="size-silhouette"></div>
+          <div class="size-compact"><span class="cover mini-cover">窗</span><span class="size-wave"><i></i><i></i><i></i><i></i><i></i></span></div>
+          <div class="size-expanded"><div class="size-artwork">窗边<br>电台</div><div class="size-song"><p>慢一点，也没关系</p><span>窗边电台</span></div><p class="size-lyric">把时间，留给喜欢的旋律</p></div>
         </div>
-      </div>
+        <figcaption id="size-caption"><p>小一点，或宽一点。</p><span>在应用设置中，找到刚刚好的尺寸。</span></figcaption>
+      </figure>
     </section>
 
     <section id="players" class="players chapter" aria-labelledby="players-title">
