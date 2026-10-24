@@ -150,19 +150,19 @@
     el.addEventListener('pointerenter',event=>{
       if(event.pointerType!=='mouse') return;
       clearTimeout(hoverTimer);
-      if(!hoverSuppressed&&!state.open) hoverTimer=setTimeout(()=>setOpen(true),120);
+      if(!hoverSuppressed&&!state.open) hoverTimer=setTimeout(()=>setOpen(true),180);
     });
     el.addEventListener('pointerleave',event=>{
       if(event.pointerType!=='mouse') return;
       clearTimeout(hoverTimer);
       hoverSuppressed=false;
-      if(!el.querySelector(':focus-visible')) hoverTimer=setTimeout(()=>setOpen(false),180);
+      if(!el.querySelector(':focus-visible')) hoverTimer=setTimeout(()=>setOpen(false),280);
     });
     el.addEventListener('focusout',()=>{
       requestAnimationFrame(()=>{
         if(matchMedia('(hover: hover)').matches&&!el.contains(document.activeElement)&&!el.matches(':hover')) {
           clearTimeout(hoverTimer);
-          hoverTimer=setTimeout(()=>setOpen(false),180);
+          hoverTimer=setTimeout(()=>setOpen(false),280);
         }
       });
     });
