@@ -33,11 +33,11 @@
 
 ## 下载与安装
 
-当前版本：**0.8.16 · build 25**，安装包更新于 **2026-10-20**。
+当前版本：**0.8.17 · build 26**，安装包更新于 **2026-10-24**。
 
 要求 **Apple Silicon（arm64）Mac、macOS 14 或更高版本**。当前不提供 Intel 安装包；原生液态玻璃需要 macOS 26。
 
-1. 在 [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 `iiisland-0.8.16-arm64.dmg`。
+1. 在 [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 `iiisland-0.8.17-arm64.dmg`。
 2. 打开 DMG，将 `iiisland.app` 拖入旁边的 `Applications` 文件夹。
 3. 从“应用程序”启动 iiisland，并在音乐播放器中播放一首歌。
 
@@ -50,7 +50,7 @@
 同时下载 DMG 与同名 `.sha256` 文件，在下载目录运行：
 
 ```sh
-shasum -a 256 -c iiisland-0.8.16-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.17-arm64.dmg.sha256
 ```
 
 本次安装包 SHA-256：
@@ -59,14 +59,14 @@ shasum -a 256 -c iiisland-0.8.16-arm64.dmg.sha256
 ad0afa649a5d2d7c3f97ddac8c9823e5ae9f25385dd77298b7d8e68231ce56b7
 ```
 
-## 0.8.16 有什么更新
+## 0.8.17 有什么更新
 
-- 修复长歌词滚动时右侧提前截断、留下空白的问题，让中段文字连续显示、句尾完整停留。
-- 改善快速切句时的歌词胶囊过渡与灵动岛圆角。
-- 新增四款播放器的自动检测与启动联动。
-- 设置页采用适配日夜模式的手写风格字标。
+- 改善播放器慢响应期间的轮询任务管理，避免快速停止／恢复或切换形成等待任务链。
+- 限制失败后的完整信息回退请求，临时读取错误不再覆盖有效播放状态。
+- 修复相对快进／快退使用旧进度，以及未知时长时进度为零的问题。
+- 加固应用代理及播放器连接的生命周期。
 
-详见 [版本发布说明](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.16)。
+详见 [版本发布说明](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.17)。
 
 ## 反馈与致谢
 
