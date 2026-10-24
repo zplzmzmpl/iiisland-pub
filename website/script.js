@@ -6,7 +6,7 @@
     { title:'夜色慢慢', cover:'night', word:'夜色<br>慢慢', duration:142, lines:['街灯把影子，拉长一点','沿着旋律，走过这条街','夜色慢慢，心事也慢慢','等最后一盏灯，为你亮着'] }
   ];
   const players = { apple:'Apple Music', spotify:'Spotify', qq:'QQ 音乐', netease:'网易云音乐' };
-  const state = { track:0, playing:true, time:28, volume:65, open:true, lyrics:true, persist:true, player:'apple', auto:true };
+  const state = { track:0, playing:true, time:28, volume:65, open:false, lyrics:true, persist:true, player:'apple', auto:true };
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
   const timeLabel = t => `${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
@@ -38,7 +38,8 @@
     });
     if(previousLine!==lineIndex() || previousTrack!==state.track) {
       $$('#lyrics-list button').forEach((el,index)=>{
-        el.textContent=current.lines[index];
+        el.querySelector(".lyric-label").textContent=current.lines[index];
+        el.setAttribute("aria-label",`跳转到：${current.lines[index]}`);
         if(index===lineIndex()) el.setAttribute('aria-current','true');
         else el.removeAttribute('aria-current');
       });
@@ -79,7 +80,7 @@
     });
     $$('.volume').forEach(el=>{el.value=state.volume;el.setAttribute('aria-valuetext',`${state.volume}%`);});
     $$('[data-action="toggle"]').forEach(el=>el.setAttribute('aria-expanded',String(state.open)));
-    $('#expand').innerHTML=state.open?'收起试试 <span aria-hidden="true">↑</span>':'展开试试 <span aria-hidden="true">↓</span>';
+    $('#expand').innerHTML=state.open?'收起面板 <span aria-hidden="true">↑</span>':'展开面板 <span aria-hidden="true">↓</span>';
     $$('[data-player]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.player===state.player)));
     $('#selected-player').textContent=players[state.player];
     const partial=['qq','netease'].includes(state.player);
@@ -88,11 +89,13 @@
     $('#extra-capability').textContent=partial?'暂不支持':'支持';
     $('#player-note').textContent=partial?'首次使用时，请先在播放器内播放歌曲。播放、切歌与进度控制取决于系统媒体焦点和可用能力。':'首次连接时，macOS 可能请求自动化授权。';
     $('#detection-note').textContent=state.auto?'应用内优先跟随最近开始播放的来源，全部暂停时保留当前来源。':`手动模式固定为 ${players[state.player]}，不会被其他播放器切走。`;
+    $$('.icon-button').forEach(el=>{el.title=el.getAttribute('aria-label');});
     syncTimeline();
   }
 
   function setOpen(open, suppress=false) {
     const focusTarget=!open ? document.activeElement.closest('.music-island')?.querySelector('.closed-trigger') : null;
+    clearTimeout(hoverTimer);
     state.open=open;
     hoverSuppressed=suppress;
     render();
@@ -145,14 +148,70 @@
   $('#auto-detect').addEventListener('change',event=>{state.auto=event.target.checked;render();});
   $$('.music-island').forEach(el=>{
     el.addEventListener('pointerenter',event=>{
-      if(event.pointerType==='mouse'&&!hoverSuppressed&&!state.open) hoverTimer=setTimeout(()=>setOpen(true),220);
+      if(event.pointerType!=='mouse') return;
+      clearTimeout(hoverTimer);
+      if(!hoverSuppressed&&!state.open) hoverTimer=setTimeout(()=>setOpen(true),120);
     });
-    el.addEventListener('pointerleave',()=>{clearTimeout(hoverTimer);hoverSuppressed=false;});
-    el.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();setOpen(false,true);}});
+    el.addEventListener('pointerleave',event=>{
+      if(event.pointerType!=='mouse') return;
+      clearTimeout(hoverTimer);
+      hoverSuppressed=false;
+      if(!el.querySelector(':focus-visible')) hoverTimer=setTimeout(()=>setOpen(false),180);
+    });
+    el.addEventListener('focusout',()=>{
+      requestAnimationFrame(()=>{
+        if(matchMedia('(hover: hover)').matches&&!el.contains(document.activeElement)&&!el.matches(':hover')) {
+          clearTimeout(hoverTimer);
+          hoverTimer=setTimeout(()=>setOpen(false),180);
+        }
+      });
+    });
+
   });
-  $$('.faq-list details').forEach(detail=>detail.addEventListener('toggle',()=>{
-    if(detail.open) $$('.faq-list details').forEach(other=>{if(other!==detail)other.open=false;});
-  }));
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&state.open){event.preventDefault();setOpen(false,true);}
+  });
+  // Keep native details as the no-script fallback; animate from the visible height.
+  const faqMotion=matchMedia('(prefers-reduced-motion: reduce)');
+  const faqItems=$$('.faq-list details').map(detail=>({detail,summary:detail.querySelector('summary'),answer:detail.querySelector('.faq-answer'),open:detail.open,animation:null}));
+  function finishFaq(item) {
+    item.animation?.cancel();
+    item.animation=null;
+    item.detail.open=item.open;
+    item.detail.style.height='';
+    item.detail.style.overflow='';
+  }
+  function toggleFaq(item,open) {
+    const from=item.detail.getBoundingClientRect().height;
+    item.animation?.cancel();
+    item.open=open;
+    item.summary.setAttribute('aria-expanded',String(open));
+    item.detail.classList.toggle('is-expanded',open);
+    item.answer.inert=!open;
+    item.answer.setAttribute('aria-hidden',String(!open));
+    if(faqMotion.matches) {finishFaq(item);return;}
+    item.detail.open=true;
+    item.detail.style.height='auto';
+    const to=open?item.detail.getBoundingClientRect().height:item.summary.getBoundingClientRect().height;
+    item.detail.style.height=from+'px';
+    item.detail.style.overflow='hidden';
+    const animation=item.detail.animate({height:[from+'px',to+'px']},{duration:260,easing:'cubic-bezier(.2,.7,.2,1)'});
+    item.animation=animation;
+    animation.onfinish=()=>{if(item.animation===animation) finishFaq(item);};
+  }
+  faqItems.forEach(item=>{
+    item.detail.classList.toggle('is-expanded',item.open);
+    item.summary.setAttribute('aria-expanded',String(item.open));
+    item.answer.inert=!item.open;
+    item.answer.setAttribute('aria-hidden',String(!item.open));
+    item.summary.addEventListener('click',event=>{
+      event.preventDefault();
+      const open=!item.open;
+      faqItems.forEach(other=>{if(other!==item&&other.open)toggleFaq(other,false);});
+      toggleFaq(item,open);
+    });
+  });
+  faqMotion.addEventListener('change',()=>faqItems.forEach(finishFaq));
   let lastTick=performance.now();
   const playbackTick=setInterval(()=>{
     const now=performance.now();
