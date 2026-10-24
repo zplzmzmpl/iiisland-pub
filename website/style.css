@@ -106,3 +106,5 @@ footer{background:var(--paper);color:var(--ink)}
 .island-content{transition:opacity .2s,transform .4s,visibility 0s .2s}
 .music-island.is-open .island-content{transition:opacity .32s .18s,transform .5s .12s,visibility 0s}
 @media(prefers-reduced-motion:reduce){.music-island,.island-content{transition:none}}
+
+.lyric-jump svg{width:16px;height:16px;fill:currentColor;stroke:none}

@@ -15,6 +15,7 @@
   const lyric = () => track().lines[lineIndex()];
   let previousLine = -1;
   let previousTrack = -1;
+  let previousPlaying;
   let hoverTimer;
   let hoverSuppressed = false;
   let previousVolume = 65;
@@ -36,14 +37,20 @@
       if(document.activeElement!==el) el.value=Math.floor(state.time);
       el.setAttribute('aria-valuetext',`${timeLabel(state.time)}，共 ${timeLabel(current.duration)}`);
     });
-    if(previousLine!==lineIndex() || previousTrack!==state.track) {
+    if(previousLine!==lineIndex() || previousTrack!==state.track || previousPlaying!==state.playing) {
       $$('#lyrics-list button').forEach((el,index)=>{
+        const active=index===lineIndex();
+        const playing=active&&state.playing;
+        const action=active?(playing?'暂停':'播放'):'跳转并播放';
         el.querySelector(".lyric-label").textContent=current.lines[index];
-        el.setAttribute("aria-label",`跳转到：${current.lines[index]}`);
-        if(index===lineIndex()) el.setAttribute('aria-current','true');
+        el.querySelector('.lyric-shape').setAttribute('d',playing?'M7 5h4v14H7ZM14 5h4v14h-4Z':'M7 4l13 8-13 8Z');
+        el.setAttribute('aria-label',`${action}：${current.lines[index]}`);
+        el.title=el.getAttribute('aria-label');
+        el.setAttribute('aria-pressed',String(playing));
+        if(active) el.setAttribute('aria-current','true');
         else el.removeAttribute('aria-current');
       });
-      previousLine=lineIndex(); previousTrack=state.track;
+      previousLine=lineIndex(); previousTrack=state.track; previousPlaying=state.playing;
     }
     $('#lyric-state').textContent=!state.lyrics ? '歌词已隐藏，随时可以再打开。' : !state.playing && !state.persist ? '播放暂停，歌词也暂时收起。' : !state.playing ? '音乐暂停，最后一句仍在。' : '歌词就在岛的左侧。';
   }
@@ -116,9 +123,17 @@
     const target=event.target.closest('[data-action],[data-line],[data-player]');
     if(!target) return;
     if(target.dataset.line!==undefined) {
-      state.time=Number(target.dataset.line)*track().duration/4;
-      syncTimeline();
-      announce(`已跳转到 ${lyric()}`);
+      const selected=Number(target.dataset.line);
+      if(selected===lineIndex()) {
+        state.playing=!state.playing;
+        render();
+        announce(state.playing?'已继续播放演示':'已暂停演示');
+      } else {
+        state.time=selected*track().duration/4;
+        state.playing=true;
+        render();
+        announce(`已跳转并播放：${lyric()}`);
+      }
       return;
     }
     if(target.dataset.player) {
