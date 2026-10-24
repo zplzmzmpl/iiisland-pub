@@ -2,13 +2,13 @@
 <h1 align="center">iiisland</h1>
 <p align="center">音乐，在抬眼之间。<br>把播放控制与同步歌词，留在 Mac 屏幕顶部。</p>
 <p align="center"><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
-<p align="center"><a href="https://iiisland-pub.pages.dev">访问官网</a> · <a href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">下载 Mac 版</a> · <a href="https://github.com/zplzmzmpl/iiisland-pub/issues">反馈问题</a></p>
+<p align="center"><a href="https://iiisland.pages.dev">访问官网</a> · <a href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">下载 Mac 版</a> · <a href="https://github.com/zplzmzmpl/iiisland-pub/issues">反馈问题</a></p>
 
 ![iiisland 产品页面预览](assets/website-preview.jpg)
 
 *画面为网页交互示意，歌曲与歌词均为原创演示内容，不是真实播放器截图。*
 
-[在官网试用](https://iiisland-pub.pages.dev)：展开与收起、切歌、调节进度与音量、点选歌词跳转；还可切换播放器查看支持能力。尺寸展示以自动循环动效说明收起与展开的宽高可自由调整，无需操作。播放演示支持手机与电脑，不播放音频。
+[在官网试用](https://iiisland.pages.dev)：展开与收起、切歌、调节进度与音量、点选歌词跳转；还可切换播放器查看支持能力。尺寸展示以自动循环动效说明收起与展开的宽高可自由调整，无需操作。播放演示支持手机与电脑，不播放音频。
 
 ## 抬眼看歌词，伸手控音乐
 

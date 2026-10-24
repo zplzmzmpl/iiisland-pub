@@ -1,6 +1,6 @@
 # iiisland 宣传网页
 
-官网：https://iiisland-pub.pages.dev。旧网址 https://iiisland.pages.dev 跳转到新官网。
+官网：https://iiisland.pages.dev。通过 Cloudflare Pages 的 Git 连接自动部署。
 
 纯静态 HTML/CSS/JavaScript，无需安装依赖或构建。公开网站源码在本仓库的 `website/` 中维护，应用源码仍保留在私有仓库。
 
