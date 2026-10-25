@@ -33,11 +33,11 @@
 
 ## 下载与安装
 
-当前版本：**0.8.17 · build 26**，安装包更新于 **2026-10-24**。
+当前版本：**0.8.18 · build 27**，安装包更新于 **2026-10-25**。
 
 要求 **Apple Silicon（arm64）Mac、macOS 14 或更高版本**。当前不提供 Intel 安装包；原生液态玻璃需要 macOS 26。
 
-1. 在 [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 `iiisland-0.8.17-arm64.dmg`。
+1. 在 [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 `iiisland-0.8.18-arm64.dmg`。
 2. 打开 DMG，将 `iiisland.app` 拖入旁边的 `Applications` 文件夹。
 3. 从“应用程序”启动 iiisland，并在音乐播放器中播放一首歌。
 
@@ -50,23 +50,23 @@
 同时下载 DMG 与同名 `.sha256` 文件，在下载目录运行：
 
 ```sh
-shasum -a 256 -c iiisland-0.8.17-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.18-arm64.dmg.sha256
 ```
 
 本次安装包 SHA-256：
 
 ```text
-ad0afa649a5d2d7c3f97ddac8c9823e5ae9f25385dd77298b7d8e68231ce56b7
+bd0a738995ede5ae2923a4181b3fa47cb583cc17d6586a7613c375f5ab6ecb5f
 ```
 
-## 0.8.17 有什么更新
+## 0.8.18 有什么更新
 
-- 改善播放器慢响应期间的轮询任务管理，避免快速停止／恢复或切换形成等待任务链。
-- 限制失败后的完整信息回退请求，临时读取错误不再覆盖有效播放状态。
-- 修复相对快进／快退使用旧进度，以及未知时长时进度为零的问题。
-- 加固应用代理及播放器连接的生命周期。
+- Apple Music 同曲刷新复用已有封面，减少播放状态和进度操作带来的重复封面传输。
+- 较大的嵌入封面保留更小的数据，减少当前曲目的内存持有。
+- 减少重复脚本编译、下载缓冲扩容和界面刷新分配，修复代码已完成 Open Code Review。
+- 本版未完成长期内存对照，不承诺具体内存降幅。
 
-详见 [版本发布说明](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.17)。
+详见 [版本发布说明](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.18)。
 
 ## 反馈与致谢
 

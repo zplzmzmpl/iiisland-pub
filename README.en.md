@@ -33,11 +33,11 @@ Lyrics use online services, available embedded lyrics and a local cache. Availab
 
 ## Download and install
 
-Current version: **0.8.17 · build 26**, with the installer updated on **October 24, 2026**.
+Current version: **0.8.18 · build 27**, with the installer updated on **October 25, 2026**.
 
 Requires an **Apple Silicon (arm64) Mac running macOS 14 or later**. An Intel installer is not currently available. Native Liquid Glass requires macOS 26.
 
-1. Download `iiisland-0.8.17-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
+1. Download `iiisland-0.8.18-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 2. Open the DMG and drag `iiisland.app` into the adjacent `Applications` folder.
 3. Launch iiisland from Applications and play a song in your music player.
 
@@ -50,23 +50,23 @@ To update, quit the previous version before replacing the app.
 Download both the DMG and its matching `.sha256` file, then run this in the download directory:
 
 ```sh
-shasum -a 256 -c iiisland-0.8.17-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.18-arm64.dmg.sha256
 ```
 
 SHA-256 for this installer:
 
 ```text
-ad0afa649a5d2d7c3f97ddac8c9823e5ae9f25385dd77298b7d8e68231ce56b7
+bd0a738995ede5ae2923a4181b3fa47cb583cc17d6586a7613c375f5ab6ecb5f
 ```
 
-## What is new in 0.8.17
+## What is new in 0.8.18
 
-- Prevented polling tasks from forming waiting chains during rapid stop/resume or source changes while a player responds slowly.
-- Rate-limited full metadata fallbacks after position failures and preserved valid playback state on transient read errors.
-- Fixed relative seeking from stale positions and zeroed progress when duration is unknown.
-- Hardened app delegate and player connection lifetimes.
+- Reuse Apple Music artwork during same-track refreshes, reducing repeated artwork transfers around playback and progress changes.
+- Keep a smaller representation of large embedded covers to reduce retained artwork data.
+- Reduce repeated script compilation, download-buffer growth and allocations during UI updates. The fixes have completed Open Code Review.
+- Long-duration memory comparisons are still pending; no specific memory reduction is claimed.
 
-See the [release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.17) for details.
+See the [release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.18) for details.
 
 ## Feedback and acknowledgements
 
