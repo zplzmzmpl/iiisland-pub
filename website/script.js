@@ -1,5 +1,10 @@
 (() => {
   'use strict';
+  const pageUrl = new URL(window.location.href);
+  if(pageUrl.hostname==='iiisland.pages.dev'&&pageUrl.searchParams.has('_iiisland_redirect')) {
+    pageUrl.searchParams.delete('_iiisland_redirect');
+    window.history.replaceState(window.history.state,'',pageUrl.pathname+pageUrl.search+pageUrl.hash);
+  }
   const tracks = [
     { title:'慢一点，也没关系', cover:'window', word:'窗边<br>电台', duration:128, lines:['让城市的声音，轻一点','把时间，留给喜欢的旋律','慢一点，也没关系','这一首，陪你走完今天'] },
     { title:'留一扇窗给风', cover:'wind', word:'一扇<br>窗', duration:154, lines:['午后的风，翻过这一页','把今天的心事，轻轻放在窗边','留一扇窗，让音乐经过','下一站，还是喜欢的晴天'] },
