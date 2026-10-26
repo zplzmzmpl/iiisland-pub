@@ -16,6 +16,7 @@ See the cover, check a lyric, or skip a track without switching windows. iiislan
 
 - **Follow what is playing.** Works with Apple Music, Spotify, QQ Music and NetEase Cloud Music. Automatically follows the player that most recently started playback, or stays with a player you choose.
 - **One lyric, two places.** Lyrics sit beside the collapsed island and move into the expanded panel. Choose automatic capsule hiding for pointer hover, pause, screenshots or the app menu; lyrics return when the condition clears. In-island lyrics have a separate switch.
+- **Fine-tune lyric timing.** Enter an offset, adjust it in 100 ms steps or reset it from Lyrics settings or the menu's lyric-offset entry. The calibration window stays open while you adjust and listen in your player.
 - **Fit your screen.** Adjust collapsed and expanded width and height separately, with layouts for displays with or without a notch.
 - **Choose your look.** Use classic black or native Liquid Glass on macOS 26. Switch between day and night modes, with your choice remembered.
 - **Launch with your player.** Enable the option to open iiisland when a supported music player starts.
@@ -35,11 +36,11 @@ An optional setting under Player connects browsers, video players and other apps
 
 ## Download and install
 
-Current version: **0.8.20 · build 29**, with the installer updated on **October 25, 2026**.
+Current version: **0.8.21 · build 30**, with the installer updated on **October 26, 2026**.
 
 Requires an **Apple Silicon (arm64) Mac running macOS 14 or later**. An Intel installer is not currently available. Native Liquid Glass requires macOS 26.
 
-1. Download `iiisland-0.8.20-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
+1. Download `iiisland-0.8.21-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 2. Open the DMG and drag `iiisland.app` into the adjacent `Applications` folder.
 3. Launch iiisland from Applications and play a song in your music player.
 
@@ -52,26 +53,28 @@ To update, quit the previous version before replacing the app.
 Download both the DMG and its matching `.sha256` file, then run this in the download directory:
 
 ```sh
-shasum -a 256 -c iiisland-0.8.20-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.21-arm64.dmg.sha256
 ```
 
 SHA-256 for this installer:
 
 ```text
-5e91a33e7fba68aa84502d029e93facabe447caa9028e2c059048c68952fcc7c
+df1ccdfb328f6477f7ef044faa4aedf2f7f22789abb3cd133f970cd328272402
 ```
 
-## What is new in 0.8.20
+## What is new in 0.8.21
 
-- Automatically hide and restore the lyric capsule for pointer hover, pause, screenshots or the iiisland menu, replacing the old manual show-lyrics entry. Each condition has its own setting.
-- Click through the capsule to the menu bar below. Visibility changes continue from the current opacity to reduce flashes during rapid reversals, shorter lines and display-position changes, with Reduce Motion support.
-- Move explanatory text into hover hints. Keep the island visible when paused from Island settings, independently of capsule pause hiding.
-- Include the optional browser and video-player media sources introduced in 0.8.19. The setting is off by default, playing music takes priority, and other media does not request lyrics.
-- Pass 1,520 native capsule checks and 171 text checks. Related code completed external Open Code Review and delegated follow-ups; build and signature checks passed.
+- Add a per-track lyric offset with a native number field and stepper in Lyrics settings. Adjust in 100 ms steps, type a value or reset it. Positive values show lyrics earlier; negative values delay them, within ±60 seconds.
+- Open a persistent native calibration window from the status-bar or island menu. Keep adjusting while switching to your player to listen. Use native system tooltips and remove the ellipsis from the menu entry.
+- Fix missing artwork in Spotify and Apple Music waiting for a later playback event to recover. Retry a limited number of times, and retain Spotify artwork when its URL briefly disappears for the same track.
+- Fix the first hover failing to expand after switching apps. Recheck the pointer position and cancel stale delayed expansion tasks.
+- Pass 67 lyric-timing, 42 artwork-recovery, 21 image-processing and 119 playback-position regression checks. Feature code completed external Open Code Review and a follow-up on the fix; build and signature checks passed.
+
+The island and capsule share the offset without changing playback position. It survives pause, seeking and lyric refetching, and resets when the track or player changes. Plain-text lyrics cannot be adjusted. Artwork retries are limited; persistent source or network failures can still leave artwork unavailable.
 
 Screenshot hiding detects the Command-Shift chord and the system Screenshot tool. Other Command-Shift shortcuts also hide briefly; very fast or remapped shortcuts and third-party capture or recording may still show the capsule. Browser and video-player compatibility depends on their system media-session support.
 
-See the [release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.20) for details.
+See the [release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.21) for details.
 
 ## Feedback and acknowledgements
 
