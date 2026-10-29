@@ -36,11 +36,11 @@ An optional setting under Player connects browsers, video players and other apps
 
 ## Download and install
 
-Current version: **0.8.21 · build 30**, with the installer updated on **October 26, 2026**.
+Current version: **0.8.22 · build 31**, with the installer updated on **October 29, 2026**.
 
 Requires an **Apple Silicon (arm64) Mac running macOS 14 or later**. An Intel installer is not currently available. Native Liquid Glass requires macOS 26.
 
-1. Download `iiisland-0.8.21-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
+1. Download `iiisland-0.8.22-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 2. Open the DMG and drag `iiisland.app` into the adjacent `Applications` folder.
 3. Launch iiisland from Applications and play a song in your music player.
 
@@ -53,28 +53,28 @@ To update, quit the previous version before replacing the app.
 Download both the DMG and its matching `.sha256` file, then run this in the download directory:
 
 ```sh
-shasum -a 256 -c iiisland-0.8.21-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.22-arm64.dmg.sha256
 ```
 
 SHA-256 for this installer:
 
 ```text
-df1ccdfb328f6477f7ef044faa4aedf2f7f22789abb3cd133f970cd328272402
+d7d2a5f10a25726d06dfc2da159c1605b2c6fb7c79a934aa5d33f2d01bcd1269
 ```
 
-## What is new in 0.8.21
+## What is new in 0.8.22
 
-- Add a per-track lyric offset with a native number field and stepper in Lyrics settings. Adjust in 100 ms steps, type a value or reset it. Positive values show lyrics earlier; negative values delay them, within ±60 seconds.
-- Open a persistent native calibration window from the status-bar or island menu. Keep adjusting while switching to your player to listen. Use native system tooltips and remove the ellipsis from the menu entry.
-- Fix missing artwork in Spotify and Apple Music waiting for a later playback event to recover. Retry a limited number of times, and retain Spotify artwork when its URL briefly disappears for the same track.
-- Fix the first hover failing to expand after switching apps. Recheck the pointer position and cancel stale delayed expansion tasks.
-- Pass 67 lyric-timing, 42 artwork-recovery, 21 image-processing and 119 playback-position regression checks. Feature code completed external Open Code Review and a follow-up on the fix; build and signature checks passed.
+- Fix intermittent hover expansion, stale control highlights during rapid pointer movement, and delayed island/status-bar menu highlighting after opening or closing Settings.
+- Wait for actual activation before opening a menu. Return focus to the previous app when dismissed, and keep Settings focused when opened from the menu.
+- Narrow playback-driven view updates and remove unused animations. Serialize artwork decoding and discard outdated requests during rapid track changes.
+- Improve resource release when Settings closes. Synchronize player-launch preferences in the background and retain the final choice during rapid changes.
+- All 20 regression scripts passed, including 332 full-app host checks, release checks for 60 actual Settings windows and 333 native hover/menu checks. The user confirmed normal operation of the optimized build.
 
-The island and capsule share the offset without changing playback position. It survives pause, seeking and lyric refetching, and resets when the track or player changes. Plain-text lyrics cannot be adjusted. Artwork retries are limited; persistent source or network failures can still leave artwork unavailable.
+The first Settings visit loads system controls and process caches. Memory need not return to the baseline from before that first visit; this version does not promise a fixed reduction. Lyric calibration, automatic hiding, player support and optional system media remain available.
 
 Screenshot hiding detects the Command-Shift chord and the system Screenshot tool. Other Command-Shift shortcuts also hide briefly; very fast or remapped shortcuts and third-party capture or recording may still show the capsule. Browser and video-player compatibility depends on their system media-session support.
 
-See the [release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.21) for details.
+See the [release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.22) for details.
 
 ## Feedback and acknowledgements
 
