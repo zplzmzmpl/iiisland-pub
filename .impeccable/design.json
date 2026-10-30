@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-30T13:56:37.160Z",
+  "title": "Design System: iiisland",
+  "extensions": {
+    "colorMeta": {
+      "drafting-paper": {
+        "role": "neutral",
+        "displayName": "Drafting Paper",
+        "canonical": "#efede5",
+        "tonalRamp": [
+          "#2c291b",
+          "#524c33",
+          "#786f4a",
+          "#9e9261",
+          "#b5ac87",
+          "#ccc6ad",
+          "#e4e0d3",
+          "#f5f4ef"
+        ]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#191a19",
+        "tonalRamp": [
+          "#232423",
+          "#414441",
+          "#5f635f",
+          "#7d827d",
+          "#9ca09c",
+          "#bbbebb",
+          "#dbdcdb",
+          "#f2f3f2"
+        ]
+      },
+      "graphite-soft": {
+        "role": "neutral",
+        "displayName": "Graphite Soft",
+        "canonical": "#3f443e",
+        "tonalRamp": [
+          "#232522",
+          "#40453f",
+          "#5e655c",
+          "#7c857a",
+          "#9ba39a",
+          "#bbc0ba",
+          "#daddda",
+          "#f2f3f2"
+        ]
+      },
+      "pencil-grey": {
+        "role": "neutral",
+        "displayName": "Pencil Grey",
+        "canonical": "#5c605a",
+        "tonalRamp": [
+          "#232523",
+          "#424440",
+          "#60645e",
+          "#7e847b",
+          "#9da19b",
+          "#bcbfbb",
+          "#dbdcda",
+          "#f2f3f2"
+        ]
+      },
+      "blueprint-blue": {
+        "role": "primary",
+        "displayName": "Blueprint Blue",
+        "canonical": "#2253dc",
+        "tonalRamp": [
+          "#0a173e",
+          "#122b73",
+          "#1a3fa8",
+          "#2253dd",
+          "#577de5",
+          "#8ca6ed",
+          "#c1cff5",
+          "#e9eefc"
+        ]
+      },
+      "blueprint-ink": {
+        "role": "primary",
+        "displayName": "Blueprint Ink",
+        "canonical": "#1b3a9e",
+        "tonalRamp": [
+          "#0a163d",
+          "#132a71",
+          "#1c3da6",
+          "#2550da",
+          "#597ae3",
+          "#8ea4ec",
+          "#c2cef5",
+          "#e9edfb"
+        ]
+      },
+      "studio-sage": {
+        "role": "secondary",
+        "displayName": "Studio Sage",
+        "canonical": "#c7cfc0",
+        "tonalRamp": [
+          "#23291f",
+          "#424b39",
+          "#606e54",
+          "#7e916e",
+          "#9dab91",
+          "#bcc6b4",
+          "#dbe0d6",
+          "#f2f4f1"
+        ]
+      },
+      "index-blue": {
+        "role": "tertiary",
+        "displayName": "Index Blue",
+        "canonical": "#d7dfe6",
+        "tonalRamp": [
+          "#1b242c",
+          "#334352",
+          "#4b6277",
+          "#62819d",
+          "#88a0b4",
+          "#adbecc",
+          "#d3dce4",
+          "#eff2f5"
+        ]
+      },
+      "notch-black": {
+        "role": "neutral",
+        "displayName": "Notch Black",
+        "canonical": "#08090a",
+        "tonalRamp": [
+          "#202428",
+          "#3b424a",
+          "#56616c",
+          "#71808e",
+          "#939ea9",
+          "#b5bdc4",
+          "#d7dbdf",
+          "#f1f2f4"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Chalk",
+        "canonical": "#f2f2ec",
+        "tonalRamp": [
+          "#2a2a1d",
+          "#4f4f36",
+          "#73734f",
+          "#979768",
+          "#b0b08c",
+          "#c9c9b0",
+          "#e2e2d5",
+          "#f5f5f0"
+        ]
+      },
+      "dust": {
+        "role": "neutral",
+        "displayName": "Dust",
+        "canonical": "#b3b8b1",
+        "tonalRamp": [
+          "#232522",
+          "#41453f",
+          "#5f655c",
+          "#7d857a",
+          "#9ca39a",
+          "#bbc0ba",
+          "#dbddda",
+          "#f2f3f2"
+        ]
+      },
+      "island-rail": {
+        "role": "neutral",
+        "displayName": "Island Rail",
+        "canonical": "#3a3e39",
+        "tonalRamp": [
+          "#232522",
+          "#414540",
+          "#5e655d",
+          "#7c857a",
+          "#9ca29a",
+          "#bbbfba",
+          "#daddda",
+          "#f2f3f2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Section sheet titles, exactly one step below the headline."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The title-block title; the largest type on the page."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Lyric rows, player names, FAQ questions and decks."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Explanations, notes and FAQ answers at a 65–75ch measure."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Sheet references, dimension values and field labels; never an eyebrow."
+      }
+    },
+    "shadows": [
+      {
+        "name": "island-rest",
+        "value": "0 18px 38px rgba(9,10,9,.28), inset 0 1px 0 rgba(255,255,255,.10)",
+        "purpose": "The open notch on the sage screen."
+      },
+      {
+        "name": "capsule",
+        "value": "0 8px 18px rgba(9,10,9,.18)",
+        "purpose": "The detached lyric pill while the island is closed."
+      },
+      {
+        "name": "compact-island",
+        "value": "0 10px 20px rgba(9,10,9,.20)",
+        "purpose": "The detail-B island in the lyric scene."
+      },
+      {
+        "name": "cover",
+        "value": "0 6px 14px rgba(0,0,0,.22)",
+        "purpose": "The album cover inside the open island."
+      },
+      {
+        "name": "pinned-plate",
+        "value": "0 16px 30px rgba(25,26,25,.16)",
+        "purpose": "The rotated reference print on the hero sheet."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "Page state transitions and the sheet plot-in."
+      },
+      {
+        "name": "ease-island",
+        "value": "cubic-bezier(0.22, 0.9, 0.24, 1)",
+        "purpose": "The island open/close width, height and corners."
+      },
+      {
+        "name": "island-open",
+        "value": "640ms cubic-bezier(0.22, 0.9, 0.24, 1)",
+        "purpose": "The signature notch transition; the dimension lines follow it."
+      },
+      {
+        "name": "plot-in",
+        "value": "1000ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "The hero sheet plotting in from the left once on load."
+      },
+      {
+        "name": "size-loop",
+        "value": "4800ms alternate",
+        "purpose": "The CSS-only 1:1 size drawing; static open under reduced motion."
+      },
+      {
+        "name": "hover",
+        "value": "open 180ms / close 280ms",
+        "purpose": "The island hover delay; pointer leave closes unless a control is focused."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "lg",
+        "value": "1100px"
+      },
+      {
+        "name": "md",
+        "value": "900px"
+      },
+      {
+        "name": "sm",
+        "value": "760px"
+      },
+      {
+        "name": "xs",
+        "value": "480px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "The Island",
+      "kind": "custom",
+      "refersTo": "island",
+      "description": "The black notch on the sage screen; 440 × 266 open, 280 × 44 closed. The only shadowed, moving object in the system. Its cover is the app icon.",
+      "html": "<div class=\"ds-island\" role=\"group\" aria-label=\"iiisland music player\">\n  <div class=\"ds-island-head\"><span>Apple Music · 自动模式演示</span><button class=\"ds-island-collapse\" aria-label=\"收起播放面板\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"m6 15 6-6 6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button></div>\n  <div class=\"ds-island-now\">\n    <div class=\"ds-cover\"><svg viewBox=\"0 0 64 64\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><rect width=\"64\" height=\"64\" rx=\"10\" fill=\"#f6f3ea\"/><path d=\"M20 34v-3a12 12 0 0 1 24 0v3M20 34h4v10h-3a1 1 0 0 1-1-1V34ZM44 34h-4v10h3a1 1 0 0 0 1-1V34Z\" fill=\"none\" stroke=\"#191a19\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></div>\n    <div class=\"ds-track\"><p class=\"ds-track-title\">慢一点，也没关系</p><p class=\"ds-track-artist\">窗边电台 · 原创演示</p><p class=\"ds-track-lyric\">让城市的声音，轻一点</p></div>\n  </div>\n  <div class=\"ds-seek\"><span>0:28</span><div class=\"ds-seek-line\"><i style=\"width:22%\"></i><b style=\"left:22%\"></b></div><span>2:08</span></div>\n  <div class=\"ds-transport\">\n    <div class=\"ds-play-row\"><button class=\"ds-ibtn\" aria-label=\"上一首\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M6 5v14M18 5 8 12l10 7Z\" fill=\"currentColor\" stroke=\"none\"/></svg></button><button class=\"ds-play\" aria-label=\"暂停演示\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M8 5v14M16 5v14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/></svg></button><button class=\"ds-ibtn\" aria-label=\"下一首\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M19 5v14M5 5l12 7-12 7Z\" fill=\"currentColor\" stroke=\"none\"/></svg></button></div>\n    <div class=\"ds-volume\"><button class=\"ds-ibtn\" aria-label=\"静音演示\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"m11 4-6 5H2v6h3l6 5ZM15 8c3 2 3 6 0 8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button><div class=\"ds-vol-line\"><i style=\"width:65%\"></i><b style=\"left:65%\"></b></div></div>\n  </div>\n</div>",
+      "css": ".ds-island{width:440px;height:266px;overflow:hidden;background:var(--notch-black,#08090a);color:var(--chalk,#f2f2ec);border-radius:0 0 28px 28px;box-shadow:0 18px 38px rgba(9,10,9,.28),inset 0 1px 0 rgba(255,255,255,.10);padding:17px 20px 16px;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",\"Helvetica Neue\",sans-serif;display:flex;flex-direction:column}\n.ds-island-head{display:flex;align-items:center;justify-content:space-between;min-height:44px;margin:0 0 8px;font-size:11px;letter-spacing:.08em;color:var(--dust,#b3b8b1)}\n.ds-island-collapse{width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer}\n.ds-island-collapse:hover{background:rgba(255,255,255,.1)}\n.ds-island-now{display:flex;align-items:center;gap:15px;min-width:0}\n.ds-cover{width:80px;height:80px;flex-shrink:0;overflow:hidden;border-radius:6px;background:#e0e5cf;box-shadow:0 6px 14px rgba(0,0,0,.22)}\n.ds-track{min-width:0}\n.ds-track-title{margin:0;font-size:18px;font-weight:600;line-height:1.35;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.ds-track-artist{margin:4px 0 0;font-size:12px;color:var(--dust,#b3b8b1)}\n.ds-track-lyric{margin:11px 0 0;font-size:13px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.ds-seek{display:flex;align-items:center;gap:9px;height:44px;font-size:11px;font-variant-numeric:tabular-nums;color:var(--dust,#b3b8b1)}\n.ds-seek-line,.ds-vol-line{position:relative;flex:1;height:2px;background:var(--island-rail,#3a3e39)}\n.ds-seek-line i,.ds-vol-line i{position:absolute;left:0;top:0;height:2px;background:var(--chalk,#f2f2ec)}\n.ds-seek-line b,.ds-vol-line b{position:absolute;top:-3.5px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--chalk,#f2f2ec)}\n.ds-transport{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px;margin-top:auto}\n.ds-play-row{display:flex;align-items:center;gap:4px}\n.ds-ibtn{width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer}\n.ds-ibtn:hover{background:rgba(255,255,255,.1)}\n.ds-play{width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:50%;background:var(--chalk,#f2f2ec);color:var(--notch-black,#08090a);cursor:pointer}\n.ds-volume{display:flex;align-items:center;gap:0;width:104px}\n.ds-volume .ds-ibtn{width:44px;height:44px}\n.ds-vol-line{flex:1}"
+    },
+    {
+      "name": "Primary Download Stamp",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The blueprint-blue issue stamp with a white arrow; 54px tall, 2px corners; the page’s primary action.",
+      "html": "<a class=\"ds-stamp\" href=\"#install\">下载 Mac 版 <svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-stamp{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;min-height:54px;padding:0 18px;background:var(--blueprint-blue,#2253dc);color:#fff;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);font-family:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",\"Helvetica Neue\",sans-serif;font-size:15px;font-weight:600;text-decoration:none;box-sizing:border-box;transition:background .2s,transform .2s}\n.ds-stamp:hover{background:var(--graphite,#191a19);transform:translateY(-2px)}\n.ds-stamp:hover svg{transform:translate(2px,-2px)}\n.ds-stamp svg{transition:transform .2s}\n.ds-stamp:focus-visible{outline:2px solid var(--graphite,#191a19);outline-offset:3px}"
+    },
+    {
+      "name": "Header Download",
+      "kind": "button",
+      "refersTo": "header-download",
+      "description": "The persistent 44px blue action in the sheet header; 14px label, 16px arrow.",
+      "html": "<a class=\"ds-head-download\" href=\"#install\">下载 Mac 版 <svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-head-download{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px;background:var(--blueprint-blue,#2253dc);color:#fff;border-radius:2px;font-family:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",\"Helvetica Neue\",sans-serif;font-size:14px;font-weight:600;text-decoration:none;transition:background .2s,transform .2s}\n.ds-head-download:hover{background:var(--graphite,#191a19);transform:translateY(-1px)}\n.ds-head-download:focus-visible{outline:2px solid var(--blueprint-blue,#2253dc);outline-offset:3px}"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "text-button",
+      "description": "An underline-only control for demo actions and sheet links; 44px target, 1px Graphite Soft rule.",
+      "html": "<button class=\"ds-text-button\" type=\"button\">暂停演示 <svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-text-button{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0;border:0;border-bottom:1px solid var(--graphite-soft,#3f443e);background:transparent;color:var(--graphite,#191a19);font-family:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",\"Helvetica Neue\",sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:color .2s,border-color .2s}\n.ds-text-button:hover{color:var(--blueprint-ink,#1b3a9e);border-color:var(--blueprint-ink,#1b3a9e)}\n.ds-text-button:focus-visible{outline:2px solid var(--blueprint-blue,#2253dc);outline-offset:3px}"
+    },
+    {
+      "name": "Lyric Row",
+      "kind": "button",
+      "description": "A four-column lyric index: number, phrase and a 44px play/pause circle; the active row is graphite with one blue mark.",
+      "html": "<ol class=\"ds-lyrics\">\n  <li><button class=\"ds-lyric\" type=\"button\"><span class=\"ds-lyric-no\">01</span><span class=\"ds-lyric-label\">让城市的声音，轻一点</span><span class=\"ds-lyric-play\"><svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" aria-hidden=\"true\"><path d=\"M7 4l13 8-13 8Z\" fill=\"currentColor\" stroke=\"none\"/></svg></span></button></li>\n  <li><button class=\"ds-lyric is-current\" type=\"button\"><span class=\"ds-lyric-no\">02</span><span class=\"ds-lyric-label\">把时间，留给喜欢的旋律</span><span class=\"ds-lyric-play\"><svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" aria-hidden=\"true\"><path d=\"M7 5h4v14H7ZM14 5h4v14h-4Z\" fill=\"currentColor\" stroke=\"none\"/></svg></span></button></li>\n  <li><button class=\"ds-lyric\" type=\"button\"><span class=\"ds-lyric-no\">03</span><span class=\"ds-lyric-label\">慢一点，也没关系</span><span class=\"ds-lyric-play\"><svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" aria-hidden=\"true\"><path d=\"M7 4l13 8-13 8Z\" fill=\"currentColor\" stroke=\"none\"/></svg></span></button></li>\n</ol>",
+      "css": ".ds-lyrics{list-style:none;margin:0;padding:0;border-top:1px solid rgba(25,26,25,.46);font-family:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",\"Helvetica Neue\",sans-serif}\n.ds-lyrics li{border-bottom:1px solid rgba(25,26,25,.16)}\n.ds-lyric{display:grid;grid-template-columns:40px minmax(0,1fr) 44px;align-items:center;gap:14px;width:100%;min-height:74px;padding:11px 0;border:0;background:transparent;color:var(--pencil-grey,#5c605a);text-align:left;cursor:pointer;transition:color .18s}\n.ds-lyric:hover{color:var(--graphite,#191a19)}\n.ds-lyric.is-current{color:var(--graphite,#191a19)}\n.ds-lyric-no{font-size:11px;letter-spacing:.1em;font-variant-numeric:tabular-nums}\n.ds-lyric.is-current .ds-lyric-no{color:var(--blueprint-blue,#2253dc)}\n.ds-lyric-label{font-size:28px;font-weight:500;line-height:1.35;letter-spacing:-.015em}\n.ds-lyric.is-current .ds-lyric-label{font-weight:600}\n.ds-lyric-play{display:grid;place-items:center;width:44px;height:44px;border:1px solid rgba(25,26,25,.46);border-radius:50%;color:var(--graphite,#191a19);box-sizing:border-box;transition:background .18s,color .18s,border-color .18s}\n.ds-lyric.is-current .ds-lyric-play{background:var(--blueprint-blue,#2253dc);border-color:var(--blueprint-blue,#2253dc);color:#fff}\n.ds-lyric:hover .ds-lyric-play{background:var(--graphite,#191a19);border-color:var(--graphite,#191a19);color:var(--drafting-paper,#efede5)}\n.ds-lyric:focus-visible{outline:2px solid var(--blueprint-blue,#2253dc);outline-offset:3px}"
+    },
+    {
+      "name": "Player Row",
+      "kind": "button",
+      "description": "The schedule row: number, player name and a 21px arrow that appears on hover and stays on the active source.",
+      "html": "<div class=\"ds-player-list\">\n  <button class=\"ds-player-row is-active\" type=\"button\"><span class=\"ds-player-no\">01</span><span class=\"ds-player-name\">Apple Music</span><svg class=\"ds-player-arrow\" viewBox=\"0 0 24 24\" width=\"21\" height=\"21\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>\n  <button class=\"ds-player-row\" type=\"button\"><span class=\"ds-player-no\">02</span><span class=\"ds-player-name\">Spotify</span><svg class=\"ds-player-arrow\" viewBox=\"0 0 24 24\" width=\"21\" height=\"21\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>\n</div>",
+      "css": ".ds-player-list{border-top:1px solid rgba(25,26,25,.46);font-family:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",\"Helvetica Neue\",sans-serif}\n.ds-player-row{display:grid;grid-template-columns:44px minmax(0,1fr) 40px;align-items:center;gap:12px;width:100%;min-height:76px;padding:10px 0;border:0;border-bottom:1px solid rgba(25,26,25,.16);background:transparent;color:var(--pencil-grey,#5c605a);text-align:left;cursor:pointer;transition:color .18s}\n.ds-player-row:hover,.ds-player-row.is-active{color:var(--graphite,#191a19)}\n.ds-player-row.is-active .ds-player-no{color:var(--blueprint-ink,#1b3a9e)}\n.ds-player-no{font-size:11px;letter-spacing:.1em;font-variant-numeric:tabular-nums}\n.ds-player-name{font-size:40px;font-weight:500;line-height:1.2;letter-spacing:-.02em}\n.ds-player-row.is-active .ds-player-name{font-weight:600}\n.ds-player-arrow{justify-self:end;color:var(--blueprint-ink,#1b3a9e);opacity:0;transform:translateX(-6px);transition:opacity .18s,transform .18s}\n.ds-player-row:hover .ds-player-arrow,.ds-player-row.is-active .ds-player-arrow{opacity:1;transform:none}\n.ds-player-row:focus-visible{outline:2px solid var(--blueprint-blue,#2253dc);outline-offset:3px}"
+    },
+    {
+      "name": "Square Toggle Row",
+      "kind": "input",
+      "description": "A whole-row label with a 22px square checkbox; checked is Blueprint Blue with a white check. The row, not the square, is the target.",
+      "html": "<label class=\"ds-toggle-row\">\n  <span class=\"ds-toggle-copy\"><span class=\"ds-toggle-title\">显示歌词</span><span class=\"ds-toggle-desc\">菜单栏与岛内同步切换</span></span>\n  <input class=\"ds-toggle\" type=\"checkbox\" checked>\n</label>",
+      "css": ".ds-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0;border-top:1px solid rgba(25,26,25,.16);border-bottom:1px solid rgba(25,26,25,.16);font-family:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",\"Helvetica Neue\",sans-serif;cursor:pointer}\n.ds-toggle-copy{display:flex;flex-direction:column;gap:3px}\n.ds-toggle-title{font-size:15px;font-weight:500;color:var(--graphite,#191a19)}\n.ds-toggle-desc{font-size:12px;color:var(--pencil-grey,#5c605a)}\n.ds-toggle{appearance:none;width:22px;height:22px;flex-shrink:0;margin:0;border:1px solid rgba(25,26,25,.46);border-radius:0;background:transparent;cursor:pointer;display:grid;place-content:center;transition:background .2s,border-color .2s}\n.ds-toggle:checked{background:var(--blueprint-blue,#2253dc);border-color:var(--blueprint-blue,#2253dc)}\n.ds-toggle:checked::after{content:\"\";width:10px;height:5px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:translateY(-1px) rotate(-45deg)}\n.ds-toggle:focus-visible{outline:2px solid var(--blueprint-blue,#2253dc);outline-offset:2px}"
+    },
+    {
+      "name": "FAQ Note Row",
+      "kind": "custom",
+      "description": "A native details row in the notes list: 44px note number, question, CSS plus-to-cross, 1px rules and an indented answer.",
+      "html": "<details class=\"ds-faq\" open>\n  <summary><span class=\"ds-faq-no\">N-01</span><span class=\"ds-faq-q\">我的 Mac 可以安装吗？</span></summary>\n  <div class=\"ds-faq-answer\"><p><strong>Apple Silicon（M 系列）· macOS 14 或更高版本。</strong><span>暂不提供 Intel 安装包。</span></p></div>\n</details>",
+      "css": ".ds-faq{border-top:1px solid rgba(25,26,25,.46);border-bottom:1px solid rgba(25,26,25,.16);font-family:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",\"Helvetica Neue\",sans-serif}\n.ds-faq summary{display:grid;grid-template-columns:44px minmax(0,1fr) 32px;align-items:center;gap:12px;padding:21px 0;list-style:none;font-size:24px;font-weight:500;line-height:1.4;letter-spacing:-.01em;color:var(--graphite,#191a19);cursor:pointer}\n.ds-faq summary::-webkit-details-marker{display:none}\n.ds-faq summary::after{content:\"\";justify-self:end;width:14px;height:14px;background:linear-gradient(var(--graphite,#191a19),var(--graphite,#191a19)) center/14px 1px no-repeat,linear-gradient(var(--graphite,#191a19),var(--graphite,#191a19)) center/1px 14px no-repeat;transition:transform .26s}\n.ds-faq[open] summary::after{transform:rotate(45deg)}\n.ds-faq-no{font-size:11px;letter-spacing:.1em;color:var(--pencil-grey,#5c605a);font-variant-numeric:tabular-nums}\n.ds-faq-answer{padding:0 44px 26px 56px;max-width:720px;box-sizing:border-box}\n.ds-faq-answer p{margin:0;color:var(--pencil-grey,#5c605a);font-size:15px;line-height:1.7}\n.ds-faq-answer strong{display:block;margin-bottom:4px;color:var(--graphite,#191a19);font-weight:500}\n.ds-faq-answer span{display:block;font-size:13px;line-height:1.7}"
+    },
+    {
+      "name": "Player Detail Sheet",
+      "kind": "card",
+      "refersTo": "player-panel",
+      "description": "A paper spec sheet with a multiply-treated mark, a three-row capability table with square status marks, a note, and a square auto-detect checkbox.",
+      "html": "<div class=\"ds-player-panel\">\n  <div class=\"ds-source\"><span class=\"ds-source-mark\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" aria-hidden=\"true\"><path d=\"M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H5a1 1 0 0 1-1-1v-5ZM20 14h-3v6h2a1 1 0 0 0 1-1v-5Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><div><p class=\"ds-source-name\">Apple Music</p><p class=\"ds-source-status\"><i></i>在 iiisland 中，接着听</p></div></div>\n  <dl class=\"ds-caps\"><div><dt>歌曲、封面、歌词</dt><dd data-state=\"yes\">支持</dd></div><div><dt>播放、切歌、进度</dt><dd data-state=\"yes\">支持</dd></div><div><dt>音量、随机、循环</dt><dd data-state=\"yes\">支持</dd></div></dl>\n  <p class=\"ds-player-note\">首次连接时，macOS 可能请求自动化授权。</p>\n  <label class=\"ds-auto\"><input type=\"checkbox\" checked><span>自动检测播放器</span></label>\n  <p class=\"ds-detect-note\">应用内优先跟随最近开始播放的来源，全部暂停时保留当前来源。</p>\n</div>",
+      "css": ".ds-player-panel{max-width:520px;padding:30px;background:var(--drafting-paper,#efede5);border:1px solid rgba(25,26,25,.46);box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",\"Helvetica Neue\",sans-serif}\n.ds-source{display:flex;align-items:center;gap:15px;padding-bottom:18px;border-bottom:1px solid rgba(25,26,25,.46)}\n.ds-source-mark{display:grid;place-items:center;width:58px;height:58px;box-sizing:border-box;border:1px solid rgba(25,26,25,.16);background:#f6f3ea;color:var(--graphite,#191a19)}\n.ds-source-name{margin:0;font-size:24px;font-weight:600;line-height:1.2;letter-spacing:-.02em;color:var(--graphite,#191a19)}\n.ds-source-status{display:flex;align-items:center;gap:6px;margin:4px 0 0;font-size:12px;color:var(--pencil-grey,#5c605a)}\n.ds-source-status i{width:5px;height:5px;border-radius:50%;background:var(--blueprint-blue,#2253dc)}\n.ds-caps{margin:0;padding:0}\n.ds-caps>div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(25,26,25,.16)}\n.ds-caps dt{font-size:13px;color:var(--graphite-soft,#3f443e)}\n.ds-caps dd{display:flex;align-items:center;gap:7px;margin:0;font-size:12px;font-weight:500;color:var(--graphite,#191a19)}\n.ds-caps dd::before{content:\"\";width:5px;height:5px;background:var(--blueprint-blue,#2253dc)}\n.ds-player-note{margin:15px 0 0;min-height:40px;font-size:12px;line-height:1.65;color:var(--pencil-grey,#5c605a)}\n.ds-auto{display:flex;align-items:center;gap:10px;min-height:44px;font-size:13px;color:var(--graphite,#191a19);cursor:pointer}\n.ds-auto input{appearance:none;width:17px;height:17px;margin:0;border:1px solid rgba(25,26,25,.46);background:transparent;display:grid;place-content:center;cursor:pointer}\n.ds-auto input:checked{background:var(--blueprint-blue,#2253dc);border-color:var(--blueprint-blue,#2253dc)}\n.ds-auto input:checked::after{content:\"\";width:8px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:translateY(-1px) rotate(-45deg)}\n.ds-detect-note{margin:0;font-size:12px;line-height:1.6;color:var(--pencil-grey,#5c605a)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Measured Elevation",
+    "overview": "iiisland's public page is a drawing sheet for the Mac's top edge. Warm drafting paper, graphite ink, a single blueprint-blue pencil, a sage screen field and a pale index field carry the composition. The live notch sits on the sheet at 1:1 with blue dimension lines measuring it; a title block carries the headline, the deck, the download stamp and the platform specs; a pinned reference print of the app's ink illustration anchors the right margin. The page is not a product photograph and not a floating card stack — it is a measured drawing where one object is alive.\n\nThe system's voice is quiet and precise. Hairlines do the structural work that shadows do on other pages. Type is the native macOS voice (SF / PingFang), set at measured steps; the only soft, shadowed object is the product itself. The blue is a pencil mark, a dimension, an action and the mandated issue stamp, never a decorative wash. Sections read as sheets in a set: lyrics as a lyric index, size as a 1:1 detail, players as a schedule, installation as notes, the release as a stamped issue.",
+    "keyCharacteristics": [
+      "Warm drafting paper (#efede5) as the ground; graphite text; one blueprint blue; sage and pale-blue fields that own whole regions.",
+      "A 24/48 drawing module, 1px hairlines, title block, sheet references A-01–A-07, crop ticks and 1:1 dimension lines.",
+      "The island is the only soft, shadowed object and the only thing on the sheet that moves.",
+      "Native system type, no webfont; the platform's own face is the brand voice.",
+      "Square instruments (2px page controls, square toggles, 1px rules) against the one pill (the lyric capsule) and the one notch (the island)."
+    ],
+    "rules": [
+      {
+        "name": "The Blue Pencil Rule",
+        "body": "Blue is a mark or an action: dimension lines, active indices, the download stamp, focus. It never becomes a decorative field except the mandated issue stamp. If blue is doing neither measuring nor acting, remove it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper Field Rule",
+        "body": "Field colours own whole regions. Sage is the hero screen and the size detail; pale blue is the player schedule; paper is everything else. No coloured cards scattered over paper, no coloured border-left stripes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Intentional Warmth Rule",
+        "body": "The warm paper ground and the two-axis drafting grid are the direction, not an AI-cream default; the 404 inherits the same paper. The functional barcode in the issue stamp is a print element, not decorative stripes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Native Voice Rule",
+        "body": "Use the system stack everywhere, including display. It is a commitment to the product's platform, not an unresolved font choice; do not introduce a webfont.",
+        "section": "typography"
+      },
+      {
+        "name": "The Measured Label Rule",
+        "body": "Labels are 11px, tracked, and factual: A-02, SCALE 1:1, 440 × 266, 0.8.22, 版本. They sit in margins, title blocks and dimension lines; they never become a kicker above a heading.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Clear Step Rule",
+        "body": "The headline is the largest text; displays step down once; titles step down again. Do not let a section heading meet or exceed the headline.",
+        "section": "typography"
+      },
+      {
+        "name": "The Only Living Element Rule",
+        "body": "The island is the only object on the sheet that both casts a shadow and moves. Everything else is printed, ruled or flat. If a panel starts to float, it has stopped being part of the drawing.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Instrument Rule",
+        "body": "Page controls inherit the drawing's square corners; only the product and its lyric pill are allowed to be soft. Adding a rounded card to a paper section is a shape violation, not a style preference.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do keep the warm paper ground, graphite ink and the single Blueprint Blue; use Blueprint Ink for small blue text on sage or pale fields.",
+      "Do draw with 1px hairlines, the 24/48 module, title blocks, sheet references, dimension lines and crop ticks; the drawing is the layout.",
+      "Do keep the island as the only shadowed, soft, moving object, and the lyric capsule as the only pill.",
+      "Do keep the native system stack as the display and body voice; the product is a Mac app and the page should sound like the Mac.",
+      "Do keep the headline the largest type, displays one step down and labels at 11px/tracked.",
+      "Do label the demo as a web interaction with no audio and the songs/lyrics/covers as original synthetic content.",
+      "Do preserve keyboard focus, the skip link, reduced-motion static states, the no-JS reading path and the 44px+ controls."
+    ],
+    "donts": [
+      "Don't turn paper sections into rounded cards, add icon tiles, gradient buttons, glass/blur, coloured left borders or hard offset shadows.",
+      "Don't put a kicker or eyebrow above a heading; the title block field labels and sheet references belong in margins and title blocks, never as a generic eyebrow.",
+      "Don't add a webfont, a second accent, a dark hero field, a fake app screenshot, invented testimonials or benchmark claims.",
+      "Don't scatter blue as decoration or let it own a field other than the mandated issue stamp; blue must measure or act.",
+      "Don't give every section the same entrance animation or a floating shadow; one authored moment (the sheet plotting in) is enough.",
+      "Don't \"fix\" the intentional paper palette, the drafting grid or the functional barcode by replacing the world; they are the system.",
+      "Don't use the island's rounded, shadowed language on ordinary panels; that language belongs to the product."
+    ]
+  }
+}

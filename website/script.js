@@ -6,7 +6,7 @@
     { title:'夜色慢慢', cover:'night', word:'夜色<br>慢慢', duration:142, lines:['街灯把影子，拉长一点','沿着旋律，走过这条街','夜色慢慢，心事也慢慢','等最后一盏灯，为你亮着'] }
   ];
   const players = { apple:'Apple Music', spotify:'Spotify', qq:'QQ 音乐', netease:'网易云音乐' };
-  const state = { track:0, playing:true, time:28, volume:65, open:false, lyrics:true, persist:true, player:'apple', auto:true };
+  const state = { track:0, playing:true, time:28, volume:65, open:true, lyrics:true, persist:true, player:'apple', auto:true };
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
   const timeLabel = t => `${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
@@ -35,6 +35,7 @@
     $$('.seek').forEach(el => {
       el.max=current.duration;
       if(document.activeElement!==el) el.value=Math.floor(state.time);
+      el.style.setProperty('--fill',`${Math.min(100,Math.max(0,state.time/current.duration*100))}%`);
       el.setAttribute('aria-valuetext',`${timeLabel(state.time)}，共 ${timeLabel(current.duration)}`);
     });
     if(previousLine!==lineIndex() || previousTrack!==state.track || previousPlaying!==state.playing) {
@@ -74,8 +75,13 @@
     });
     $$('.compact-island').forEach(el=>el.classList.toggle('is-paused',!state.playing));
     $$('[data-action="play"]').forEach(el=>{
+      if(el.id==='lyrics-play') {
+        const label=state.playing?'暂停演示':'继续播放';
+        el.textContent=label;
+        el.setAttribute('aria-label',label);
+        return;
+      }
       el.setAttribute('aria-label',state.playing?'暂停演示':'播放演示');
-      if(el.id==='lyrics-play') {el.textContent=state.playing?'暂停演示':'继续播放';return;}
       el.setAttribute('aria-pressed',String(state.playing));
       el.classList.toggle('is-paused',!state.playing);
       el.querySelector('.play-shape').setAttribute('d',state.playing?'M8 5v14M16 5v14':'M7 4l13 8-13 8Z');
@@ -85,15 +91,17 @@
       el.setAttribute('aria-label',state.volume===0?'取消演示静音':'静音演示');
       el.parentElement.classList.toggle('is-muted',state.volume===0);
     });
-    $$('.volume').forEach(el=>{el.value=state.volume;el.setAttribute('aria-valuetext',`${state.volume}%`);});
+    $$('.volume').forEach(el=>{el.value=state.volume;el.style.setProperty('--fill',`${state.volume}%`);el.setAttribute('aria-valuetext',`${state.volume}%`);});
     $$('[data-action="toggle"]').forEach(el=>el.setAttribute('aria-expanded',String(state.open)));
-    $('#expand').innerHTML=state.open?'收起面板 <span aria-hidden="true">↑</span>':'展开面板 <span aria-hidden="true">↓</span>';
+    const expandLabel=$('#expand .label');
+    if(expandLabel) expandLabel.textContent=state.open?'收起面板':'展开面板';
     $$('[data-player]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.player===state.player)));
     $('#selected-player').textContent=players[state.player];
     const partial=['qq','netease'].includes(state.player);
     $$('.volume,[data-action="mute"]').forEach(el=>{el.disabled=partial;});
-    $('#playback-capability').textContent=partial?'依系统媒体焦点':'支持';
-    $('#extra-capability').textContent=partial?'暂不支持':'支持';
+    const setCapability=(el,text,status)=>{el.textContent=text;el.dataset.state=status;};
+    setCapability($('#playback-capability'),partial?'依系统媒体焦点':'支持',partial?'partial':'yes');
+    setCapability($('#extra-capability'),partial?'暂不支持':'支持',partial?'no':'yes');
     $('#player-note').textContent=partial?'首次使用时，请先在播放器内播放歌曲。播放、切歌与进度控制取决于系统媒体焦点和可用能力。':'首次连接时，macOS 可能请求自动化授权。';
     $('#detection-note').textContent=state.auto?'应用内优先跟随最近开始播放的来源，全部暂停时保留当前来源。':`手动模式固定为 ${players[state.player]}，不会被其他播放器切走。`;
     $$('.icon-button').forEach(el=>{el.title=el.getAttribute('aria-label');});
@@ -101,11 +109,13 @@
   }
 
   function setOpen(open, suppress=false) {
+    const openedFromTrigger=open&&document.activeElement?.closest('.closed-trigger');
     const focusTarget=!open ? document.activeElement.closest('.music-island')?.querySelector('.closed-trigger') : null;
     clearTimeout(hoverTimer);
     state.open=open;
     hoverSuppressed=suppress;
     render();
+    if(openedFromTrigger) document.querySelector('.music-island .collapse-button')?.focus({preventScroll:true});
     if(focusTarget) focusTarget.focus({preventScroll:true});
   }
   function changeTrack(delta) {
@@ -150,7 +160,7 @@
       case 'next': changeTrack(1);break;
       case 'previous': changeTrack(-1);break;
       case 'mute': if(state.volume>0){previousVolume=state.volume;state.volume=0;}else state.volume=previousVolume||65;render();break;
-      case 'show-hero': setOpen(true);$('#hero-title').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});break;
+      case 'show-hero': setOpen(true);document.querySelector('.music-island .play-button')?.focus({preventScroll:true});window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});break;
     }
   });
   document.addEventListener('input',event=>{
@@ -243,7 +253,7 @@
     const observer=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('arrive');observer.unobserve(entry.target);}});
     },{threshold:.12});
-    $$('.hero-intro h1,.hero-deck,.main-stage,.section-heading h2,.section-heading>p,.lyrics-sheet,.lyrics-options,.size-showcase,.player-picker,.player-detail,.faq-heading,.install-heading,.install-action,.footer-mark').forEach(el=>observer.observe(el));
+    $$('.size-showcase').forEach(el=>observer.observe(el));
   }
   render();
 })();

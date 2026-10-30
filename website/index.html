@@ -4,94 +4,219 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="iiisland，将播放控制与同步歌词带到 Mac 屏幕顶部。支持 Apple Music、Spotify、QQ 音乐与网易云音乐。在线试用灵动岛交互，调整你的音乐空间。">
-  <meta name="theme-color" content="#f1f2f0">
+  <meta name="theme-color" content="#efede5">
   <title>iiisland — 音乐，在抬眼之间</title>
   <link rel="canonical" href="https://iiisland.pages.dev/">
   <link rel="icon" href="assets/app-icon.png">
+  <link rel="preload" as="image" href="assets/app-icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <svg class="symbol-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
-    <symbol id="icon-prev" viewBox="0 0 24 24"><path d="M5 5v14M19 5 7 12l12 7Z"/></symbol>
+    <symbol id="icon-prev" viewBox="0 0 24 24"><path d="M6 5v14M18 5 8 12l10 7Z"/></symbol>
     <symbol id="icon-next" viewBox="0 0 24 24"><path d="M19 5v14M5 5l12 7-12 7Z"/></symbol>
     <symbol id="icon-volume" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5ZM15 8c3 2 3 6 0 8M18 5c5 4 5 10 0 14"/></symbol>
     <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+    <symbol id="icon-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="icon-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="icon-wifi" viewBox="0 0 24 24"><path d="M3 9a14 14 0 0 1 18 0M6.5 12.5a9 9 0 0 1 11 0M10 16a4 4 0 0 1 4 0M12 19h.01"/></symbol>
+    <symbol id="icon-battery" viewBox="0 0 28 14"><rect x="1" y="2" width="23" height="10" rx="2"/><path d="M26 5v4"/><path class="solid" d="M3.5 4.5h16v5h-16z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
   </defs></svg>
-  <header class="nav">
-    <a class="brand" href="#top" aria-label="iiisland 首页"><img src="assets/app-icon.png" width="36" height="36" alt="">iiisland</a>
-    <nav aria-label="主导航"><a href="#experience">体验</a><a href="#customize">外观</a><a href="#players">播放器</a><a href="#install" class="nav-download">下载 Mac 版 <span aria-hidden="true">↗</span></a></nav>
+
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-head">
+    <a class="brand" href="#top" aria-label="iiisland 首页"><img src="assets/app-icon.png" width="34" height="34" alt="">iiisland</a>
+    <p class="head-meta" aria-hidden="true">顶部立面 / ELEVATION · A-01</p>
+    <nav aria-label="主导航">
+      <a href="#experience">体验</a>
+      <a href="#customize">外观</a>
+      <a href="#players">播放器</a>
+      <a href="#install" class="head-download">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
+    </nav>
   </header>
-  <main id="top">
-    <section class="hero chapter" aria-labelledby="hero-title">
-      <div class="hero-intro">
-        <h1 id="hero-title">音乐，<br>在抬眼之间</h1>
-        <div class="hero-deck"><p><strong>播放控制与同步歌词，就在 Mac 顶部。</strong><br>支持 Apple Music、Spotify、QQ 音乐与网易云音乐。</p><a class="button" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">下载 Mac 版 <span aria-hidden="true">↗</span></a><p class="small">Apple Silicon · macOS 14 或更高版本</p></div>
-      </div>
-      <div class="desktop-stage main-stage" data-ui data-preview="hero" aria-label="可交互的 Mac 顶部音乐面板">
-        <div class="desktop-menu" aria-hidden="true"><span>Finder　文件　编辑</span><span>iiisland</span></div>
-        <div class="island-rail">
-          <div class="capsule" data-bind="capsule">把时间，留给喜欢的旋律</div>
-          <div class="music-island" data-demo="hero" role="group" aria-label="音乐播放演示">
-            <button class="closed-trigger" data-action="open" aria-label="展开播放面板" aria-expanded="false"><span class="cover mini-cover" data-cover="window" aria-hidden="true">窗</span><span class="closed-title" data-bind="title">慢一点，也没关系</span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
-            <div class="island-content">
-              <div class="island-header"><span data-bind="source">Apple Music · 演示</span><button class="icon-button collapse-button" data-action="close" title="收起播放面板" aria-label="收起播放面板"><svg><use href="#icon-chevron"/></svg></button></div>
-              <div class="now-playing"><div class="cover full-cover" data-cover="window" aria-hidden="true"><span data-bind="cover-word">窗边<br>电台</span><span class="cover-caption">iiisland sessions</span></div><div class="track-info"><p class="track-title" data-bind="title">慢一点，也没关系</p><p class="track-artist">窗边电台 · 原创演示</p><p class="island-lyric" data-bind="lyric">把时间，留给喜欢的旋律</p></div></div>
-              <div class="seek-row"><span data-bind="elapsed">0:28</span><label class="seek-label"><span class="sr-only">播放进度</span><input type="range" class="seek" data-action="seek" min="0" max="128" value="28" aria-label="播放进度"></label><span data-bind="duration">2:08</span></div>
-              <div class="transport"><div class="play-buttons"><button class="icon-button" data-action="previous" title="上一首演示曲目" aria-label="上一首演示曲目"><svg><use href="#icon-prev"/></svg></button><button class="icon-button play-button" data-action="play" title="暂停演示" aria-label="暂停演示" aria-pressed="true"><svg viewBox="0 0 24 24"><path class="play-shape" d="M8 5v14M16 5v14"/></svg></button><button class="icon-button" data-action="next" title="下一首演示曲目" aria-label="下一首演示曲目"><svg><use href="#icon-next"/></svg></button></div><div class="volume-control"><button class="icon-button" data-action="mute" title="静音演示" aria-label="静音演示" aria-pressed="false"><svg><use href="#icon-volume"/></svg></button><input type="range" class="volume" data-action="volume" min="0" max="100" value="65" aria-label="演示音量"></div></div>
-            </div>
-          </div>
-          <span class="rail-spacer" aria-hidden="true"></span>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-title">
+        <div class="tb tb-title">
+          <h1 id="hero-title">音乐，<br>在抬眼之间</h1>
+          <p class="tb-label">图名 / TITLE</p>
         </div>
-        <div class="stage-bottom"><p>你的音乐，<br>不用切换窗口。</p><button class="text-button" id="expand" data-action="toggle" aria-expanded="false">展开面板 <span aria-hidden="true">↓</span></button></div>
+        <div class="tb tb-note">
+          <p><strong>播放控制与同步歌词，就在 Mac 顶部。</strong><br>支持 Apple Music、Spotify、QQ 音乐与网易云音乐。</p>
+          <p class="small">Apple Silicon · macOS 14 或更高版本</p>
+          <p class="tb-label">说明 / NOTE</p>
+        </div>
+        <div class="tb tb-action">
+          <a class="button stamp" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
+          <dl class="tb-specs">
+            <div><dt>版本</dt><dd>0.8.22</dd></div>
+            <div><dt>芯片</dt><dd>arm64</dd></div>
+            <div><dt>比例</dt><dd>1:1</dd></div>
+          </dl>
+          <p class="tb-label">发行 / ISSUE</p>
+        </div>
       </div>
-      <div class="demo-caption"><span><span class="hover-hint">悬停展开，移开收起；可拖动进度或切歌。</span><span class="touch-hint">轻触岛体展开，拖动进度或切歌。</span></span><span>网页交互演示，无音频</span></div>
+
+      <div class="elevation" data-ui data-preview="hero" role="group" aria-label="可交互的 Mac 顶部音乐面板">
+        <p class="elevation-meta" aria-hidden="true"><span>ELEVATION / 顶部立面</span><span>SCALE 1:1</span><span>DETAIL A</span></p>
+        <div class="screen">
+          <div class="island-rail">
+            <div class="capsule" data-bind="capsule">把时间，留给喜欢的旋律</div>
+            <div class="music-island is-open" data-demo="hero" role="group" aria-label="音乐播放演示">
+              <button class="closed-trigger" data-action="open" aria-label="展开播放面板" aria-expanded="true" aria-controls="island-panel"><span class="cover mini-cover" data-cover="window" aria-hidden="true"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></span><span class="closed-title" data-bind="title">慢一点，也没关系</span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
+              <div class="island-content" id="island-panel">
+                <div class="island-header"><span data-bind="source">Apple Music · 演示</span><button class="icon-button collapse-button" data-action="close" title="收起播放面板" aria-label="收起播放面板"><svg><use href="#icon-chevron"/></svg></button></div>
+                <div class="now-playing">
+                  <div class="cover full-cover" data-cover="window" aria-hidden="true"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></div>
+                  <div class="track-info"><p class="track-title" data-bind="title">慢一点，也没关系</p><p class="track-artist">窗边电台 · 原创演示</p><p class="island-lyric" data-bind="lyric">把时间，留给喜欢的旋律</p></div>
+                </div>
+                <div class="seek-row"><span data-bind="elapsed">0:28</span><label class="seek-label"><span class="sr-only">播放进度</span><input type="range" class="seek" data-action="seek" min="0" max="128" value="28" aria-label="播放进度"></label><span data-bind="duration">2:08</span></div>
+                <div class="transport">
+                  <div class="play-buttons"><button class="icon-button" data-action="previous" title="上一首演示曲目" aria-label="上一首演示曲目"><svg><use href="#icon-prev"/></svg></button><button class="icon-button play-button" data-action="play" title="暂停演示" aria-label="暂停演示" aria-pressed="true"><svg viewBox="0 0 24 24"><path class="play-shape" d="M8 5v14M16 5v14"/></svg></button><button class="icon-button" data-action="next" title="下一首演示曲目" aria-label="下一首演示曲目"><svg><use href="#icon-next"/></svg></button></div>
+                  <div class="volume-control"><button class="icon-button" data-action="mute" title="静音演示" aria-label="静音演示" aria-pressed="false"><svg><use href="#icon-volume"/></svg></button><input type="range" class="volume" data-action="volume" min="0" max="100" value="65" aria-label="演示音量"></div>
+                </div>
+              </div>
+            </div>
+            <span class="rail-spacer" aria-hidden="true"></span>
+          </div>
+          <div class="menu-bar" aria-hidden="true">
+            <div class="menu-left"><span>Finder</span><span>文件</span><span>编辑</span><span>显示</span><span>前往</span></div>
+            <div class="menu-right"><span class="menu-app"><i></i>iiisland</span><span class="menu-status"><svg><use href="#icon-wifi"/></svg><svg class="battery"><use href="#icon-battery"/></svg></span><span>21:41</span></div>
+          </div>
+          <div class="dim dim-w" aria-hidden="true"><span class="dim-line"></span><span class="dim-value"><span class="v-closed">280</span><span class="v-open">440</span></span><span class="dim-note">宽度 / W</span></div>
+          <div class="dim dim-h" aria-hidden="true"><span class="dim-line"></span><span class="dim-value"><span class="v-closed">44</span><span class="v-open">266</span></span><span class="dim-note">高度 / H</span></div>
+          <figure class="ref-plate">
+            <img src="assets/app-icon.png" width="1024" height="1024" alt="iiisland 应用图标：闭眼听歌、戴耳机的黑白墨线插画">
+            <figcaption>DETAIL A / 1024²</figcaption>
+          </figure>
+          <div class="desktop-note"><p>你的音乐，<br>不用切换窗口。</p><span class="leader" aria-hidden="true"></span></div>
+          <div class="stage-bottom"><button class="text-button" id="expand" data-action="toggle" aria-expanded="true" aria-controls="island-panel"><span class="label">收起面板</span><svg class="arrow" aria-hidden="true"><use href="#icon-arrow-down"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="hero-foot">
+        <p class="demo-caption"><span><span class="hover-hint">面板默认展开；收起后可悬停再展开。拖动进度或切歌。</span><span class="touch-hint">轻触岛体展开；右上角收起。可拖动进度或切歌。</span></span><span>网页交互演示，无音频</span></p>
+        <p class="sheet-ref" aria-hidden="true">A-01 / 07 · 2026</p>
+      </div>
       <noscript><p class="no-script">启用 JavaScript 可体验播放与外观演示。下方功能说明、安装要求和下载链接可直接阅读。</p></noscript>
     </section>
 
-    <section id="experience" class="lyrics-chapter chapter" aria-labelledby="lyrics-title">
-      <div class="section-heading"><h2 id="lyrics-title">每一句，<br>都跟得上</h2><p><strong>收起时在岛旁，展开时在面板。</strong><br>点击歌词旁的播放按钮，试试同步跳转。</p></div>
-      <div class="lyrics-layout">
-        <div class="lyrics-sheet" data-ui aria-label="点选歌词跳转播放位置"><div id="lyrics-list" class="lyrics-list"><button data-line="0"><span class="lyric-label">让城市的声音，轻一点</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button><button data-line="1" aria-current="true"><span class="lyric-label">把时间，留给喜欢的旋律</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button><button data-line="2"><span class="lyric-label">慢一点，也没关系</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button><button data-line="3"><span class="lyric-label">这一首，陪你走完今天</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button></div><div class="lyric-transport"><button class="text-button" id="lyrics-play" data-action="play">暂停演示</button><span data-bind="elapsed">0:28</span><span>/</span><span data-bind="duration">2:08</span></div></div>
-        <div class="lyrics-options">
-          <div class="compact-scene" data-ui aria-label="收起态歌词位置预览"><div class="compact-rail"><span class="compact-capsule" data-bind="compact-lyric">把时间，留给喜欢的旋律</span><button class="compact-island" data-action="show-hero" aria-label="返回上方操作完整灵动岛"><span class="cover mini-cover" data-cover="window" aria-hidden="true">窗</span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button></div><p class="compact-message" id="lyric-state">歌词就在岛的左侧。</p></div>
-          <div class="option-row"><div><label for="lyrics-enabled">显示歌词</label><p>菜单栏与岛内同步切换</p></div><input id="lyrics-enabled" type="checkbox" class="toggle" checked></div>
-          <div class="option-row"><div><label for="persist-lyrics">暂停时保留</label><p>暂停后仍显示最后一句</p></div><input id="persist-lyrics" type="checkbox" class="toggle" checked></div>
+    <section id="experience" class="section lyrics" aria-labelledby="lyrics-title">
+      <div class="section-head">
+        <h2 id="lyrics-title">每一句，<br>都跟得上</h2>
+        <p><strong>收起时在岛旁，展开时在面板。</strong><br>点击歌词旁的播放按钮，试试同步跳转。</p>
+        <span class="sheet-no" aria-hidden="true">A-02</span>
+      </div>
+      <div class="lyrics-grid">
+        <div class="lyrics-sheet" data-ui role="group" aria-label="点选歌词跳转播放位置">
+          <ol id="lyrics-list" class="lyrics-list">
+            <li><button type="button" data-line="0" aria-current="true"><span class="lyric-no" aria-hidden="true">01</span><span class="lyric-label">让城市的声音，轻一点</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button></li>
+            <li><button type="button" data-line="1"><span class="lyric-no" aria-hidden="true">02</span><span class="lyric-label">把时间，留给喜欢的旋律</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button></li>
+            <li><button type="button" data-line="2"><span class="lyric-no" aria-hidden="true">03</span><span class="lyric-label">慢一点，也没关系</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button></li>
+            <li><button type="button" data-line="3"><span class="lyric-no" aria-hidden="true">04</span><span class="lyric-label">这一首，陪你走完今天</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button></li>
+          </ol>
+          <div class="lyric-transport"><button class="text-button" id="lyrics-play" data-action="play">暂停演示</button><span data-bind="elapsed">0:28</span><span class="slash">/</span><span data-bind="duration">2:08</span></div>
+        </div>
+        <div class="lyric-detail">
+          <div class="compact-scene" data-ui role="group" aria-label="收起态歌词位置预览">
+            <div class="scene-top"><span>岛旁歌词 / LYRIC CAPSULE</span><span>DETAIL B</span></div>
+            <div class="compact-rail"><span class="compact-capsule" data-bind="compact-lyric">把时间，留给喜欢的旋律</span><button class="compact-island" data-action="show-hero" aria-label="返回上方操作完整灵动岛"><span class="cover mini-cover" data-cover="window" aria-hidden="true"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button></div>
+            <p class="compact-message" id="lyric-state">歌词就在岛的左侧。</p>
+          </div>
+          <div class="option-list">
+            <label class="option-row"><span class="option-copy"><span class="option-title">显示歌词</span><span class="option-desc">菜单栏与岛内同步切换</span></span><input id="lyrics-enabled" type="checkbox" class="toggle" checked></label>
+            <label class="option-row"><span class="option-copy"><span class="option-title">暂停时保留</span><span class="option-desc">暂停后仍显示最后一句</span></span><input id="persist-lyrics" type="checkbox" class="toggle" checked></label>
+          </div>
           <p class="small demo-note">歌词可用性取决于歌曲与来源。</p>
         </div>
       </div>
     </section>
 
-    <section id="customize" class="customize chapter" aria-labelledby="customize-title">
-      <div class="section-heading"><h2 id="customize-title">调成你的样子</h2><p><strong>收起、展开，宽高分别可调。</strong><br>在应用设置中调整尺寸。</p></div>
+    <section id="customize" class="section customize" aria-labelledby="customize-title">
+      <div class="section-head">
+        <h2 id="customize-title">调成你的样子</h2>
+        <p><strong>收起、展开，宽高分别可调。</strong><br>在应用设置中调整尺寸。</p>
+        <span class="sheet-no" aria-hidden="true">A-03</span>
+      </div>
       <figure class="size-showcase" aria-labelledby="size-caption">
         <div class="size-visual" data-ui aria-hidden="true">
+          <div class="size-edge"></div>
           <div class="size-silhouette">
-          <div class="size-compact"><span class="cover mini-cover">窗</span><span class="size-wave"><i></i><i></i><i></i><i></i><i></i></span></div>
-          <div class="size-expanded"><div class="size-artwork">窗边<br>电台</div><div class="size-song"><p>慢一点，也没关系</p><span>窗边电台</span></div><p class="size-lyric">把时间，留给喜欢的旋律</p></div>
+            <div class="size-shape">
+              <div class="size-compact"><span class="cover mini-cover"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></span><span class="size-wave"><i></i><i></i><i></i><i></i><i></i></span></div>
+              <div class="size-expanded"><div class="size-artwork"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></div><div class="size-song"><p>慢一点，也没关系</p><span>窗边电台</span></div><p class="size-lyric">把时间，留给喜欢的旋律</p></div>
+            </div>
           </div>
+          <span class="size-dim size-dim-a"><span>收起 / CLOSED</span><b>280 × 44</b></span>
+          <span class="size-dim size-dim-b"><span>展开 / OPEN</span><b>440 × 266</b></span>
+          <span class="size-scale">SCALE 1:1</span>
         </div>
-        <figcaption id="size-caption"><p>小一点，或宽一点。</p></figcaption>
+        <figcaption id="size-caption"><p>小一点，或宽一点。</p><span>在应用设置中分别调整收起与展开的宽高；岛体轮廓与圆角会随之自然变化。</span></figcaption>
       </figure>
     </section>
 
-    <section id="players" class="players chapter" aria-labelledby="players-title">
-      <div class="section-heading"><h2 id="players-title">听你常用的</h2><p>选一款播放器，查看它的支持能力。<br>应用内，也能自动跟随最近开始播放的来源。</p></div>
-      <div class="players-layout"><div class="player-picker" role="group" aria-label="选择演示播放器"><button data-player="apple" aria-pressed="true">Apple Music <span>↗</span></button><button data-player="spotify" aria-pressed="false">Spotify <span>↗</span></button><button data-player="qq" aria-pressed="false">QQ 音乐 <span>↗</span></button><button data-player="netease" aria-pressed="false">网易云音乐 <span>↗</span></button></div>
-        <div class="player-detail" data-ui aria-label="播放器能力说明"><div class="source-summary"><img src="assets/app-icon.png" width="68" height="68" alt="iiisland"><div><p id="selected-player">Apple Music</p><p>在 iiisland 中，接着听</p></div></div><dl class="capability-list"><div><dt>歌曲、封面、歌词</dt><dd>支持</dd></div><div><dt>播放、切歌、进度</dt><dd id="playback-capability">支持</dd></div><div><dt>音量、随机、循环</dt><dd id="extra-capability">支持</dd></div></dl><p id="player-note">首次连接时，macOS 可能请求自动化授权。</p><label class="auto-detect"><input type="checkbox" id="auto-detect" checked><span>自动检测播放器</span></label><p class="small" id="detection-note">应用内优先跟随最近开始播放的来源，全部暂停时保留当前来源。</p></div>
+    <section id="players" class="section players" aria-labelledby="players-title">
+      <div class="section-head">
+        <h2 id="players-title">听你常用的</h2>
+        <p><strong>选一款播放器，查看支持能力。</strong><br>应用内，也能自动跟随最近开始播放的来源。</p>
+        <span class="sheet-no" aria-hidden="true">A-04</span>
+      </div>
+      <div class="players-grid">
+        <div class="player-picker" role="group" aria-label="选择演示播放器">
+          <button type="button" data-player="apple" aria-pressed="true"><span class="p-no" aria-hidden="true">01</span><span class="p-name">Apple Music</span><svg class="p-arrow" aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></button>
+          <button type="button" data-player="spotify" aria-pressed="false"><span class="p-no" aria-hidden="true">02</span><span class="p-name">Spotify</span><svg class="p-arrow" aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></button>
+          <button type="button" data-player="qq" aria-pressed="false"><span class="p-no" aria-hidden="true">03</span><span class="p-name">QQ 音乐</span><svg class="p-arrow" aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></button>
+          <button type="button" data-player="netease" aria-pressed="false"><span class="p-no" aria-hidden="true">04</span><span class="p-name">网易云音乐</span><svg class="p-arrow" aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></button>
+        </div>
+        <div class="player-detail" data-ui role="group" aria-label="播放器能力说明">
+          <div class="source-summary"><img src="assets/app-icon.png" width="1024" height="1024" alt=""><div><p id="selected-player">Apple Music</p><p><span class="live-dot" aria-hidden="true"></span>在 iiisland 中，接着听</p></div></div>
+          <dl class="capability-list">
+            <div><dt>歌曲、封面、歌词</dt><dd data-state="yes">支持</dd></div>
+            <div><dt>播放、切歌、进度</dt><dd id="playback-capability" data-state="yes">支持</dd></div>
+            <div><dt>音量、随机、循环</dt><dd id="extra-capability" data-state="yes">支持</dd></div>
+          </dl>
+          <p id="player-note" class="player-note">首次连接时，macOS 可能请求自动化授权。</p>
+          <label class="auto-detect"><input type="checkbox" id="auto-detect" checked><span>自动检测播放器</span></label>
+          <p class="small" id="detection-note">应用内优先跟随最近开始播放的来源，全部暂停时保留当前来源。</p>
+        </div>
       </div>
     </section>
 
-    <section id="questions" class="questions" aria-labelledby="questions-title"><div class="faq-heading"><h2 id="questions-title">安装前，了解这些</h2><a href="https://github.com/zplzmzmpl/iiisland-pub">查看项目说明</a></div><div class="faq-list">
-      <details><summary>我的 Mac 可以安装吗？</summary><div class="faq-answer"><p><strong>Apple Silicon（M 系列）· macOS 14 或更高版本。</strong><span class="answer-note">暂不提供 Intel 安装包。</span></p></div></details>
-      <details open><summary>怎样安装和更新？</summary><div class="faq-answer"><p><strong>下载 DMG → 拖入 Applications → 启动应用。</strong><span class="answer-note">更新前先退出旧版本，再替换应用。</span></p></div></details>
-      <details><summary>macOS 提示无法打开？</summary><div class="faq-answer"><p><strong>安装包未经 Apple 公证，首次打开可能被系统阻止。</strong><span class="answer-note">当前使用 ad-hoc 本地签名；发布页提供 SHA-256 文件，可校验下载内容。</span></p></div></details>
-      <details><summary>歌词从哪里来？</summary><div class="faq-answer"><p><strong>在线歌词服务、内嵌歌词与本地缓存。</strong><span class="answer-note">歌词可用性与同步准确度取决于歌曲和来源。</span></p></div></details>
-      <details><summary>可以随播放器启动吗？</summary><div class="faq-answer"><p><strong>可以，在播放器设置中开启“随播放器启动”。</strong><span class="answer-note">自动模式响应四款播放器；手动模式只响应选定来源。</span></p></div></details>
-    </div></section>
+    <section id="questions" class="section questions" aria-labelledby="questions-title">
+      <span class="sheet-no faq-sheet" aria-hidden="true">A-05</span>
+      <div class="faq-grid">
+        <div class="faq-heading">
+          <h2 id="questions-title">安装前，<br>了解这些</h2>
+          <a href="https://github.com/zplzmzmpl/iiisland-pub">查看项目说明 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
+          </div>
+        <div class="faq-list">
+          <details><summary><span class="faq-no" aria-hidden="true">N-01</span><span class="faq-q">我的 Mac 可以安装吗？</span></summary><div class="faq-answer"><p><strong>Apple Silicon（M 系列）· macOS 14 或更高版本。</strong><span class="answer-note">暂不提供 Intel 安装包。</span></p></div></details>
+          <details open><summary><span class="faq-no" aria-hidden="true">N-02</span><span class="faq-q">怎样安装和更新？</span></summary><div class="faq-answer"><p><strong>下载 DMG → 拖入 Applications → 启动应用。</strong><span class="answer-note">更新前先退出旧版本，再替换应用。</span></p></div></details>
+          <details><summary><span class="faq-no" aria-hidden="true">N-03</span><span class="faq-q">macOS 提示无法打开？</span></summary><div class="faq-answer"><p><strong>安装包未经 Apple 公证，首次打开可能被系统阻止。</strong><span class="answer-note">当前使用 ad-hoc 本地签名；发布页提供 SHA-256 文件，可校验下载内容。</span></p></div></details>
+          <details><summary><span class="faq-no" aria-hidden="true">N-04</span><span class="faq-q">歌词从哪里来？</span></summary><div class="faq-answer"><p><strong>在线歌词服务、内嵌歌词与本地缓存。</strong><span class="answer-note">歌词可用性与同步准确度取决于歌曲和来源。</span></p></div></details>
+          <details><summary><span class="faq-no" aria-hidden="true">N-05</span><span class="faq-q">可以随播放器启动吗？</span></summary><div class="faq-answer"><p><strong>可以，在播放器设置中开启“随播放器启动”。</strong><span class="answer-note">自动模式响应四款播放器；手动模式只响应选定来源。</span></p></div></details>
+        </div>
+      </div>
+    </section>
 
-    <section class="download" id="install" aria-labelledby="install-title"><h2 id="install-title">给音乐一个位置</h2><a id="download" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest" class="big-download">下载 Mac 版 <span aria-hidden="true">↗</span></a><p>Apple Silicon · macOS 14+ · 在 GitHub 获取最新版本</p></section>
+    <section class="download" id="install" aria-labelledby="install-title">
+      <div class="issue-top"><span>发行 / ISSUE</span><span>0.8.22 · build 31</span></div>
+      <h2 id="install-title">给音乐一个位置</h2>
+      <a id="download" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest" class="big-download">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
+      <div class="issue-bottom"><p>Apple Silicon · macOS 14+ · 在 GitHub 获取最新版本</p><span class="barcode" aria-hidden="true"></span><span class="issue-code" aria-hidden="true">IIISLAND · A-06</span></div>
+    </section>
   </main>
-  <footer><div class="footer-mark" aria-hidden="true">iiisland</div><div class="footer-row"><p>把喜欢的音乐，留在眼前。</p><div><a href="https://github.com/zplzmzmpl/iiisland-pub">项目主页</a><a href="https://github.com/zplzmzmpl/iiisland-pub/blob/main/README.en.md">English guide</a><a href="#top">返回顶部 ↑</a></div></div><div class="credits"><p>开源致谢：基于 <a href="https://github.com/TheBoredTeam/boring.notch">boring.notch</a> 与 <a href="https://github.com/MxIris-LyricsX-Project/LyricsX">LyricsX</a> 的成果。<a href="https://github.com/zplzmzmpl/iiisland-pub/blob/main/NOTICE.md">完整第三方说明</a></p><p>页面歌曲、歌词与封面为原创演示内容。</p></div></footer>
+
+  <footer>
+    <div class="footer-top"><span>COLOPHON / 版权与致谢</span><span>A-07 / 07</span></div>
+    <div class="footer-mark" aria-hidden="true">iiisland</div>
+    <div class="footer-row"><p>把喜欢的音乐，留在眼前。</p><div><a href="https://github.com/zplzmzmpl/iiisland-pub">项目主页</a><a href="https://github.com/zplzmzmpl/iiisland-pub/blob/main/README.en.md">English guide</a><a href="#top">返回顶部 <svg aria-hidden="true"><use href="#icon-arrow-up"/></svg></a></div></div>
+    <div class="credits"><p>开源致谢：基于 <a href="https://github.com/TheBoredTeam/boring.notch">boring.notch</a> 与 <a href="https://github.com/MxIris-LyricsX-Project/LyricsX">LyricsX</a> 的成果。<a href="https://github.com/zplzmzmpl/iiisland-pub/blob/main/NOTICE.md">完整第三方说明</a></p><p>页面歌曲、歌词与封面为原创演示内容。</p></div>
+  </footer>
   <p class="sr-only" id="demo-announcement" role="status" aria-live="polite"></p>
   <script src="script.js"></script>
 </body>
