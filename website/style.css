@@ -470,19 +470,7 @@ input {
 .elevation {
   position: relative;
   grid-area: elevation;
-  padding-top: 26px;
   background: var(--paper);
-}
-
-.elevation-meta {
-  display: flex;
-  gap: 28px;
-  padding: 0 var(--gutter) 8px;
-  font-size: var(--micro);
-  letter-spacing: 0.13em;
-  color: var(--muted);
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
 }
 
 .screen {
@@ -496,7 +484,6 @@ input {
     linear-gradient(to right, rgba(25, 26, 25, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(25, 26, 25, 0.06) 1px, transparent 1px);
   background-size: 48px 48px;
-  border-top: 1.5px solid var(--ink);
   --island-w: min(280px, 30cqw);
   --island-h: 44px;
 }
@@ -2507,7 +2494,6 @@ footer {
     animation: sheet-plot 1s var(--ease) both;
   }
 
-  .elevation-meta,
   .hero-title {
     animation: fade-up 0.7s var(--ease) 0.12s both;
   }
@@ -2609,8 +2595,7 @@ footer {
   }
 
   .ref-plate,
-  .menu-right .menu-app,
-  .elevation-meta span:nth-child(3) {
+  .menu-right .menu-app {
     display: none;
   }
 
@@ -2733,7 +2718,7 @@ footer {
   }
 
   .elevation {
-    padding-top: 16px;
+    padding-top: 0;
   }
 
   .screen {
@@ -3166,5 +3151,586 @@ footer {
   .size-expanded,
   .size-dim-b {
     opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Palette shift: ink blue + warm paper, two-colour blocking
+   -------------------------------------------------------------------------- */
+
+:root {
+  --paper: #f5efea;
+  --paper-deep: #e8ded4;
+  --ink: #122e8a;
+  --ink-soft: #233c7f;
+  --muted: #5b6285;
+  --accent: #122e8a;
+  --accent-ink: #122e8a;
+  --accent-pale: #dfe3f2;
+  --blue: #122e8a;
+  --blue-deep: #0c2270;
+  --sage: #122e8a;
+  --sage-deep: #0c2270;
+  --pale: #122e8a;
+  --pale-deep: #0c2270;
+  --island: #08090a;
+  --island-ink: #f5efea;
+  --island-muted: #b8b1ac;
+  --island-rail: #3d4050;
+  --line: rgba(18, 46, 138, 0.18);
+  --line-strong: rgba(18, 46, 138, 0.48);
+  --line-blue: rgba(18, 46, 138, 0.5);
+  --line-paper: rgba(245, 239, 234, 0.22);
+  --line-paper-strong: rgba(245, 239, 234, 0.52);
+  --paper-muted: rgba(245, 239, 234, 0.74);
+  --white-line: rgba(245, 239, 234, 0.38);
+}
+
+html {
+  background: var(--paper);
+  scrollbar-color: var(--blue) var(--paper);
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  border-color: var(--paper);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--blue);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline-color: var(--blue);
+}
+
+.site-head :focus-visible,
+.screen :focus-visible,
+.customize :focus-visible,
+.players :focus-visible,
+.download :focus-visible,
+.compact-scene :focus-visible {
+  outline-color: var(--paper);
+}
+
+.player-detail :focus-visible,
+.size-showcase :focus-visible {
+  outline-color: var(--blue);
+}
+
+/* header: blue block, paper type, inverted action */
+
+.site-head {
+  background: var(--blue);
+  color: var(--paper);
+  border-bottom: 0;
+}
+
+.site-head .brand,
+.site-head nav > a:not(.head-download) {
+  color: var(--paper);
+}
+
+.site-head nav > a:not(.head-download):hover {
+  color: var(--paper);
+}
+
+.site-head nav > a:not(.head-download):hover::after {
+  background: var(--paper);
+}
+
+.head-download {
+  background: var(--paper);
+  color: var(--blue);
+  box-shadow: none;
+}
+
+.head-download:hover {
+  background: var(--paper-deep);
+  color: var(--blue);
+}
+
+/* hero: paper title block, blue screen, black island */
+
+.hero {
+  background: var(--paper);
+}
+
+.hero-title {
+  border-top-color: var(--blue);
+}
+
+.hero .tb-title h1,
+.hero .tb-note strong,
+.hero .tb-specs dd,
+.hero .tb-label {
+  color: var(--blue);
+}
+
+.hero .tb-label,
+.hero .tb-note p,
+.hero .small,
+.hero-foot {
+  color: var(--muted);
+}
+
+.hero .button {
+  background: var(--blue);
+  color: var(--paper);
+  box-shadow: inset 0 0 0 1px rgba(245, 239, 234, 0.24);
+}
+
+.hero .button:hover {
+  background: var(--paper);
+  color: var(--blue);
+  box-shadow: inset 0 0 0 1.5px var(--blue);
+}
+
+.elevation {
+  background: var(--paper);
+}
+
+.screen {
+  background-color: var(--blue);
+  border-top: 0;
+  color: var(--paper);
+  background-image:
+    linear-gradient(to right, rgba(245, 239, 234, 0.075) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 239, 234, 0.075) 1px, transparent 1px);
+}
+
+.menu-bar {
+  color: var(--paper);
+  border-bottom-color: var(--line-paper);
+  background: linear-gradient(to bottom, rgba(245, 239, 234, 0.12), rgba(245, 239, 234, 0));
+}
+
+.menu-app i {
+  background: var(--paper);
+}
+
+.menu-status svg {
+  color: var(--paper);
+}
+
+.screen .dim {
+  color: var(--paper);
+}
+
+.screen .dim-line,
+.screen .dim-w::before,
+.screen .dim-w::after,
+.screen .dim-h::before,
+.screen .dim-h::after {
+  background: rgba(245, 239, 234, 0.68);
+}
+
+.screen .dim-value {
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.screen .dim-note {
+  color: var(--paper-muted);
+}
+
+.desktop-note p {
+  color: var(--paper);
+}
+
+.leader {
+  background: rgba(245, 239, 234, 0.62);
+}
+
+.leader::before {
+  background: var(--paper);
+}
+
+.screen .text-button {
+  color: var(--paper);
+  border-bottom-color: var(--line-paper-strong);
+}
+
+.screen .text-button:hover {
+  color: var(--paper);
+  border-color: var(--paper);
+}
+
+.capsule,
+.music-island,
+.compact-capsule,
+.compact-island {
+  background: var(--island);
+  color: var(--island-ink);
+}
+
+.cover {
+  background: var(--paper);
+}
+
+.cover[data-cover="wind"],
+.cover[data-cover="night"] {
+  background: var(--paper);
+}
+
+.screen .ref-plate {
+  background: var(--paper);
+  border-color: var(--line-paper-strong);
+}
+
+.screen .ref-plate figcaption {
+  color: var(--muted);
+}
+
+/* lyric scene: blue field, paper text, black mini island */
+
+.compact-scene {
+  background: var(--blue);
+  color: var(--paper);
+  border-color: var(--line-paper-strong);
+}
+
+.scene-top {
+  color: var(--paper);
+  border-bottom-color: var(--line-paper);
+}
+
+.compact-message {
+  color: var(--paper);
+}
+
+/* lyrics and paper sections keep blue ink */
+
+.lyrics {
+  background: var(--paper);
+}
+
+.lyrics .toggle:checked,
+.auto-detect input:checked {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.toggle:checked::after,
+.auto-detect input:checked::after {
+  border-color: var(--paper);
+}
+
+.lyrics-list button[aria-current="true"] .lyric-jump {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--paper);
+}
+
+.lyrics-list button:hover .lyric-jump {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--paper);
+}
+
+.lyrics-list button[aria-current="true"] .lyric-no {
+  color: var(--blue);
+}
+
+.lyric-jump {
+  color: var(--blue);
+}
+
+/* size section: blue field, paper drawing card, black notch */
+
+.customize {
+  background: var(--blue);
+  color: var(--paper);
+  border-top-color: var(--line-paper-strong);
+}
+
+.customize .section-head h2,
+.customize .section-head strong,
+.customize .sheet-no {
+  color: var(--paper);
+}
+
+.customize .section-head > p {
+  color: var(--paper-muted);
+}
+
+.size-showcase {
+  background: var(--paper);
+  border-color: var(--line-strong);
+}
+
+.size-showcase figcaption p,
+.size-showcase figcaption span {
+  color: var(--blue);
+}
+
+.size-showcase figcaption span {
+  color: var(--muted);
+}
+
+.size-edge,
+.size-edge::before,
+.size-edge::after {
+  background: var(--blue);
+}
+
+.size-dim,
+.size-dim b {
+  color: var(--blue);
+}
+
+.size-dim span,
+.size-scale {
+  color: var(--muted);
+}
+
+.size-artwork {
+  background: var(--paper);
+}
+
+/* players: blue field, paper schedule card */
+
+.players {
+  background: var(--blue);
+  color: var(--paper);
+  border-top-color: var(--line-paper-strong);
+}
+
+.players .section-head h2,
+.players .section-head strong,
+.players .sheet-no {
+  color: var(--paper);
+}
+
+.players .section-head > p {
+  color: var(--paper-muted);
+}
+
+.player-picker {
+  border-top-color: var(--line-paper);
+}
+
+.player-picker > button {
+  color: var(--paper-muted);
+  border-bottom-color: var(--line-paper);
+}
+
+.player-picker > button:hover,
+.player-picker > button[aria-pressed="true"] {
+  color: var(--paper);
+}
+
+.player-picker > button[aria-pressed="true"] .p-no,
+.player-picker > button[aria-pressed="true"] .p-arrow,
+.player-picker > button .p-arrow {
+  color: var(--paper);
+}
+
+.player-detail {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.player-detail .source-summary {
+  border-bottom-color: var(--line-strong);
+}
+
+.player-detail .source-summary p:first-child,
+.player-detail .capability-list dd,
+.player-detail .auto-detect {
+  color: var(--ink);
+}
+
+.player-detail .source-summary p:last-child,
+.player-detail .capability-list dt,
+.player-detail .player-note,
+.player-detail #detection-note {
+  color: var(--muted);
+}
+
+.player-detail .live-dot,
+.player-detail .capability-list dd::before {
+  background: var(--blue);
+}
+
+/* notes and footer: paper field */
+
+.questions {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.faq-heading h2,
+.faq-heading > a,
+.faq-sheet,
+.faq-list summary,
+.faq-list summary::after {
+  color: var(--blue);
+}
+
+.faq-list summary::after {
+  background:
+    linear-gradient(var(--blue), var(--blue)) center / 14px 1px no-repeat,
+    linear-gradient(var(--blue), var(--blue)) center / 1px 14px no-repeat;
+}
+
+.footer {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+footer {
+  background: var(--paper);
+  color: var(--ink);
+  border-top-color: var(--line-strong);
+}
+
+.footer-mark {
+  color: var(--blue);
+}
+
+.footer-row > p,
+.footer-row > div,
+.credits {
+  color: var(--muted);
+}
+
+/* download: blue issue stamp, paper type */
+
+.download {
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.download::before {
+  border-color: var(--white-line);
+}
+
+.download::after {
+  background-image: linear-gradient(rgba(245, 239, 234, 0.08) 1px, transparent 1px);
+}
+
+.download h2,
+.big-download,
+.issue-top,
+.issue-bottom,
+.issue-code {
+  color: var(--paper);
+}
+
+.big-download {
+  border-bottom-color: var(--line-paper-strong);
+}
+
+.big-download:hover {
+  color: var(--paper-deep);
+}
+
+.barcode {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--paper) 0 2px,
+    transparent 2px 5px,
+    var(--paper) 5px 6px,
+    transparent 6px 9px
+  );
+}
+
+/* section rules alternate with their field */
+
+.section {
+  border-top-color: var(--line-strong);
+}
+
+.customize,
+.players {
+  border-top-color: var(--line-paper-strong);
+}
+
+/* mobile island: smaller expanded panel */
+
+@media (max-width: 760px) {
+  .screen:has(.music-island.is-open) {
+    --island-w: min(330px, calc(100cqw - 44px));
+    --island-h: 256px;
+  }
+
+  .music-island.is-open .full-cover {
+    width: 76px;
+    height: 76px;
+    padding: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .screen:has(.music-island.is-open) {
+    --island-h: 250px;
+  }
+
+  .music-island.is-open .full-cover {
+    width: 68px;
+    height: 68px;
+    padding: 7px;
+  }
+}
+
+/* size loop: slightly faster */
+
+.size-showcase.arrive .size-shape {
+  animation-duration: 4s;
+}
+
+.size-showcase.arrive .size-compact,
+.size-showcase.arrive .size-expanded,
+.size-showcase.arrive .size-dim-a,
+.size-showcase.arrive .size-dim-b {
+  animation-duration: 4s;
+}
+
+/* head meta sits on the blue bar too */
+.site-head .head-meta {
+  color: var(--paper-muted);
+}
+
+/* mobile first screen: one promise, one action, then the demo */
+@media (max-width: 760px) {
+  .tb-support,
+  .tb-note .small,
+  .tb-specs,
+  .hero-foot .sheet-ref {
+    display: none;
+  }
+
+  .tb-note p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+/* mobile: fewer rules, fields carry the separation */
+@media (max-width: 760px) {
+  .hero-title,
+  .tb,
+  .tb:last-child,
+  .hero-foot,
+  .section,
+  footer {
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .site-head {
+    border-bottom: 0;
   }
 }
