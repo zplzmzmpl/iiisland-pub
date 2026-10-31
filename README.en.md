@@ -36,11 +36,11 @@ An optional setting under Player connects browsers, video players and other apps
 
 ## Download and install
 
-Current version: **0.8.22 · build 31**, with the installer updated on **October 29, 2026**.
+Current version: **0.8.23 · build 32**, with the installer updated on **October 31, 2026**.
 
 Requires an **Apple Silicon (arm64) Mac running macOS 14 or later**. An Intel installer is not currently available. Native Liquid Glass requires macOS 26.
 
-1. Download `iiisland-0.8.22-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
+1. Download `iiisland-0.8.23-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 2. Open the DMG and drag `iiisland.app` into the adjacent `Applications` folder.
 3. Launch iiisland from Applications and play a song in your music player.
 
@@ -53,16 +53,25 @@ To update, quit the previous version before replacing the app.
 Download both the DMG and its matching `.sha256` file, then run this in the download directory:
 
 ```sh
-shasum -a 256 -c iiisland-0.8.22-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.23-arm64.dmg.sha256
 ```
 
 SHA-256 for this installer:
 
 ```text
-d7d2a5f10a25726d06dfc2da159c1605b2c6fb7c79a934aa5d33f2d01bcd1269
+50ffc4dfdd21dfeb6a03b61c306976774d67d45925e4b78a48d0084f77f51535
 ```
 
-## What is new in 0.8.22
+## What is new in 0.8.23
+
+- Lyrics → Capsule Background offers two fixed presets: a dark background with light text, or a light background with dark text. The capsule no longer follows the app's day/night mode.
+- Adjust background transparency from 0% to 100%, with a live preview and reset to defaults. At 0% the background is opaque; at 100% the background and outline are transparent. Text strength is unaffected.
+- The preset and transparency persist across restarts. Appearance changes preserve visible lyric windows and line transitions without searching for lyrics again.
+- Passed 1,549 capsule checks and 332 full-app host checks, including release checks for 60 actual Settings windows. Native UI checks also verified preset selection, transparency, persistence after restarting and reset.
+
+See the [0.8.23 release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.23) for details.
+
+### Previously released: 0.8.22
 
 - Fix intermittent hover expansion, stale control highlights during rapid pointer movement, and delayed island/status-bar menu highlighting after opening or closing Settings.
 - Wait for actual activation before opening a menu. Return focus to the previous app when dismissed, and keep Settings focused when opened from the menu.

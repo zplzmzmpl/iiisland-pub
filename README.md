@@ -36,11 +36,11 @@
 
 ## 下载与安装
 
-当前版本：**0.8.22 · build 31**，安装包更新于 **2026-10-29**。
+当前版本：**0.8.23 · build 32**，安装包更新于 **2026-10-31**。
 
 要求 **Apple Silicon（arm64）Mac、macOS 14 或更高版本**。当前不提供 Intel 安装包；原生液态玻璃需要 macOS 26。
 
-1. 在 [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 `iiisland-0.8.22-arm64.dmg`。
+1. 在 [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 `iiisland-0.8.23-arm64.dmg`。
 2. 打开 DMG，将 `iiisland.app` 拖入旁边的 `Applications` 文件夹。
 3. 从“应用程序”启动 iiisland，并在音乐播放器中播放一首歌。
 
@@ -53,16 +53,25 @@
 同时下载 DMG 与同名 `.sha256` 文件，在下载目录运行：
 
 ```sh
-shasum -a 256 -c iiisland-0.8.22-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.23-arm64.dmg.sha256
 ```
 
 本次安装包 SHA-256：
 
 ```text
-d7d2a5f10a25726d06dfc2da159c1605b2c6fb7c79a934aa5d33f2d01bcd1269
+50ffc4dfdd21dfeb6a03b61c306976774d67d45925e4b78a48d0084f77f51535
 ```
 
-## 0.8.22 有什么更新
+## 0.8.23 有什么更新
+
+- 「歌词 → 胶囊背景」新增「深底浅字」与「浅底深字」两种固定配色，独立于应用日间／夜间模式。
+- 可调节 0%–100% 背景透明度，支持实时预览和恢复默认。0% 为不透明，100% 为背景与描边完全透明，文字强度不受影响。
+- 配色与透明度在重启后保留；切换外观不重建可见歌词窗口、不打断切句动画，也不重新搜索歌词。
+- 1,549 项胶囊检查、332 项完整应用宿主检查通过，包含 60 次实际设置窗口释放；原生界面另行验证了配色、透明度、重启保留与恢复默认。
+
+详见 [0.8.23 版本发布说明](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.23)。
+
+### 已发布的 0.8.22
 
 - 修复灵动岛悬停偶发不能展开、快速移动时控件旧高亮残留，以及灵动岛和状态栏菜单高亮随设置开关变迟钝的问题。
 - 打开菜单时等待实际激活，取消菜单后按需返回原应用；从菜单打开设置时设置正常获得焦点。
