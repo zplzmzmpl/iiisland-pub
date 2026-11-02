@@ -54,7 +54,6 @@
         </div>
         <div class="tb tb-action">
           <a class="button stamp" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
-          <a class="m-hero-ghost" href="#demo" hidden>在线体验</a>
           <dl class="tb-specs">
             <div><dt>版本</dt><dd>0.8.23</dd></div>
             <div><dt>芯片</dt><dd>arm64</dd></div>
@@ -96,8 +95,6 @@
         <div class="mb-base"></div>
       </div>
       <p class="mac-caption" hidden>演示动画，非真实录屏 · 曲目与歌词为原创演示内容</p>
-
-      <div class="m-demo-intro" hidden><strong>在线体验</strong><span>轻触岛体展开 · 网页交互演示，无音频</span></div>
 
       <div class="elevation" id="demo" data-ui data-preview="hero" role="group" aria-label="可交互的 Mac 顶部音乐面板">
         <div class="screen">
@@ -171,6 +168,71 @@
           <p class="small demo-note">歌词可用性取决于歌曲与来源。</p>
         </div>
       </div>
+    </section>
+
+    <section class="section m-capsule-sec" hidden aria-labelledby="m-capsule-title">
+      <div class="section-head">
+        <h2 id="m-capsule-title">胶囊歌词，<br>你的样子</h2>
+        <p><strong>收起时贴在岛旁，展开时回到面板。</strong><br>配色、透明度与显隐，都随你设置。</p>
+      </div>
+      <div class="m-cap-visual" aria-hidden="true">
+        <div class="m-cap-row">
+          <figure class="m-cap-item">
+            <span class="m-cap dark">把时间，留给喜欢的旋律</span>
+            <figcaption>深底浅字</figcaption>
+          </figure>
+          <figure class="m-cap-item">
+            <span class="m-cap light">把时间，留给喜欢的旋律</span>
+            <figcaption>浅底深字</figcaption>
+          </figure>
+        </div>
+        <div class="m-cap-row m-cap-alpha">
+          <span class="m-cap blank a100"></span>
+          <span class="m-cap blank a60"></span>
+          <span class="m-cap blank a25"></span>
+          <p>背景透明度 0–100%</p>
+        </div>
+      </div>
+      <ul class="m-feat-list">
+        <li><strong>两种固定配色</strong><span>深底浅字 / 浅底深字，独立于应用的日间・夜间模式。</span></li>
+        <li><strong>透明度 0–100%</strong><span>实时预览、可恢复默认；100% 时背景与描边完全透明，文字强度不受影响。</span></li>
+        <li><strong>重启后保留</strong><span>切换外观不重建歌词窗口，也不打断切句动画。</span></li>
+      </ul>
+      <div class="m-hide-block">
+        <p class="m-hide-title">需要时，自动隐身</p>
+        <ul class="m-hide-list">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="5"/><path d="M12 6.5V10"/></svg><span>鼠标经过</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg><span>播放暂停</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3.2L9 5.5h6L16.8 8H20v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg><span>系统截图</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>打开应用菜单</span></li>
+        </ul>
+        <p class="m-hide-note">条件解除后，自动恢复。</p>
+      </div>
+    </section>
+
+    <section class="section m-appear-sec" hidden aria-labelledby="m-appear-title">
+      <div class="section-head">
+        <h2 id="m-appear-title">经典黑，<br>或液态玻璃</h2>
+        <p><strong>两种外观，都从屏幕顶缘自然垂落。</strong><br>日间与夜间模式可手动切换并记忆。</p>
+      </div>
+      <div class="m-appear-grid" aria-hidden="true">
+        <figure class="m-appear-tile">
+          <div class="m-tile-wall">
+            <span class="m-tile-island classic"><i class="m-ti-art"></i><i class="m-ti-eq"><u></u><u></u><u></u><u></u></i></span>
+          </div>
+          <figcaption>经典黑<span>融入屏幕顶部</span></figcaption>
+        </figure>
+        <figure class="m-appear-tile">
+          <div class="m-tile-wall glassy">
+            <span class="m-tile-island glass"><i class="m-ti-art"></i><i class="m-ti-eq"><u></u><u></u><u></u><u></u></i></span>
+          </div>
+          <figcaption>液态玻璃<span>需要 macOS 26</span></figcaption>
+        </figure>
+      </div>
+      <ul class="m-feat-list dark">
+        <li><strong>日间・夜间模式</strong><span>手动切换并记忆，也可跟随系统外观。</span></li>
+        <li><strong>随播放器启动</strong><span>开启后，启动支持的播放器即打开 iiisland。</span></li>
+      </ul>
     </section>
 
     <section id="customize" class="section customize" aria-labelledby="customize-title">
