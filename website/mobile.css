@@ -1,0 +1,1859 @@
+/* ==========================================================================
+   iiisland — 移动端重设计层 / Mobile Redesign Layer (Apple design language)
+   --------------------------------------------------------------------------
+   本文件只服务于 ≤760px 的移动端体验；桌面端继续由 style.css 的
+   「屏幕剖面图」体系渲染，互不影响。链接处以 media="(max-width: 760px)"
+   限定，内部规则再次包裹媒体查询，双重保险。
+
+   设计语言参考 apple.com：
+   - 黑 / 白 / #f5f5f7 交替的整幅色场，色彩节奏代替分隔线
+   - 系统字体（SF / PingFang），大号半粗标题，负字距，居中排版
+   - 唯一强调色 #0071e3（链接 #0066cc / 深底 #2997ff）
+   - 980px 药丸按钮、18px 圆角卡片、几乎无阴影
+   - 深色玻璃吸顶导航 rgba(0,0,0,.72) + saturate(180%) blur(20px)
+   - 主角动画：MacBook 屏幕特写，灵动岛收起⇄展开循环演示（纯 CSS）
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  /* ----------------------------------------------------------------------
+     0. 令牌
+     ---------------------------------------------------------------------- */
+  :root {
+    --m-blue: #0071e3;
+    --m-link: #0066cc;
+    --m-link-dark: #2997ff;
+    --m-ink: #1d1d1f;
+    --m-body: #424245;
+    --m-gray: #6e6e73;
+    --m-gray-soft: #86868b;
+    --m-gray-dark: #a1a1a6;
+    --m-hairline: rgba(0, 0, 0, 0.1);
+    --m-field: #f5f5f7;
+    --m-black: #000;
+    --m-white: #fff;
+    --m-pill: 980px;
+    --m-card: 18px;
+    --m-safe-top: env(safe-area-inset-top, 0px);
+    --m-safe-bottom: env(safe-area-inset-bottom, 0px);
+    /* 屏幕壁纸（合成演示用，参考真实 macOS 浅蓝壁纸的氛围） */
+    --m-wall: linear-gradient(168deg, #e9f0f8 0%, #c5d8ed 44%, #a4c0e3 78%, #94b3db 100%);
+  }
+
+  html {
+    background: var(--m-white);
+    scroll-padding-top: calc(60px + var(--m-safe-top));
+  }
+
+  body {
+    background: var(--m-white);
+    color: var(--m-ink);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  ::selection {
+    background: var(--m-blue);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline-color: var(--m-blue);
+  }
+
+  .site-head :focus-visible,
+  .hero :focus-visible,
+  .customize :focus-visible,
+  .download :focus-visible {
+    outline-color: var(--m-link-dark);
+  }
+
+  .music-island :focus-visible {
+    outline-color: #fff;
+  }
+
+  .skip-link {
+    top: -120px;
+    padding: 12px 20px;
+    background: var(--m-blue);
+    color: #fff;
+    border-radius: var(--m-pill);
+    font-size: 14px;
+  }
+
+  .skip-link:focus {
+    top: calc(12px + var(--m-safe-top));
+  }
+
+  /* ----------------------------------------------------------------------
+     1. 吸顶玻璃导航
+     ---------------------------------------------------------------------- */
+  .site-head {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    height: calc(48px + var(--m-safe-top));
+    padding: var(--m-safe-top) 16px 0;
+    background: rgba(0, 0, 0, 0.72);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0;
+    color: #f5f5f7;
+  }
+
+  .site-head .brand {
+    color: #f5f5f7;
+    font-size: 17px;
+    letter-spacing: -0.02em;
+  }
+
+  .brand img {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    /* 墨线图标在深色玻璃上反白 */
+    filter: grayscale(1) invert(1);
+  }
+
+  .head-download {
+    position: relative;
+    min-height: 32px;
+    padding: 0 15px;
+    background: var(--m-blue);
+    color: #fff;
+    border-radius: var(--m-pill);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* 视觉 32px，触达 44px */
+  .head-download::after {
+    content: "";
+    position: absolute;
+    inset: -7px -4px;
+  }
+
+  .head-download:hover,
+  .head-download:active {
+    background: #0077ed;
+    color: #fff;
+    transform: none;
+  }
+
+  .head-download svg {
+    display: none;
+  }
+
+  /* ----------------------------------------------------------------------
+     2. Hero：黑色影院场 + 标题 + CTA + MacBook 动画 + 交互演示
+     ---------------------------------------------------------------------- */
+  .hero {
+    grid-template-areas:
+      "title"
+      "stage"
+      "caption"
+      "intro"
+      "elevation"
+      "foot";
+    background: var(--m-black);
+    padding-bottom: 8px;
+  }
+
+  .hero-title {
+    border-top: 0;
+    background: transparent;
+  }
+
+  .tb {
+    padding: 0 24px;
+    border-bottom: 0;
+  }
+
+  /* 标题块：居中排版（Apple hero 语式） */
+  .tb-title {
+    padding-top: clamp(48px, 12vw, 72px);
+    text-align: center;
+  }
+
+  .tb-title h1,
+  .hero .tb-title h1 {
+    font-size: clamp(40px, 10.8vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    color: #f5f5f7;
+  }
+
+  .tb-note {
+    padding-top: 4px;
+    text-align: center;
+  }
+
+  .tb-note p {
+    font-size: 17px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    color: var(--m-gray-dark);
+  }
+
+  .tb-note strong,
+  .hero .tb-note strong {
+    color: #f5f5f7;
+    font-weight: 600;
+  }
+
+  .tb-support {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--m-gray);
+  }
+
+  .tb-note .small {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--m-gray);
+  }
+
+  .hero .tb-label {
+    display: none;
+  }
+
+  /* CTA：药丸主按钮 + 幽灵链接 */
+  .hero .tb-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    padding: 22px 24px 6px;
+    border-bottom: 0;
+  }
+
+  .hero .button,
+  .hero .button.stamp {
+    width: auto;
+    min-height: 48px;
+    padding: 0 28px;
+    justify-content: center;
+    background: var(--m-blue);
+    color: #fff;
+    border-radius: var(--m-pill);
+    box-shadow: none;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .hero .button:active {
+    transform: scale(0.97);
+    background: #0077ed;
+  }
+
+  .hero .button:hover {
+    background: #0077ed;
+    color: #fff;
+    transform: none;
+  }
+
+  .hero .button svg {
+    display: none;
+  }
+
+  .tb-specs {
+    display: none;
+  }
+
+  .m-hero-ghost {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 4px;
+    color: var(--m-link-dark);
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .m-hero-ghost::after {
+    content: "›";
+    margin-left: 5px;
+    font-size: 17px;
+    line-height: 1;
+  }
+
+  .m-hero-ghost:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .no-script {
+    border-top: 0;
+    color: var(--m-gray-dark);
+    text-align: center;
+  }
+
+  /* ----------------------------------------------------------------------
+     3. MacBook 演示动画（主角）
+     ---------------------------------------------------------------------- */
+  .mac-stage {
+    grid-area: stage;
+    display: block;
+    position: relative;
+    padding: clamp(28px, 8vw, 44px) 20px 0;
+  }
+
+  /* 舞台后的冷色氛围光 */
+  .mac-stage::before {
+    content: "";
+    position: absolute;
+    top: 4%;
+    right: 6%;
+    left: 6%;
+    height: 78%;
+    background: radial-gradient(58% 58% at 50% 42%, rgba(122, 162, 224, 0.18), transparent 72%);
+    pointer-events: none;
+  }
+
+  .mb-lid {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 400px);
+    margin: 0 auto;
+    padding: 9px 9px 11px;
+    background: linear-gradient(180deg, #3c3c40, #232326);
+    border-radius: 19px;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.09),
+      0 26px 54px rgba(0, 0, 0, 0.55);
+  }
+
+  .mb-display {
+    position: relative;
+    container-type: inline-size;
+    height: clamp(212px, 62vw, 250px);
+    overflow: hidden;
+    border-radius: 11px;
+    background: var(--m-wall);
+  }
+
+  /* 壁纸光斑 */
+  .mb-wall {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(80% 55% at 18% 0%, rgba(255, 255, 255, 0.5), transparent 60%),
+      radial-gradient(52% 42% at 86% 100%, rgba(255, 224, 190, 0.3), transparent 65%);
+  }
+
+  .mb-menubar {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 20px;
+    padding: 0 9px;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .mb-status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    animation: mb-status 12s linear infinite;
+  }
+
+  /* 面板展开接管顶部时，状态图标让位淡出 */
+  @keyframes mb-status {
+    0%, 10.5% { opacity: 1; }
+    13.5%, 64% { opacity: 0; }
+    67.5%, 100% { opacity: 1; }
+  }
+
+  .mb-status svg {
+    width: 8px;
+    height: 8px;
+    stroke-width: 2;
+  }
+
+  .mb-status .mb-batt {
+    width: 12px;
+    height: 6px;
+  }
+
+  /* —— 灵动岛本体 —— */
+  .mb-island {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 50%;
+    width: 44cqw;
+    max-width: 176px;
+    height: 29px;
+    transform: translateX(-50%);
+    overflow: hidden;
+    background: #000;
+    border-radius: 0 0 11px 11px;
+    box-shadow: 0 10px 24px rgba(9, 12, 20, 0.28);
+    animation: mb-island 12s cubic-bezier(0.32, 0.72, 0.28, 1) infinite;
+  }
+
+  /* 刘海摄像头点 */
+  .mb-cam {
+    position: absolute;
+    z-index: 6;
+    top: 8px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle at 34% 32%, #2e2e33, #050505 72%);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  }
+
+  /* 收起态：左耳封面 + 右耳频谱（中缝为硬件刘海） */
+  .mb-closed {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    animation: mb-closed 12s linear infinite;
+  }
+
+  .mb-art {
+    display: block;
+    overflow: hidden;
+    background: #dfe5cd;
+    border-radius: 4.5px;
+  }
+
+  .mb-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mb-closed .mb-art {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mb-eq {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 13px;
+  }
+
+  .mb-eq i {
+    width: 2px;
+    border-radius: 1px;
+    background: #fff;
+    animation: mb-eq 0.9s ease-in-out infinite alternate;
+  }
+
+  .mb-eq i:nth-child(1) { height: 8px;  animation-delay: -0.2s; }
+  .mb-eq i:nth-child(2) { height: 12px; animation-delay: -0.55s; }
+  .mb-eq i:nth-child(3) { height: 6px;  animation-delay: -0.35s; }
+  .mb-eq i:nth-child(4) { height: 10px; animation-delay: -0.75s; }
+
+  /* 展开态：迷你播放面板 */
+  .mb-open {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 13px 11px;
+    opacity: 0;
+    animation: mb-open 12s linear infinite;
+  }
+
+  .mb-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .mb-open .mb-art {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  }
+
+  .mb-meta {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .mb-title {
+    overflow: hidden;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: #f5f5f7;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .mb-artist {
+    margin-top: 2px;
+    font-size: 9px;
+    line-height: 1.3;
+    color: #b0c4d8; /* 专辑色调染的艺术家名（对应 playerColorTinting） */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .mb-lyric {
+    position: relative;
+    height: 13px;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+
+  .mb-lyric span {
+    position: absolute;
+    inset: 0;
+    font-size: 9.5px;
+    line-height: 13px;
+    color: rgba(245, 245, 247, 0.68);
+    white-space: nowrap;
+    opacity: 0;
+    animation: mb-lyric 12s linear infinite;
+  }
+
+  .mb-lyric span:nth-child(2) { animation-delay: 1.8s; }
+  .mb-lyric span:nth-child(3) { animation-delay: 3.6s; }
+
+  .mb-foot {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: auto;
+  }
+
+  .mb-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    height: 20px;
+    color: #f5f5f7;
+  }
+
+  .mb-controls svg {
+    width: 11px;
+    height: 11px;
+    fill: currentColor;
+    stroke: none;
+  }
+
+  .mb-controls .mb-pause {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+  }
+
+  .mb-prog {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 7.5px;
+    font-variant-numeric: tabular-nums;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  .mb-track {
+    flex: 1;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 1px;
+  }
+
+  .mb-track u {
+    display: block;
+    width: 22%;
+    height: 100%;
+    background: #f5f5f7;
+    border-radius: 1px;
+    text-decoration: none;
+    animation: mb-seek 12s linear infinite;
+  }
+
+  /* 歌词胶囊（真实默认：深底浅字，96% 不透明度） */
+  .mb-capsule {
+    position: absolute;
+    z-index: 3;
+    top: 5px;
+    right: calc(50% + 22cqw + 7px);
+    display: grid;
+    align-items: center;
+    max-width: calc(50% - 22cqw - 14px);
+    height: 20px;
+    padding: 0 9px;
+    overflow: hidden;
+    background: rgba(38, 38, 41, 0.96);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    animation: mb-capsule 12s linear infinite;
+  }
+
+  .mb-capsule span {
+    grid-area: 1 / 1;
+    min-width: 0;
+    overflow: hidden;
+    color: #f5f5f7;
+    font-size: 9.5px;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    opacity: 0;
+  }
+
+  .mb-capsule span:nth-child(1) { animation: mb-cap1 12s linear infinite; }
+  .mb-capsule span:nth-child(2) { animation: mb-cap2 12s linear infinite; }
+
+  /* 光标：讲「悬停即展开」的故事 */
+  .mb-cursor {
+    position: absolute;
+    z-index: 4;
+    top: 80%;
+    left: 74%;
+    width: 14px;
+    height: 14px;
+    opacity: 0;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+    animation: mb-cursor 12s linear infinite;
+    pointer-events: none;
+  }
+
+  .mb-cursor svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* 机身底座（合页 + 拇指槽） */
+  .mb-base {
+    position: relative;
+    z-index: 0;
+    width: min(100%, 400px);
+    height: 9px;
+    margin: -3px auto 0;
+    background: linear-gradient(180deg, #ababb1, #7e7e84 55%, #6c6c72);
+    border-radius: 2px 2px 9px 9px;
+    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.5);
+    transform: scaleX(1.035);
+  }
+
+  .mb-base::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 62px;
+    height: 4px;
+    transform: translateX(-50%);
+    background: #55555b;
+    border-radius: 0 0 5px 5px;
+  }
+
+  .mac-caption {
+    grid-area: caption;
+    display: block;
+    margin: 0;
+    padding: 16px 28px 0;
+    color: var(--m-gray);
+    font-size: 11px;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  /* —— 动画时间线（12s 主循环，各元素同周期对齐）—— */
+  @keyframes mb-island {
+    0%, 9% {
+      width: 44cqw;
+      max-width: 176px;
+      height: 29px;
+      border-radius: 0 0 11px 11px;
+    }
+    12.6% {
+      width: 87cqw;
+      max-width: 326px;
+      height: 139px;
+      border-radius: 0 0 19px 19px; /* 弹簧过冲 */
+    }
+    15%, 62% {
+      width: 86cqw;
+      max-width: 320px;
+      height: 136px;
+      border-radius: 0 0 18px 18px;
+    }
+    66% {
+      width: 45cqw;
+      max-width: 180px;
+      height: 30px;
+      border-radius: 0 0 11px 11px;
+    }
+    69%, 100% {
+      width: 44cqw;
+      max-width: 176px;
+      height: 29px;
+      border-radius: 0 0 11px 11px;
+    }
+  }
+
+  @keyframes mb-closed {
+    0%, 10% { opacity: 1; }
+    13.5%, 64.5% { opacity: 0; }
+    68.5%, 100% { opacity: 1; }
+  }
+
+  @keyframes mb-open {
+    0%, 12% { opacity: 0; transform: translateY(-6px); }
+    16.5%, 62.5% { opacity: 1; transform: translateY(0); }
+    66.5%, 100% { opacity: 0; transform: translateY(-6px); }
+  }
+
+  @keyframes mb-capsule {
+    0%, 10% { opacity: 1; transform: translateX(0); }
+    13%, 65% { opacity: 0; transform: translateX(8px); }
+    69%, 100% { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes mb-cap1 {
+    0%, 10.5% { opacity: 1; }
+    12.5%, 90.5% { opacity: 0; }
+    93.5%, 100% { opacity: 1; }
+  }
+
+  @keyframes mb-cap2 {
+    0%, 69.5% { opacity: 0; }
+    72%, 89% { opacity: 1; }
+    91.5%, 100% { opacity: 0; }
+  }
+
+  @keyframes mb-lyric {
+    0%, 16.4% { opacity: 0; transform: translateY(5px); }
+    18%, 30% { opacity: 1; transform: translateY(0); }
+    31.6%, 100% { opacity: 0; transform: translateY(-4px); }
+  }
+
+  @keyframes mb-seek {
+    0%, 16% { width: 22%; }
+    62% { width: 78%; }
+    63%, 100% { width: 22%; }
+  }
+
+  @keyframes mb-eq {
+    to { transform: scaleY(0.3); }
+  }
+
+  @keyframes mb-cursor {
+    0%, 3% { top: 82%; left: 74%; opacity: 0; }
+    4.5% { opacity: 1; }
+    11%, 17% { top: 30%; left: 53%; opacity: 1; }
+    24% { top: 58%; left: 66%; opacity: 0; }
+    100% { top: 82%; left: 74%; opacity: 0; }
+  }
+
+  /* ----------------------------------------------------------------------
+     4. 交互演示（既有 DOM，重皮肤为「设备卡片」）
+     ---------------------------------------------------------------------- */
+  .m-demo-intro {
+    grid-area: intro;
+    display: block;
+    padding: clamp(44px, 11vw, 64px) 24px 18px;
+    text-align: center;
+  }
+
+  .m-demo-intro strong {
+    display: block;
+    font-size: clamp(24px, 6.4vw, 28px);
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    color: #f5f5f7;
+  }
+
+  .m-demo-intro span {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--m-gray-dark);
+  }
+
+  .elevation {
+    padding: 0 12px;
+    background: transparent;
+  }
+
+  .screen {
+    height: 400px;
+    background: var(--m-wall);
+    border-radius: 20px;
+    box-shadow:
+      0 24px 60px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+    animation: m-screen-on 1s var(--ease) 0.3s both;
+    --island-w: min(228px, 62cqw);
+    --island-h: 44px;
+  }
+
+  .screen:has(.music-island.is-open) {
+    --island-w: min(330px, 90cqw);
+    --island-h: 252px;
+  }
+
+  @keyframes m-screen-on {
+    from {
+      opacity: 0;
+      transform: scale(0.94) translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .island-rail {
+    top: 0;
+    left: 10px;
+    right: 10px;
+  }
+
+  .music-island {
+    border-radius: 0 0 16px 16px;
+    box-shadow:
+      0 16px 34px rgba(9, 12, 20, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .music-island.is-open {
+    border-radius: 0 0 22px 22px;
+  }
+
+  .closed-trigger {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  .closed-title {
+    font-size: 12.5px;
+  }
+
+  .music-island.is-open .island-content {
+    padding: 12px 16px 13px;
+  }
+
+  .island-header {
+    min-height: 24px;
+    margin-bottom: 2px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--island-muted);
+  }
+
+  .island-header > [data-bind="source"] {
+    display: block;
+  }
+
+  .collapse-button {
+    min-width: 44px;
+    min-height: 44px;
+    margin-top: -8px;
+    margin-right: -8px;
+    padding: 10px;
+  }
+
+  .music-island.is-open .full-cover {
+    width: 64px;
+    height: 64px;
+    padding: 6px;
+    border-radius: 6px;
+  }
+
+  .track-title {
+    font-size: 16px;
+  }
+
+  .track-artist {
+    margin-top: 3px;
+    font-size: 12px;
+  }
+
+  .island-lyric {
+    display: block;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: rgba(245, 245, 247, 0.82);
+  }
+
+  .seek-row {
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 10px;
+  }
+
+  .seek {
+    height: 44px;
+  }
+
+  .transport {
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .transport .icon-button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+  }
+
+  .play-buttons {
+    gap: 0;
+  }
+
+  .play-buttons svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .volume-control {
+    display: flex;
+    width: 100px;
+  }
+
+  .volume-control svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* 演示屏幕的菜单栏：浅色壁纸上的深色文字 */
+  .menu-bar {
+    height: 40px;
+    padding: 0 14px;
+    border-bottom: 0;
+    background: none;
+    color: rgba(0, 0, 0, 0.72);
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .menu-left span:nth-child(n + 2) {
+    display: inline;
+  }
+
+  .menu-right .menu-status {
+    display: flex;
+  }
+
+  .menu-right .menu-app {
+    display: inline-flex;
+  }
+
+  .menu-app i {
+    background: var(--m-blue);
+  }
+
+  .menu-status svg {
+    color: rgba(0, 0, 0, 0.72);
+  }
+
+  /* 收起时屏幕上的注脚 */
+  .desktop-note {
+    right: 0;
+    bottom: 16px;
+    left: 0;
+    text-align: center;
+  }
+
+  .desktop-note p {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: rgba(29, 29, 31, 0.88);
+  }
+
+  /* 展开/收起：玻璃药丸 */
+  .stage-bottom {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .screen .text-button {
+    padding: 9px 16px;
+    background: rgba(18, 18, 20, 0.55);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: #f5f5f7;
+    border-bottom: 0;
+    border-radius: var(--m-pill);
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .screen .text-button:hover {
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .hero-foot {
+    padding: 16px 24px 22px;
+    color: var(--m-gray-soft);
+    text-align: center;
+  }
+
+  .demo-caption {
+    display: block;
+    font-size: 11px;
+    color: var(--m-gray-soft);
+  }
+
+  /* 提示语已由 intro 承担，仅保留「无音频」声明 */
+  .demo-caption > span:first-child {
+    display: none;
+  }
+
+  .hero-foot .sheet-ref {
+    display: none;
+  }
+
+  /* ----------------------------------------------------------------------
+     5. 通用分区节奏（Apple：色场交替，标题居中）
+     ---------------------------------------------------------------------- */
+  .section {
+    padding: clamp(64px, 17vw, 84px) 20px;
+    border-top: 0;
+  }
+
+  .section-head {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-bottom: clamp(28px, 7vw, 40px);
+    text-align: center;
+  }
+
+  .section-head h2 {
+    max-width: none;
+    font-size: clamp(28px, 7.6vw, 34px);
+    line-height: 1.14;
+    letter-spacing: -0.022em;
+    font-weight: 600;
+    color: var(--m-ink);
+  }
+
+  .section-head > p {
+    justify-self: center;
+    max-width: 30em;
+    font-size: 15px;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: var(--m-gray);
+  }
+
+  .section-head strong {
+    color: var(--m-ink);
+    font-weight: 600;
+  }
+
+  .sheet-no,
+  .faq-sheet {
+    display: none;
+  }
+
+  /* ----------------------------------------------------------------------
+     6. 歌词（白色场）
+     ---------------------------------------------------------------------- */
+  .lyrics {
+    background: var(--m-white);
+  }
+
+  .lyrics-grid {
+    gap: 32px;
+  }
+
+  .lyrics-list {
+    border-top: 1px solid var(--m-hairline);
+  }
+
+  .lyrics-list li {
+    border-bottom: 1px solid var(--m-hairline);
+  }
+
+  .lyrics-list button {
+    grid-template-columns: 26px minmax(0, 1fr) 44px;
+    gap: 10px;
+    min-height: 68px;
+    padding: 12px 0;
+    color: var(--m-gray-soft);
+  }
+
+  .lyric-no {
+    font-size: 10px;
+    color: var(--m-gray-soft);
+  }
+
+  .lyric-label {
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+  }
+
+  .lyrics-list button:hover {
+    color: var(--m-ink);
+  }
+
+  .lyrics-list button[aria-current="true"] {
+    color: var(--m-ink);
+  }
+
+  .lyrics-list button[aria-current="true"] .lyric-no {
+    color: var(--m-blue);
+  }
+
+  .lyrics-list button[aria-current="true"] .lyric-label {
+    font-weight: 600;
+  }
+
+  .lyric-jump {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #d2d2d7;
+    color: var(--m-ink);
+  }
+
+  .lyrics-list button:hover .lyric-jump {
+    background: var(--m-ink);
+    border-color: var(--m-ink);
+    color: #fff;
+    transform: none;
+  }
+
+  .lyrics-list button[aria-current="true"] .lyric-jump {
+    background: var(--m-blue);
+    border-color: var(--m-blue);
+    color: #fff;
+  }
+
+  .lyric-transport {
+    margin-top: 16px;
+    color: var(--m-gray-soft);
+    font-size: 12px;
+  }
+
+  .lyric-transport .text-button {
+    color: var(--m-link);
+    border-bottom: 0;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .lyric-transport .text-button:hover {
+    color: var(--m-link);
+    text-decoration: underline;
+  }
+
+  /* 岛旁歌词小景：壁纸卡片 */
+  .compact-scene {
+    min-height: 210px;
+    background: var(--m-wall);
+    border: 0;
+    border-radius: var(--m-card);
+  }
+
+  .scene-top {
+    display: none;
+  }
+
+  .compact-capsule {
+    margin-top: 10px;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.16);
+  }
+
+  .compact-island {
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 10px 22px rgba(9, 12, 20, 0.3);
+  }
+
+  .compact-message {
+    color: rgba(29, 29, 31, 0.66);
+    font-size: 12px;
+  }
+
+  /* 选项行 + iOS 开关 */
+  .option-list {
+    margin-top: 20px;
+    border-top: 1px solid var(--m-hairline);
+  }
+
+  .option-row {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--m-hairline);
+  }
+
+  .option-title {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--m-ink);
+  }
+
+  .option-desc {
+    font-size: 12px;
+    color: var(--m-gray);
+  }
+
+  .toggle {
+    position: relative;
+    width: 51px;
+    height: 31px;
+    border: 0;
+    border-radius: 999px;
+    background: #e8e8ed;
+    transition: background 0.25s var(--ease);
+  }
+
+  .toggle::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 27px;
+    height: 27px;
+    background: #fff;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+    transform: none;
+    transition: transform 0.25s var(--ease);
+  }
+
+  .toggle:checked,
+  .lyrics .toggle:checked {
+    background: var(--m-blue);
+    border-color: var(--m-blue);
+  }
+
+  .toggle:checked::after {
+    width: 27px;
+    height: 27px;
+    background: #fff;
+    border: 0;
+    border-radius: 50%;
+    transform: translateX(20px);
+  }
+
+  .demo-note {
+    color: var(--m-gray-soft);
+  }
+
+  /* ----------------------------------------------------------------------
+     7. 尺寸（黑色场，浅灰卡片）
+     ---------------------------------------------------------------------- */
+  .customize {
+    background: var(--m-black);
+    color: #f5f5f7;
+    border-top: 0;
+  }
+
+  .customize .section-head h2,
+  .customize .section-head strong {
+    color: #f5f5f7;
+  }
+
+  .customize .section-head > p {
+    color: var(--m-gray-dark);
+  }
+
+  .size-showcase {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    padding: 22px 18px 20px;
+    background: var(--m-field);
+    border: 0;
+    border-radius: var(--m-card);
+  }
+
+  .size-edge,
+  .size-edge::before,
+  .size-edge::after {
+    background: var(--m-ink);
+  }
+
+  .size-shape {
+    border-radius: 0 0 22px 22px;
+  }
+
+  .size-song p {
+    font-size: 15px;
+    color: #f5f5f7;
+  }
+
+  .size-song span {
+    font-size: 10.5px;
+    color: var(--m-gray-dark);
+  }
+
+  .size-lyric {
+    font-size: 12.5px;
+    color: rgba(245, 245, 247, 0.8);
+  }
+
+  .size-artwork {
+    background: #e4e0d2;
+    border-radius: 7px;
+  }
+
+  .size-showcase figcaption {
+    text-align: center;
+  }
+
+  .size-showcase figcaption p {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #f5f5f7;
+  }
+
+  .size-showcase figcaption span {
+    max-width: 26em;
+    margin: 8px auto 0;
+    font-size: 13px;
+    color: var(--m-gray-dark);
+  }
+
+  /* ----------------------------------------------------------------------
+     8. 播放器（白色场）
+     ---------------------------------------------------------------------- */
+  .players {
+    background: var(--m-white);
+    color: var(--m-ink);
+    border-top: 0;
+  }
+
+  .players .section-head h2,
+  .players .section-head strong {
+    color: var(--m-ink);
+  }
+
+  .players .section-head > p {
+    color: var(--m-gray);
+  }
+
+  .players-grid {
+    gap: 26px;
+  }
+
+  .player-picker {
+    border-top: 1px solid var(--m-hairline);
+  }
+
+  .player-picker > button {
+    grid-template-columns: minmax(0, 1fr) 24px;
+    gap: 10px;
+    min-height: 62px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--m-hairline);
+    color: var(--m-gray-soft);
+  }
+
+  .p-no {
+    display: none;
+  }
+
+  .p-name {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .p-arrow {
+    width: 18px;
+    height: 18px;
+    color: var(--m-blue);
+  }
+
+  .player-picker > button:hover {
+    color: var(--m-ink);
+  }
+
+  .player-picker > button[aria-pressed="true"] {
+    color: var(--m-ink);
+  }
+
+  .player-picker > button[aria-pressed="true"] .p-name {
+    font-weight: 600;
+  }
+
+  .player-picker > button[aria-pressed="true"] .p-no,
+  .player-picker > button[aria-pressed="true"] .p-arrow,
+  .player-picker > button .p-arrow {
+    color: var(--m-blue);
+  }
+
+  .player-detail {
+    padding: 20px;
+    background: var(--m-field);
+    border: 0;
+    border-radius: var(--m-card);
+    color: var(--m-ink);
+  }
+
+  .player-detail .source-summary {
+    gap: 12px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .source-summary img {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 10px;
+  }
+
+  .player-detail .source-summary p:first-child {
+    font-size: 19px;
+    letter-spacing: -0.02em;
+    color: var(--m-ink);
+  }
+
+  .player-detail .source-summary p:last-child {
+    font-size: 12px;
+    color: var(--m-gray);
+  }
+
+  .player-detail .live-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--m-blue);
+  }
+
+  .capability-list > div {
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  }
+
+  .player-detail .capability-list dt {
+    font-size: 13px;
+    color: var(--m-body);
+  }
+
+  .player-detail .capability-list dd {
+    font-size: 12.5px;
+    color: var(--m-ink);
+  }
+
+  .capability-list dd::before {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  .player-detail .capability-list dd::before {
+    background: var(--m-blue);
+  }
+
+  .capability-list dd[data-state="partial"]::before {
+    background: transparent;
+    border: 1.5px solid var(--m-blue);
+  }
+
+  .capability-list dd[data-state="no"]::before {
+    background: transparent;
+    border: 1.5px solid var(--m-gray-soft);
+    opacity: 1;
+  }
+
+  .player-detail .capability-list dd[data-state="partial"],
+  .player-detail .capability-list dd[data-state="no"] {
+    color: var(--m-gray);
+  }
+
+  .player-detail .player-note {
+    color: var(--m-gray);
+  }
+
+  .player-detail .auto-detect {
+    color: var(--m-ink);
+    font-size: 14px;
+  }
+
+  .auto-detect input {
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid #c7c7cc;
+    border-radius: 5px;
+  }
+
+  .auto-detect input:checked {
+    background: var(--m-blue);
+    border-color: var(--m-blue);
+  }
+
+  .auto-detect input:checked::after {
+    border-color: #fff;
+  }
+
+  .player-detail #detection-note {
+    color: var(--m-gray-soft);
+  }
+
+  /* ----------------------------------------------------------------------
+     9. FAQ（浅灰场，白卡片）
+     ---------------------------------------------------------------------- */
+  .questions {
+    background: var(--m-field);
+    color: var(--m-ink);
+  }
+
+  .faq-grid {
+    gap: 26px;
+  }
+
+  .faq-heading {
+    padding-top: 0;
+    text-align: center;
+  }
+
+  .faq-heading h2 {
+    font-size: clamp(28px, 7.6vw, 34px);
+    color: var(--m-ink);
+  }
+
+  .faq-heading > a {
+    justify-content: center;
+    margin-top: 14px;
+    color: var(--m-link);
+    border-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .faq-list {
+    padding: 4px 18px;
+    background: var(--m-white);
+    border-top: 0;
+    border-radius: var(--m-card);
+  }
+
+  .faq-list details {
+    border-bottom: 1px solid var(--m-hairline);
+  }
+
+  .faq-list details:last-child {
+    border-bottom: 0;
+  }
+
+  .faq-list summary {
+    grid-template-columns: minmax(0, 1fr) 24px;
+    gap: 12px;
+    padding: 18px 0;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--m-ink);
+  }
+
+  .faq-no {
+    display: none;
+  }
+
+  .faq-list summary::after {
+    width: 13px;
+    height: 13px;
+    background:
+      linear-gradient(var(--m-gray), var(--m-gray)) center / 13px 1.5px no-repeat,
+      linear-gradient(var(--m-gray), var(--m-gray)) center / 1.5px 13px no-repeat;
+  }
+
+  .faq-answer {
+    max-width: none;
+    padding: 0 0 20px;
+  }
+
+  .faq-answer p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--m-gray);
+  }
+
+  .faq-answer strong {
+    color: var(--m-ink);
+    font-weight: 600;
+  }
+
+  .answer-note {
+    font-size: 13px;
+    color: var(--m-gray);
+  }
+
+  /* ----------------------------------------------------------------------
+     10. 下载（蓝色场，保留）
+     ---------------------------------------------------------------------- */
+  .download {
+    margin: 0;
+    padding: clamp(56px, 15vw, 76px) 24px calc(clamp(56px, 15vw, 76px) + var(--m-safe-bottom) * 0);
+    background: var(--m-blue);
+    text-align: center;
+  }
+
+  .download::before,
+  .download::after {
+    display: none;
+  }
+
+  .issue-top {
+    justify-content: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .issue-top span:first-child {
+    display: none;
+  }
+
+  .download h2 {
+    margin-top: 12px;
+    font-size: clamp(24px, 6.6vw, 28px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  .big-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    margin: 26px auto 0;
+    padding: 15px 32px;
+    background: #fff;
+    color: var(--m-blue);
+    border-bottom: 0;
+    border-radius: var(--m-pill);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .big-download svg {
+    display: none;
+  }
+
+  .big-download:hover {
+    color: var(--m-blue);
+  }
+
+  .big-download:active {
+    transform: scale(0.97);
+  }
+
+  .issue-bottom {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .issue-bottom p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  /* ----------------------------------------------------------------------
+     11. 页脚（白色场）
+     ---------------------------------------------------------------------- */
+  footer {
+    padding: 44px 24px calc(30px + var(--m-safe-bottom));
+    background: var(--m-white);
+    border-top: 0;
+    text-align: center;
+  }
+
+  .footer-top {
+    display: none;
+  }
+
+  .footer-mark {
+    margin: 0 0 20px;
+    color: #e6e6ea;
+    font-size: 16.5vw;
+    letter-spacing: -0.06em;
+  }
+
+  .footer-row {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .footer-row > p {
+    font-size: 14px;
+    color: var(--m-ink);
+  }
+
+  .footer-row > div {
+    justify-content: center;
+    gap: 18px;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  .footer-row a {
+    color: var(--m-link);
+  }
+
+  .credits {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--m-hairline);
+    text-align: center;
+  }
+
+  .credits p {
+    max-width: none;
+    margin: 0 auto;
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--m-gray-soft);
+  }
+
+  .credits p + p {
+    margin-top: 8px;
+  }
+
+  .credits a {
+    color: var(--m-gray);
+  }
+
+  /* ----------------------------------------------------------------------
+     12. 进场与滚动浮现（JS 挂 html.reveal-ready 后才隐藏，无 JS 全可见）
+     ---------------------------------------------------------------------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-title {
+      animation: m-rise 0.8s var(--ease) both;
+    }
+
+    .mac-stage {
+      animation: m-rise 0.8s var(--ease) 0.12s both;
+    }
+
+    .mac-caption {
+      animation: m-rise 0.7s var(--ease) 0.24s both;
+    }
+
+    .m-demo-intro {
+      animation: m-rise 0.7s var(--ease) 0.1s both;
+    }
+
+    html.reveal-ready .section > *,
+    html.reveal-ready .download > * {
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 0.75s var(--ease),
+        transform 0.75s var(--ease);
+    }
+
+    html.reveal-ready .section > *:nth-child(2),
+    html.reveal-ready .download > *:nth-child(2) {
+      transition-delay: 0.09s;
+    }
+
+    html.reveal-ready .section.arrive > *,
+    html.reveal-ready .download.arrive > * {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes m-rise {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ----------------------------------------------------------------------
+     13. 减少动态效果：动画停摆，岛定格在展开态
+     ---------------------------------------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .mb-island {
+      width: 86cqw;
+      max-width: 320px;
+      height: 136px;
+      border-radius: 0 0 18px 18px;
+      animation: none;
+    }
+
+    .mb-closed,
+    .mb-capsule,
+    .mb-cursor {
+      display: none;
+    }
+
+    .mb-open {
+      opacity: 1;
+      animation: none;
+    }
+
+    .mb-lyric span {
+      animation: none;
+    }
+
+    .mb-lyric span:nth-child(2) {
+      opacity: 1;
+    }
+
+    .mb-track u {
+      width: 45%;
+      animation: none;
+    }
+
+    .mb-eq i {
+      animation: none;
+    }
+
+    .screen {
+      animation: none;
+    }
+
+    .hero-title,
+    .mac-stage,
+    .mac-caption,
+    .m-demo-intro {
+      animation: none;
+    }
+
+    html.reveal-ready .section > *,
+    html.reveal-ready .download > * {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

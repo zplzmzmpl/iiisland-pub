@@ -249,3 +249,30 @@ A paper card on the sage field, 1:1: a 440 × 266 black notch and a 280 × 44 co
 - **Don't** give every section the same entrance animation or a floating shadow; one authored moment (the sheet plotting in) is enough.
 - **Don't** "fix" the intentional paper palette, the drafting grid or the functional barcode by replacing the world; they are the system.
 - **Don't** use the island's rounded, shadowed language on ordinary panels; that language belongs to the product.
+
+---
+
+# Mobile Layer (≤760px): "Cinema Black"
+
+移动端与桌面端是两套并行的设计语言。桌面端保持上述「屏幕剖面图」体系不变；移动端在 `website/mobile.css` 中以独立设计层覆盖（`<link media="(max-width: 760px)">` + 文件内媒体查询双重限定），参考 apple.com 的产品页语式。移动端专属 DOM（`.mac-stage`、`.mac-caption`、`.m-demo-intro`、`.m-hero-ghost`）以 `hidden` 属性挂载，桌面端不渲染。
+
+## 移动端核心规则
+
+- **色场节奏代替分隔线**：黑（hero、尺寸区）→ 白（歌词、播放器、页脚）→ 浅灰 #f5f5f7（FAQ）→ 蓝 #0071e3（下载区，延续「蓝色下载块」承诺）。分区之间不加 hairline。
+- **唯一强调色**：#0071e3（按钮填充）、#0066cc（浅底链接）、#2997ff（深底链接）。墨蓝 #122e8a 不出现在移动端。
+- **排版**：系统字体不变；标题居中、600 字重、负字距（h1 clamp(40px,10.8vw,52px)/1.08；h2 clamp(28px,7.6vw,34px)）；正文左对齐；次级文字 #6e6e73（浅底）/ #a1a1a6（深底），满足 AA。
+- **形状**：980px 药丸按钮（主 CTA 48px 高）、18px 圆角卡片、51×31 iOS 开关（选中 #0071e3）。绘图纸语汇（图签、尺寸线、图号、条码）全部隐藏。
+- **导航**：吸顶深色玻璃 rgba(0,0,0,.72) + saturate(180%) blur(20px)，含 safe-area；图标反白（墨线图标 `invert(1)`）；下载为蓝色药丸，视觉 32px、触达 44px。
+- **触达**：所有可交互控件 ≥44×44px（演示岛内按钮、歌词跳转、开关行、FAQ 行）。
+
+## MacBook 演示动画（`.mac-stage`，签名组件）
+
+纯 CSS 12 秒主循环，无 JS 依赖，讲述「悬停即展开」：浅蓝壁纸屏幕（合成，标注「非真实录屏」）→ 收起态灵动岛（左耳封面 18px + 摄像头点 + 右耳 4 根 2px 白色频谱条）与深底歌词胶囊（rgba(38,38,41,.96)，对应应用默认「深底浅字」）→ 光标滑入悬停 → 岛以弹簧过冲展开为播放面板（封面 56px、标题 11.5px/600、艺术家名以专辑色染色、歌词三句轮播、走带进度、白色控件）→ 状态栏图标在展开期间淡出让位 → 收起后胶囊换句 → 无缝循环。比例参照真机（收起 280×33pt、展开 440×180pt、圆角 closed 6/14 opened 19/24、notch 预留 32pt），在手机上为可读性做放大取舍。`prefers-reduced-motion` 下定格为展开态静帧。
+
+## 交互演示（复用既有 DOM）
+
+`.screen` 重皮肤为圆角 20px 的设备卡片：浅蓝壁纸、深色菜单栏文字、黑色岛体保持产品原色；展开态岛 90cqw×252px，收起态 62cqw×44px；胶囊在手机上隐藏（空间不足，由 `.mac-stage` 与歌词区小景承担叙事）；「展开/收起」为深色玻璃药丸按钮。
+
+## 滚动浮现
+
+`script.js` 仅在 ≤760px 且允许动效时向 `<html>` 添加 `reveal-ready` 并观察 `.section/.download`（进入视口加 `.arrive`）。隐藏态由 `html.reveal-ready` 门控——无 JS 时类名不存在，内容全部可见；减少动态效果时不启用且显式复位。

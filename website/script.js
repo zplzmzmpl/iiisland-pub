@@ -254,6 +254,15 @@
       entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('arrive');observer.unobserve(entry.target);}});
     },{threshold:.12});
     $$('.size-showcase').forEach(el=>observer.observe(el));
+    // Mobile scroll reveals (mobile.css only). The html class gates the
+    // hidden state, so without JavaScript everything stays visible.
+    if(matchMedia('(max-width: 760px)').matches) {
+      document.documentElement.classList.add('reveal-ready');
+      const revealer=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('arrive');revealer.unobserve(entry.target);}});
+      },{threshold:.06,rootMargin:'0px 0px -5% 0px'});
+      $$('.section,.download').forEach(el=>revealer.observe(el));
+    }
   }
   render();
 })();

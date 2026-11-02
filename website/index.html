@@ -2,14 +2,16 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="iiisland，将播放控制与同步歌词带到 Mac 屏幕顶部。支持 Apple Music、Spotify、QQ 音乐与网易云音乐。在线试用灵动岛交互，调整你的音乐空间。">
   <meta name="theme-color" content="#efede5">
+  <meta name="theme-color" media="(max-width: 760px)" content="#000000">
   <title>iiisland — 音乐，在抬眼之间</title>
   <link rel="canonical" href="https://iiisland.pages.dev/">
   <link rel="icon" href="assets/app-icon.png">
   <link rel="preload" as="image" href="assets/app-icon.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css" media="(max-width: 760px)">
 </head>
 <body>
   <svg class="symbol-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -52,6 +54,7 @@
         </div>
         <div class="tb tb-action">
           <a class="button stamp" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
+          <a class="m-hero-ghost" href="#demo" hidden>在线体验</a>
           <dl class="tb-specs">
             <div><dt>版本</dt><dd>0.8.23</dd></div>
             <div><dt>芯片</dt><dd>arm64</dd></div>
@@ -61,7 +64,56 @@
         </div>
       </div>
 
-      <div class="elevation" data-ui data-preview="hero" role="group" aria-label="可交互的 Mac 顶部音乐面板">
+      <div class="mac-stage" hidden aria-hidden="true">
+        <div class="mb-lid">
+          <div class="mb-display">
+            <div class="mb-wall"></div>
+            <div class="mb-menubar">
+              <span class="mb-status"><svg><use href="#icon-wifi"/></svg><svg class="mb-batt"><use href="#icon-battery"/></svg><span>周一 21:41</span></span>
+            </div>
+            <div class="mb-island">
+              <span class="mb-cam"></span>
+              <div class="mb-closed">
+                <span class="mb-art"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></span>
+                <span class="mb-eq"><i></i><i></i><i></i><i></i></span>
+              </div>
+              <div class="mb-open">
+                <div class="mb-row">
+                  <span class="mb-art"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></span>
+                  <div class="mb-meta">
+                    <p class="mb-title">慢一点，也没关系</p>
+                    <p class="mb-artist">窗边电台</p>
+                    <div class="mb-lyric">
+                      <span>让城市的声音，轻一点</span>
+                      <span>把时间，留给喜欢的旋律</span>
+                      <span>慢一点，也没关系</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-foot">
+                  <div class="mb-controls">
+                    <svg viewBox="0 0 24 24"><path d="M6 5v14M18 5 8 12l10 7Z"/></svg>
+                    <svg class="mb-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M19 5v14M5 5l12 7-12 7Z"/></svg>
+                  </div>
+                  <div class="mb-prog"><span>0:28</span><span class="mb-track"><u></u></span><span>2:08</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-capsule">
+              <span>把时间，留给喜欢的旋律</span>
+              <span>慢一点，也没关系</span>
+            </div>
+            <div class="mb-cursor"><svg viewBox="0 0 16 17"><path d="M4 1 4 14 7.5 10.7 9.8 15.4 11.9 14.4 9.6 9.9 14 9.6Z" fill="#fff" stroke="#1d1d1f" stroke-width="1" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+        <div class="mb-base"></div>
+      </div>
+      <p class="mac-caption" hidden>MacBook 上的 iiisland · 循环演示动画，非真实录屏；曲目与歌词为原创演示内容。</p>
+
+      <div class="m-demo-intro" hidden><strong>亲手试一试</strong><span>轻触岛体展开；拖动进度、切歌、调音量</span></div>
+
+      <div class="elevation" id="demo" data-ui data-preview="hero" role="group" aria-label="可交互的 Mac 顶部音乐面板">
         <div class="screen">
           <div class="island-rail">
             <div class="capsule" data-bind="capsule">把时间，留给喜欢的旋律</div>
