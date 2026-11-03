@@ -752,7 +752,7 @@
   .m-ci-eq u:nth-child(4) { height: 9px;  animation-delay: -0.65s; }
 
   .m-cap-live {
-    --cap-a: 1;
+    --cap-a: 0;
     position: absolute;
     top: 16.5px;
     right: calc(50% + 74px);
