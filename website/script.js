@@ -259,7 +259,7 @@
     }
   }
   // 胶囊歌词与岛体的演示循环只在进入视口时播放，离开即冻结
-  const loopSections=$$('.lyrics,.m-capsule-sec,.m-appear-sec');
+  const loopSections=$$('.m-capsule-sec,.m-appear-sec');
   if(loopSections.length&&'IntersectionObserver' in window){
     document.documentElement.classList.add('motion-ready');
     const loopObserver=new IntersectionObserver(entries=>{
