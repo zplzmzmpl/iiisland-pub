@@ -698,13 +698,14 @@
     gap: 16px;
   }
 
-  /* 实况演示台：壁纸卡片 + 收起态小岛 + 可调胶囊 */
+  /* 实况演示台：壁纸卡片，收起态小岛与胶囊同轴居中悬挂 */
   .m-cap-stage {
     position: relative;
-    height: 132px;
+    height: 140px;
     overflow: hidden;
     background: var(--m-wall);
     border-radius: var(--m-card);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
   .m-cap-island {
@@ -714,12 +715,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 130px;
-    height: 32px;
-    padding: 0 11px;
+    width: 124px;
+    height: 33px;
+    padding: 0 12px;
     transform: translateX(-50%);
     background: #000;
-    border-radius: 0 0 13px 13px;
+    border-radius: 0 0 14px 14px;
     box-shadow: 0 8px 18px rgba(9, 12, 20, 0.28);
   }
 
@@ -753,11 +754,12 @@
   .m-cap-live {
     --cap-a: 0.96;
     position: absolute;
-    top: 7px;
-    right: calc(50% + 73px);
-    max-width: calc(50% - 85px);
+    top: 16.5px;
+    right: calc(50% + 74px);
+    max-width: calc(50% - 86px);
     overflow: hidden;
     padding: 7px 12px;
+    transform: translateY(-50%);
     border-radius: 999px;
     font-size: 12px;
     line-height: 1.3;
@@ -781,10 +783,14 @@
     color: #1d1d1f;
   }
 
-  /* 控件：iOS 式分段选择 + 滑杆 */
+  /* 控件：白色卡片内的 iOS 式分段选择 + 滑杆 */
   .m-cap-controls {
     display: grid;
     gap: 14px;
+    padding: 14px;
+    background: var(--m-white);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   }
 
   .m-seg {
@@ -878,9 +884,9 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   }
 
-  /* 自动隐身：循环小景 + 同步条件词 */
+  /* 自动隐身：2×2 图标卡 */
   .m-hide-block {
-    margin-top: 34px;
+    margin-top: 30px;
   }
 
   .m-hide-title {
@@ -891,79 +897,46 @@
     text-align: center;
   }
 
-  .m-hide-strip {
-    position: relative;
-    height: 56px;
-    margin-top: 14px;
-    overflow: hidden;
-    background: var(--m-wall);
+  .m-hide-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .m-hide-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 8px;
+    background: var(--m-white);
     border-radius: 14px;
   }
 
-  .m-hide-cap {
-    position: absolute;
-    top: 13px;
-    left: 50%;
-    width: 156px;
-    height: 30px;
-    transform: translateX(-50%);
-    background: rgba(38, 38, 41, 0.96);
-    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.16);
-    border-radius: 999px;
-    animation: m-hide-cap 8s linear infinite;
-  }
-
-  .m-hide-cap::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 14px;
-    left: 14px;
-    height: 4px;
-    transform: translateY(-50%);
-    background: rgba(245, 245, 247, 0.85);
-    border-radius: 2px;
-  }
-
-  .m-hide-labels {
-    position: relative;
-    display: grid;
-    justify-items: center;
+  .m-hide-list svg {
+    width: 20px;
     height: 20px;
-    margin: 12px 0 0;
+    fill: none;
+    stroke: var(--m-gray);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
-  .m-hide-labels span {
-    grid-area: 1 / 1;
+  .m-hide-list span {
     font-size: 12.5px;
-    color: var(--m-gray);
-    opacity: 0;
-    animation-duration: 8s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    color: var(--m-body);
   }
 
-  .m-hide-labels span:nth-child(1) { animation-name: m-hide-l1; }
-  .m-hide-labels span:nth-child(2) { animation-name: m-hide-l2; }
-  .m-hide-labels span:nth-child(3) { animation-name: m-hide-l3; }
-  .m-hide-labels span:nth-child(4) { animation-name: m-hide-l4; }
-
-  @keyframes m-hide-cap {
-    0%, 11% { opacity: 1; }
-    14%, 23% { opacity: 0; }
-    26%, 36% { opacity: 1; }
-    39%, 48% { opacity: 0; }
-    51%, 61% { opacity: 1; }
-    64%, 73% { opacity: 0; }
-    76%, 86% { opacity: 1; }
-    89%, 96% { opacity: 0; }
-    100% { opacity: 1; }
+  .m-hide-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--m-gray-soft);
+    text-align: center;
   }
-
-  @keyframes m-hide-l1 { 0%, 12% { opacity: 0; } 14%, 23% { opacity: 1; } 25%, 100% { opacity: 0; } }
-  @keyframes m-hide-l2 { 0%, 37% { opacity: 0; } 39%, 48% { opacity: 1; } 50%, 100% { opacity: 0; } }
-  @keyframes m-hide-l3 { 0%, 62% { opacity: 0; } 64%, 73% { opacity: 1; } 75%, 100% { opacity: 0; } }
-  @keyframes m-hide-l4 { 0%, 87% { opacity: 0; } 89%, 96% { opacity: 1; } 98%, 100% { opacity: 0; } }
 
   /* ----------------------------------------------------------------------
      7. 灵动岛外观（黑场：经典黑 vs 液态玻璃）
@@ -1630,19 +1603,6 @@
 
     .m-ci-eq u {
       animation: none;
-    }
-
-    .m-hide-cap {
-      opacity: 1;
-      animation: none;
-    }
-
-    .m-hide-labels span {
-      animation: none;
-    }
-
-    .m-hide-labels span:nth-child(1) {
-      opacity: 1;
     }
 
     .hero-title,
