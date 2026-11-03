@@ -1508,8 +1508,11 @@ input {
 }
 
 .cap-guide-head {
-  fill: rgba(239, 237, 229, 0.75);
-  stroke: none;
+  fill: none;
+  stroke: rgba(239, 237, 229, 0.75);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* appearance controls */
