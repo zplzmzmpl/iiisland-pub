@@ -1425,7 +1425,7 @@ input {
 }
 
 .cap-live {
-  --cap-a: 1;
+  --cap-a: 0.3;
   display: block;
   max-width: 100%;
   overflow: hidden;
@@ -1477,21 +1477,20 @@ input {
   }
 }
 
-/* guidance: a drawn cursor and dashed path pointing at the lyric; it never touches the capsule */
+/* guidance: a larger drawn cursor travelling back and forth along a long dashed path.
+   The guide is always visible; it never fades, enters the capsule or drives the hide. */
 
 .cap-guide {
   position: absolute;
   z-index: 3;
   top: calc(100% + 16px);
   left: 22px;
-  width: 18px;
-  height: 22px;
-  opacity: 0;
+  width: 20px;
+  height: 24px;
   color: var(--paper);
   pointer-events: none;
   filter: drop-shadow(0 2px 3px rgba(9, 10, 9, 0.35));
-  transform: translate(34px, 48px);
-  animation: cap-guide 7s var(--ease) infinite;
+  animation: cap-guide 8s cubic-bezier(0.45, 0, 0.2, 1) infinite;
 }
 
 .cap-guide svg {
@@ -1507,57 +1506,29 @@ input {
 .cap-guide-trail {
   position: absolute;
   z-index: 2;
-  top: calc(100% + 18.3px);
-  left: 24.6px;
-  width: 59px;
+  top: calc(100% + 18.5px);
+  left: 24.9px;
+  width: 184px;
   height: 1px;
-  transform: rotate(54.7deg);
+  transform: rotate(40.6deg);
   transform-origin: 0 0;
-  background: repeating-linear-gradient(90deg, rgba(239, 237, 229, 0.65) 0 3px, transparent 3px 7px);
-  opacity: 0;
+  background: repeating-linear-gradient(90deg, rgba(239, 237, 229, 0.65) 0 4px, transparent 4px 9px);
   pointer-events: none;
-  animation: cap-guide-trail 7s var(--ease) infinite;
 }
 
 @keyframes cap-guide {
-  0%, 8% {
-    opacity: 0;
-    transform: translate(34px, 48px);
+  0%, 10% {
+    transform: translate(140px, 120px);
   }
-  16% {
-    opacity: 1;
-  }
-  38%, 58% {
-    opacity: 1;
+  45%, 60% {
     transform: translate(0, 0);
   }
-  70%, 100% {
-    opacity: 0;
-    transform: translate(0, 0);
+  90%, 100% {
+    transform: translate(140px, 120px);
   }
 }
 
-@keyframes cap-guide-trail {
-  0%, 8% {
-    opacity: 0;
-  }
-  16%, 58% {
-    opacity: 1;
-  }
-  70%, 100% {
-    opacity: 0;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .cap-hit:hover .cap-guide,
-  .cap-hit:hover .cap-guide-trail {
-    visibility: hidden;
-  }
-}
-
-html.motion-ready .lyrics:not(.is-live) .cap-guide,
-html.motion-ready .lyrics:not(.is-live) .cap-guide-trail {
+html.motion-ready .lyrics:not(.is-live) .cap-guide {
   animation-play-state: paused;
 }
 
@@ -1648,7 +1619,7 @@ html.motion-ready .lyrics:not(.is-live) .cap-guide-trail {
 }
 
 .cap-alpha {
-  --fill: 100%;
+  --fill: 30%;
   width: 100%;
   min-width: 0;
   height: 44px;
