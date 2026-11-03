@@ -284,5 +284,14 @@
       $$('.section,.download').forEach(el=>revealer.observe(el));
     }
   }
+  // 外观区的岛体循环只在进入视口时播放，离开即冻结
+  const appearSection=$('.m-appear-sec');
+  if(appearSection&&'IntersectionObserver' in window){
+    document.documentElement.classList.add('motion-ready');
+    const loopObserver=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>entry.target.classList.toggle('is-live',entry.isIntersecting));
+    },{rootMargin:'80px 0px'});
+    loopObserver.observe(appearSection);
+  }
   render();
 })();
