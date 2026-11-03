@@ -243,7 +243,7 @@
   if(capLive&&capAlpha){
     const capOut=$('#m-cap-out');
     const applyCap=()=>{
-      capLive.style.setProperty('--cap-a',String((100-Number(capAlpha.value))/100));
+      capLive.style.setProperty('--cap-a',String(Number(capAlpha.value)/100));
       if(capOut) capOut.textContent=capAlpha.value+'%';
     };
     $$('[data-cap-preset]').forEach(btn=>btn.addEventListener('click',()=>{
