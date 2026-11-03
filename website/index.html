@@ -173,40 +173,29 @@
     <section class="section m-capsule-sec" hidden aria-labelledby="m-capsule-title">
       <div class="section-head">
         <h2 id="m-capsule-title">胶囊歌词，<br>你的样子</h2>
-        <p><strong>收起时贴在岛旁，展开时回到面板。</strong><br>配色、透明度与显隐，都随你设置。</p>
+        <p>收起时，歌词就在岛旁。配色与透明度，动手调。</p>
       </div>
-      <div class="m-cap-visual" aria-hidden="true">
-        <div class="m-cap-row">
-          <figure class="m-cap-item">
-            <span class="m-cap dark">把时间，留给喜欢的旋律</span>
-            <figcaption>深底浅字</figcaption>
-          </figure>
-          <figure class="m-cap-item">
-            <span class="m-cap light">把时间，留给喜欢的旋律</span>
-            <figcaption>浅底深字</figcaption>
-          </figure>
+      <div class="m-cap-demo">
+        <div class="m-cap-stage" aria-hidden="true">
+          <span class="m-cap-island"><i class="m-ci-art"></i><i class="m-ci-eq"><u></u><u></u><u></u><u></u></i></span>
+          <span class="m-cap-live" id="m-cap-live" data-preset="dark">把时间，留给喜欢的旋律</span>
         </div>
-        <div class="m-cap-row m-cap-alpha">
-          <span class="m-cap blank a100"></span>
-          <span class="m-cap blank a60"></span>
-          <span class="m-cap blank a25"></span>
-          <p>背景透明度 0–100%</p>
+        <div class="m-cap-controls">
+          <div class="m-seg" role="group" aria-label="胶囊配色预设">
+            <button type="button" class="m-seg-btn is-on" data-cap-preset="dark" aria-pressed="true">深底浅字</button>
+            <button type="button" class="m-seg-btn" data-cap-preset="light" aria-pressed="false">浅底深字</button>
+          </div>
+          <label class="m-slider-row">
+            <span>背景透明度</span>
+            <input type="range" id="m-cap-alpha" min="0" max="100" value="4" aria-label="胶囊背景透明度，0% 为不透明，100% 为完全透明">
+            <output id="m-cap-out" for="m-cap-alpha">4%</output>
+          </label>
         </div>
       </div>
-      <ul class="m-feat-list">
-        <li><strong>两种固定配色</strong><span>深底浅字 / 浅底深字，独立于应用的日间・夜间模式。</span></li>
-        <li><strong>透明度 0–100%</strong><span>实时预览、可恢复默认；100% 时背景与描边完全透明，文字强度不受影响。</span></li>
-        <li><strong>重启后保留</strong><span>切换外观不重建歌词窗口，也不打断切句动画。</span></li>
-      </ul>
       <div class="m-hide-block">
         <p class="m-hide-title">需要时，自动隐身</p>
-        <ul class="m-hide-list">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="5"/><path d="M12 6.5V10"/></svg><span>鼠标经过</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg><span>播放暂停</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3.2L9 5.5h6L16.8 8H20v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg><span>系统截图</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>打开应用菜单</span></li>
-        </ul>
-        <p class="m-hide-note">条件解除后，自动恢复。</p>
+        <div class="m-hide-strip" aria-hidden="true"><span class="m-hide-cap"></span></div>
+        <p class="m-hide-labels"><span>鼠标经过</span><span>播放暂停</span><span>系统截图</span><span>应用菜单</span></p>
       </div>
     </section>
 

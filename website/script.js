@@ -237,6 +237,26 @@
     });
   });
   faqMotion.addEventListener('change',()=>faqItems.forEach(finishFaq));
+  // Mobile capsule playground (mobile-only DOM; inert on desktop)
+  const capLive=$('#m-cap-live');
+  const capAlpha=$('#m-cap-alpha');
+  if(capLive&&capAlpha){
+    const capOut=$('#m-cap-out');
+    const applyCap=()=>{
+      capLive.style.setProperty('--cap-a',String((100-Number(capAlpha.value))/100));
+      if(capOut) capOut.textContent=capAlpha.value+'%';
+    };
+    $$('[data-cap-preset]').forEach(btn=>btn.addEventListener('click',()=>{
+      $$('[data-cap-preset]').forEach(b=>{
+        const on=b===btn;
+        b.classList.toggle('is-on',on);
+        b.setAttribute('aria-pressed',String(on));
+      });
+      capLive.dataset.preset=btn.dataset.capPreset;
+    }));
+    capAlpha.addEventListener('input',applyCap);
+    applyCap();
+  }
   let lastTick=performance.now();
   const playbackTick=setInterval(()=>{
     const now=performance.now();
