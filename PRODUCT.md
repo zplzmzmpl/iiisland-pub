@@ -31,7 +31,7 @@ The product's own mechanism: the Mac's top edge becomes the music surface. Artwo
 - The build is ad-hoc signed and not notarized, so first launch may be blocked by Gatekeeper; the release page ships SHA-256 checksums.
 - Lyrics come from online services, embedded lyrics, and a local cache; availability and sync accuracy vary by track and source.
 - QQ 音乐 and 网易云音乐 depend on the system media focus for transport; volume/shuffle/repeat are not available there.
-- The landing page includes a no-audio interactive demo of opening, transport, seek, volume, lyric jumping, player switching, lyric toggles, and auto-detect.
+- The landing page includes a no-audio interactive demo of opening, transport, seek, volume, capsule appearance, hover auto-hide, player switching, and auto-detect.
 - Visitors may arrive on a phone or a non-Mac to evaluate the product, even though the app itself is Mac-only.
 
 ## Capabilities and Constraints

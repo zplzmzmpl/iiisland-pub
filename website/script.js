@@ -6,16 +6,13 @@
     { title:'夜色慢慢', cover:'night', word:'夜色<br>慢慢', duration:142, lines:['街灯把影子，拉长一点','沿着旋律，走过这条街','夜色慢慢，心事也慢慢','等最后一盏灯，为你亮着'] }
   ];
   const players = { apple:'Apple Music', spotify:'Spotify', qq:'QQ 音乐', netease:'网易云音乐' };
-  const state = { track:0, playing:true, time:28, volume:65, open:true, lyrics:true, persist:true, player:'apple', auto:true };
+  const state = { track:0, playing:true, time:28, volume:65, open:true, player:'apple', auto:true };
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
   const timeLabel = t => `${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
   const track = () => tracks[state.track];
   const lineIndex = () => Math.min(3, Math.floor(state.time / (track().duration / 4)));
   const lyric = () => track().lines[lineIndex()];
-  let previousLine = -1;
-  let previousTrack = -1;
-  let previousPlaying;
   let hoverTimer;
   let hoverSuppressed = false;
   let previousVolume = 65;
@@ -25,35 +22,17 @@
   function syncTimeline() {
     const current = track();
     const currentLyric = lyric();
-    const showLyrics = state.lyrics && (state.playing || state.persist);
     setText('elapsed',timeLabel(state.time));
     setText('duration',timeLabel(current.duration));
-    setText('lyric',showLyrics ? currentLyric : '');
-    setText('capsule',showLyrics ? currentLyric : '');
-    setText('compact-lyric',showLyrics ? currentLyric : '');
-    $$('.capsule,.compact-capsule').forEach(el => {el.style.visibility=showLyrics ? 'visible' : 'hidden';el.setAttribute('aria-hidden',String(!showLyrics||(el.classList.contains('capsule')&&state.open)));});
+    setText('lyric',currentLyric);
+    setText('capsule',currentLyric);
+    $$('.capsule').forEach(el => el.setAttribute('aria-hidden',String(state.open)));
     $$('.seek').forEach(el => {
       el.max=current.duration;
       if(document.activeElement!==el) el.value=Math.floor(state.time);
       el.style.setProperty('--fill',`${Math.min(100,Math.max(0,state.time/current.duration*100))}%`);
       el.setAttribute('aria-valuetext',`${timeLabel(state.time)}，共 ${timeLabel(current.duration)}`);
     });
-    if(previousLine!==lineIndex() || previousTrack!==state.track || previousPlaying!==state.playing) {
-      $$('#lyrics-list button').forEach((el,index)=>{
-        const active=index===lineIndex();
-        const playing=active&&state.playing;
-        const action=active?(playing?'暂停':'播放'):'跳转并播放';
-        el.querySelector(".lyric-label").textContent=current.lines[index];
-        el.querySelector('.lyric-shape').setAttribute('d',playing?'M7 5h4v14H7ZM14 5h4v14h-4Z':'M7 4l13 8-13 8Z');
-        el.setAttribute('aria-label',`${action}：${current.lines[index]}`);
-        el.title=el.getAttribute('aria-label');
-        el.setAttribute('aria-pressed',String(playing));
-        if(active) el.setAttribute('aria-current','true');
-        else el.removeAttribute('aria-current');
-      });
-      previousLine=lineIndex(); previousTrack=state.track; previousPlaying=state.playing;
-    }
-    $('#lyric-state').textContent=!state.lyrics ? '歌词已隐藏，随时可以再打开。' : !state.playing && !state.persist ? '播放暂停，歌词也暂时收起。' : !state.playing ? '音乐暂停，最后一句仍在。' : '歌词就在岛的左侧。';
   }
 
   function render() {
@@ -75,12 +54,6 @@
     });
     $$('.compact-island').forEach(el=>el.classList.toggle('is-paused',!state.playing));
     $$('[data-action="play"]').forEach(el=>{
-      if(el.id==='lyrics-play') {
-        const label=state.playing?'暂停演示':'继续播放';
-        el.textContent=label;
-        el.setAttribute('aria-label',label);
-        return;
-      }
       el.setAttribute('aria-label',state.playing?'暂停演示':'播放演示');
       el.setAttribute('aria-pressed',String(state.playing));
       el.classList.toggle('is-paused',!state.playing);
@@ -130,22 +103,8 @@
     announce(`已切换到 ${track().title}`);
   }
   document.addEventListener('click',event=>{
-    const target=event.target.closest('[data-action],[data-line],[data-player]');
+    const target=event.target.closest('[data-action],[data-player]');
     if(!target) return;
-    if(target.dataset.line!==undefined) {
-      const selected=Number(target.dataset.line);
-      if(selected===lineIndex()) {
-        state.playing=!state.playing;
-        render();
-        announce(state.playing?'已继续播放演示':'已暂停演示');
-      } else {
-        state.time=selected*track().duration/4;
-        state.playing=true;
-        render();
-        announce(`已跳转并播放：${lyric()}`);
-      }
-      return;
-    }
     if(target.dataset.player) {
       state.player=target.dataset.player;
       render();
@@ -160,7 +119,6 @@
       case 'next': changeTrack(1);break;
       case 'previous': changeTrack(-1);break;
       case 'mute': if(state.volume>0){previousVolume=state.volume;state.volume=0;}else state.volume=previousVolume||65;render();break;
-      case 'show-hero': setOpen(true);document.querySelector('.music-island .play-button')?.focus({preventScroll:true});window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});break;
     }
   });
   document.addEventListener('input',event=>{
@@ -168,8 +126,6 @@
     if(el.dataset.action==='seek') {state.time=Number(el.value);syncTimeline();}
     if(el.dataset.action==='volume') {state.volume=Number(el.value);render();}
   });
-  $('#lyrics-enabled').addEventListener('change',event=>{state.lyrics=event.target.checked;syncTimeline();});
-  $('#persist-lyrics').addEventListener('change',event=>{state.persist=event.target.checked;syncTimeline();});
   $('#auto-detect').addEventListener('change',event=>{state.auto=event.target.checked;render();});
   $$('.music-island').forEach(el=>{
     el.addEventListener('pointerenter',event=>{
@@ -237,26 +193,30 @@
     });
   });
   faqMotion.addEventListener('change',()=>faqItems.forEach(finishFaq));
-  // Mobile capsule playground (mobile-only DOM; inert on desktop)
-  const capLive=$('#m-cap-live');
-  const capAlpha=$('#m-cap-alpha');
-  if(capLive&&capAlpha){
-    const capOut=$('#m-cap-out');
-    const applyCap=()=>{
-      capLive.style.setProperty('--cap-a',String(Number(capAlpha.value)/100));
-      if(capOut) capOut.textContent=capAlpha.value+'%';
+  // Capsule playgrounds: desktop hover preview + mobile auto-hide demo
+  function setupCapsuleDemo(demo){
+    const live=demo.querySelector('[data-cap-live]');
+    const alpha=demo.querySelector('[data-cap-alpha]');
+    if(!live||!alpha) return;
+    const out=demo.querySelector('[data-cap-out]');
+    const presets=[...demo.querySelectorAll('[data-cap-preset]')];
+    const apply=()=>{
+      live.style.setProperty('--cap-a',String(Number(alpha.value)/100));
+      alpha.style.setProperty('--fill',alpha.value+'%');
+      if(out) out.textContent=alpha.value+'%';
     };
-    $$('[data-cap-preset]').forEach(btn=>btn.addEventListener('click',()=>{
-      $$('[data-cap-preset]').forEach(b=>{
+    presets.forEach(btn=>btn.addEventListener('click',()=>{
+      presets.forEach(b=>{
         const on=b===btn;
         b.classList.toggle('is-on',on);
         b.setAttribute('aria-pressed',String(on));
       });
-      capLive.dataset.preset=btn.dataset.capPreset;
+      live.dataset.preset=btn.dataset.capPreset;
     }));
-    capAlpha.addEventListener('input',applyCap);
-    applyCap();
+    alpha.addEventListener('input',apply);
+    apply();
   }
+  $$('[data-cap-demo]').forEach(setupCapsuleDemo);
   let lastTick=performance.now();
   const playbackTick=setInterval(()=>{
     const now=performance.now();

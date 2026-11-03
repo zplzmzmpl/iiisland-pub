@@ -106,12 +106,12 @@ components:
 
 iiisland's public page is a drawing sheet for the Mac's top edge. Warm paper (#f5efea) and a deep ink blue (#122e8a) carry the composition as two large colour blocks, with the black notch and the app icon as the only third colour. The live notch sits on the blue screen at 1:1 with paper-coloured dimension lines measuring it; a title block carries the headline, the deck, the download stamp and the platform specs; a pinned reference print of the app's ink illustration anchors the right margin. The page is not a product photograph and not a floating card stack — it is a measured drawing where one object is alive.
 
-The system's voice is quiet and precise. Hairlines do the structural work that shadows do on other pages. Type is the native macOS voice (SF / PingFang), set at measured steps; the only soft, shadowed object is the product itself. The blue is a pencil mark, a dimension, an action and the mandated issue stamp, never a decorative wash. Sections read as sheets in a set: lyrics as a lyric index, size as a 1:1 detail, players as a schedule, installation as notes, the release as a stamped issue.
+The system's voice is quiet and precise. Hairlines do the structural work that shadows do on other pages. Type is the native macOS voice (SF / PingFang), set at measured steps; the only soft, shadowed object is the product itself. The blue is a pencil mark, a dimension, an action and the mandated issue stamp, never a decorative wash. Sections read as sheets in a set: lyrics as a capsule specimen, size as a 1:1 detail, players as a schedule, installation as notes, the release as a stamped issue.
 
 **Key Characteristics:**
 - Warm drafting paper (#efede5) as the ground; graphite text; one blueprint blue; sage and pale-blue fields that own whole regions.
 - A 24/48 drawing module, 1px hairlines, title block, sheet references A-01–A-07, crop ticks and 1:1 dimension lines.
-- The island is the only soft, shadowed object and the only thing on the sheet that moves.
+- The island and its lyric capsule are the only soft, shadowed objects, and the only things on the sheet that move.
 - Native system type, no webfont; the platform's own face is the brand voice.
 - Square instruments (2px page controls, square toggles, 1px rules) against the one pill (the lyric capsule) and the one notch (the island).
 
@@ -120,7 +120,7 @@ The system's voice is quiet and precise. Hairlines do the structural work that s
 A warm paper ground with graphite ink and a single working blue; sage and pale blue are fields, not accents. The palette is deliberately close to a print shop's paper stock and a drafting-table pencil roll.
 
 ### Primary
-- **Blueprint Blue** (#2253dc): the one accent. It draws dimension lines and labels, marks the active lyric and player, fills the primary download stamp and the header action, and supplies focus rings on paper. On the sage screen the text-grade version is **Blueprint Ink** (#1b3a9e) so small blue labels keep AA contrast.
+- **Blueprint Blue** (#2253dc): the one accent. It draws dimension lines and labels, marks the active player and the selected capsule preset, fills the primary download stamp and the header action, and supplies focus rings on paper. On the sage screen the text-grade version is **Blueprint Ink** (#1b3a9e) so small blue labels keep AA contrast.
 - **Blueprint Ink** (#1b3a9e): the darker pencil used for blue text on sage or pale fields and for hover states; the same hue, one step down.
 
 ### Secondary
@@ -154,8 +154,8 @@ A warm paper ground with graphite ink and a single working blue; sage and pale b
 
 ### Hierarchy
 - **Headline** (600, `clamp(44px, 5.2vw, 76px)`, 1.04): the title block's two-line title, the largest type on the page. Mobile falls to 44px at ≤480.
-- **Display** (600, `clamp(38px, 4.4vw, 64px)`, 1.08): section headings, set as sheet titles ("每一句，都跟得上"). They sit one clear step below the headline.
-- **Title** (500, `clamp(20px, 2.1vw, 28px)`, 1.35): lyric rows, player names, FAQ questions; 18px island title; 15px deck lines.
+- **Display** (600, `clamp(38px, 4.4vw, 64px)`, 1.08): section headings, set as sheet titles ("胶囊歌词，你的样子"). They sit one clear step below the headline.
+- **Title** (500, `clamp(20px, 2.1vw, 28px)`, 1.35): player names, FAQ questions; 18px island title; 15px deck lines.
 - **Body** (400, 17px, 1.65; 14–15px in the title block and notes; max 65–75ch): explanation, FAQ answers, footer copy.
 - **Label** (500, 11px, 0.12em, uppercase for Latin): sheet references, dimension values, field labels, eyebrow-free metadata rows. Small functional text never goes below 11px; only the plate caption and the size drawing’s technical labels live at 8–11px inside aria-hidden surfaces.
 
@@ -172,9 +172,9 @@ The page is a sheet, not a container-and-cards layout. The body is capped at 180
 
 The hero is a single sheet: a 26px elevation meta row, a full-width sage screen (`clamp(380px, 54svh, 540px)`) with a menu bar, the live island and blue dimension lines, then a horizontal title block (7fr / 3fr / 2.2fr) with the headline, deck, blue download stamp and specs. The title block sits below the elevation visually but first in the DOM so the h1 and the action lead the reading order; the grid places the elevation above it on desktop and the title block above the screen at ≤760 so the mobile first viewport still opens with the title and CTA. The pinned reference plate is a 2.4°-rotated paper print on the right; it is removed at ≤900 along with the DETAIL A reference so no label points at an absent plate.
 
-Sections are sheets in a set: lyrics (paper, A-02), size detail (sage field with a paper drawing card, A-03), player schedule (pale blue, A-04), notes/FAQ (paper, A-05), the blue issue stamp (A-06) and the colophon (A-07). The lyric section is 5fr/7fr on desktop (detail left, index right), 1 column at ≤900; the player schedule is 7fr/5fr, 1 column at ≤900; the FAQ is 4fr/8fr, 1 column at ≤900. The size detail is a 1:1 drawing: 440 × 266 open and 280 × 44 closed, a CSS-only 4.8s alternate loop that starts from the static open state, and a fully static open state under `prefers-reduced-motion` or no JavaScript.
+Sections are sheets in a set: lyrics (paper, A-02), size detail (sage field with a paper drawing card, A-03), player schedule (pale blue, A-04), notes/FAQ (paper, A-05), the blue issue stamp (A-06) and the colophon (A-07). The capsule section is 5fr/7fr on desktop (specimen left, appearance controls right), 1 column at ≤900; the player schedule is 7fr/5fr, 1 column at ≤900; the FAQ is 4fr/8fr, 1 column at ≤900. The size detail is a 1:1 drawing: 440 × 266 open and 280 × 44 closed, a CSS-only 4.8s alternate loop that starts from the static open state, and a fully static open state under `prefers-reduced-motion` or no JavaScript.
 
-Breakpoints: 1100 (compress the title block columns), 900 (title block becomes two rows; lyric/player/FAQ grids stack; reference plate and DETAIL A hidden), 760 (single-column mobile; nav links collapse to the download; hero order title → elevation; the hero capsule hides; menu bar keeps Finder and the clock), 480 (44px headline, 36px section display, 280px open island, 7% side inset on the size drawing). The layout is checked from 320 to 1600; the document never scrolls horizontally.
+Breakpoints: 1100 (compress the title block columns), 900 (title block becomes two rows; capsule/player/FAQ grids stack; reference plate and DETAIL A hidden), 760 (single-column mobile; nav links collapse to the download; hero order title → elevation; the hero capsule hides; menu bar keeps Finder and the clock), 480 (44px headline, 36px section display, 280px open island, 7% side inset on the size drawing). The layout is checked from 320 to 1600; the document never scrolls horizontally.
 
 ## Elevation & Depth
 
@@ -188,7 +188,7 @@ The system is flat paper with physical objects placed on it. Paper, sage and pal
 - **None** on title blocks, sections, player panels, the size card, the download stamp or the footer.
 
 ### Named Rules
-**The Only Living Element Rule.** The island is the only object on the sheet that both casts a shadow and moves. Everything else is printed, ruled or flat. If a panel starts to float, it has stopped being part of the drawing.
+**The Only Living Element Rule.** The island and its lyric capsule are the only objects on the sheet that both cast a shadow and move. Everything else is printed, ruled or flat. If a panel starts to float, it has stopped being part of the drawing.
 
 ## Shapes
 
@@ -210,16 +210,16 @@ The button family is a drafting stamp, not a pill.
 A 64px paper strip with a 1px rule. The brand is the 32px ink icon plus 22px/600 lowercase `iiisland`; the centred metadata is 11px tracked; the three links are 14px, underlined on hover in Blueprint Ink; the download is the blue stamp. At ≤760 the links disappear and the brand plus the stamp remain. The nav does not stick; it is the top of the sheet.
 
 ### The Island (signature)
-A black notch hanging from the sage screen's top edge, 440 × 266 open and 280 × 44 closed on desktop, 330 × 250 capped open panel on mobile. Bottom radii 18/28/24. It is the only shadowed, moving object. The closed state is a mini cover, the track title and an equalizer; the desktop open state is a 10px source line with a chevron, an 80px app-icon cover on a track-tinted 6px square, the title/artist/lyric, a ruled seek bar with timecodes, a white circular play control and a 104px volume fader. On mobile the source line, lyric and volume are dropped; a 36px cover, one-line title/artist, 26px seek bar and 28px transport controls carry the same demo. The capsule sits to its left only while closed; it fades out when the island opens. Open/close is 640ms `cubic-bezier(.22,.9,.24,1)`; hover opens after 180ms, leaving closes after 280ms; Escape closes and returns focus to the closed trigger; opening from the trigger moves focus into the panel.
+A black notch hanging from the sage screen's top edge, 440 × 266 open and 280 × 44 closed on desktop, 330 × 250 capped open panel on mobile. Bottom radii 18/28/24. It and its lyric capsule are the only shadowed, moving objects. The closed state is a mini cover, the track title and an equalizer; the desktop open state is a 10px source line with a chevron, an 80px app-icon cover on a track-tinted 6px square, the title/artist/lyric, a ruled seek bar with timecodes, a white circular play control and a 104px volume fader. On mobile the source line, lyric and volume are dropped; a 36px cover, one-line title/artist, 26px seek bar and 28px transport controls carry the same demo. The capsule sits to its left only while closed; it fades out when the island opens. Open/close is 640ms `cubic-bezier(.22,.9,.24,1)`; hover opens after 180ms, leaving closes after 280ms; Escape closes and returns focus to the closed trigger; opening from the trigger moves focus into the panel.
 
-### Lyric Row
-A four-row `ol`; each row is a 44px number, the lyric at `clamp(20px,2.1vw,28px)`, and a 40px circular play/pause control, separated by hairlines. The active row takes graphite text, a blue number and a filled blue control; hover darkens the text and fills the control with ink. There are no pill backgrounds; the active state is typographic and one blue mark.
+### Capsule Detail (A-02)
+The lyric feature is a specimen sheet, not an index. A blue DETAIL B plate (5fr) holds the closed notch and the capsule to its left, with 11px paper labels, the app-icon cover and a paper hint at the bottom. The capsule begins as chalk text on the blue screen at 0% background in the demo's `深底浅字` default; `浅底深字` swaps to a paper pill with ink text. A 0–100% ruled slider changes the background alpha live. Both presets carry a 0.5px inset ring and a soft, alpha-scaled shadow. A real pointer hides the whole capsule (background and text) with a 0.18s blur and 0.26s retract; it floats back over 0.42–0.52s, and a fixed `.cap-hit` wrapper keeps the hover target from moving. The right column (7fr) is a ruled control sheet: a split `深底浅字 / 浅底深字` control with a blue-filled selected cell, a 2px ruled slider with a 12px square Blueprint thumb, and a 2×2 hairline grid of the four real auto-hide triggers (mouse over, pause, screenshot, app menu), each with a 20px line icon and a 12px note. A 12px caption below the plate records that the appearance persists and that lyric availability depends on the track and source. The scene is `aria-hidden`; the controls stay keyboard-operable, and hover hiding is limited to `(hover: hover) and (pointer: fine)`. The mobile layer replaces the hover with the authored cursor loop.
 
 ### Player Schedule
 A hairline-separated list of 76px rows: 44px number, 40px player name, a 21px arrow that appears on hover and stays on the active row. The active row is graphite, its number Blueprint Ink. The detail sheet is a paper panel with a 1px rule and no radius: a 58px multiply-treated icon, the player name, a live dot, a three-row capability table with 5px status squares (filled blue for supported, hollow for partial/unsupported), the authorization note, a 17px square checkbox and the detection note. QQ 音乐 and 网易云音乐 disable volume/mute and mark transport as system-media-focus dependent.
 
 ### Toggles
-22px square checkboxes, 1px Graphite Soft border, 0 radius; checked is Blueprint Blue with a white check. The whole option row is a label so the target is the row, not the 22px square. The auto-detect checkbox follows the same geometry at 17px.
+22px square checkboxes, 1px Graphite Soft border, 0 radius; checked is Blueprint Blue with a white check. The checkbox sits at the end of a label row so the whole row is the target. The auto-detect checkbox follows the same geometry at 17px.
 
 ### FAQ Notes
 Native `<details>` rows in a paper list: a 44px note number, the question at `clamp(18px,2vw,24px)`, a CSS plus that rotates to a cross, a 1px rule between rows, and answers indented under the question with a 65ch measure. Blue appears only on the "查看项目说明" link. The first row opens the answer without a card or a modal.
@@ -235,7 +235,7 @@ A paper card on the sage field, 1:1: a 440 × 266 black notch and a 280 × 44 co
 ### Do:
 - **Do** keep the warm paper ground, graphite ink and the single Blueprint Blue; use Blueprint Ink for small blue text on sage or pale fields.
 - **Do** draw with 1px hairlines, the 24/48 module, title blocks, sheet references, dimension lines and crop ticks; the drawing is the layout.
-- **Do** keep the island as the only shadowed, soft, moving object, and the lyric capsule as the only pill.
+- **Do** keep the island and its lyric capsule as the only shadowed, soft, moving objects, and the capsule as the only pill.
 - **Do** keep the native system stack as the display and body voice; the product is a Mac app and the page should sound like the Mac.
 - **Do** keep the headline the largest type, displays one step down and labels at 11px/tracked.
 - **Do** label the demo as a web interaction with no audio and the songs/lyrics/covers as original synthetic content.

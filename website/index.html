@@ -33,7 +33,7 @@
     <a class="brand" href="#top" aria-label="iiisland 首页"><img src="assets/app-icon.png" width="34" height="34" alt="">iiisland</a>
     <p class="head-meta" aria-hidden="true">顶部立面 / ELEVATION · A-01</p>
     <nav aria-label="主导航">
-      <a href="#experience">体验</a>
+      <a href="#experience">歌词</a>
       <a href="#customize">外观</a>
       <a href="#players">播放器</a>
       <a href="#install" class="head-download">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
@@ -141,31 +141,50 @@
 
     <section id="experience" class="section lyrics" aria-labelledby="lyrics-title">
       <div class="section-head">
-        <h2 id="lyrics-title">每一句，<br>都跟得上</h2>
-        <p><strong>收起时在岛旁，展开时在面板。</strong><br>点击歌词旁的播放按钮，试试同步跳转。</p>
+        <h2 id="lyrics-title">胶囊歌词，<br>你的样子</h2>
+        <p><strong>收起时在岛旁，展开时回到面板。</strong><br>深浅与透明度都可调，四种情况自动隐身。</p>
         <span class="sheet-no" aria-hidden="true">A-02</span>
       </div>
-      <div class="lyrics-grid">
-        <div class="lyrics-sheet" data-ui role="group" aria-label="点选歌词跳转播放位置">
-          <ol id="lyrics-list" class="lyrics-list">
-            <li><button type="button" data-line="0" aria-current="true"><span class="lyric-no" aria-hidden="true">01</span><span class="lyric-label">让城市的声音，轻一点</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button></li>
-            <li><button type="button" data-line="1"><span class="lyric-no" aria-hidden="true">02</span><span class="lyric-label">把时间，留给喜欢的旋律</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button></li>
-            <li><button type="button" data-line="2"><span class="lyric-no" aria-hidden="true">03</span><span class="lyric-label">慢一点，也没关系</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button></li>
-            <li><button type="button" data-line="3"><span class="lyric-no" aria-hidden="true">04</span><span class="lyric-label">这一首，陪你走完今天</span><span class="lyric-jump" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lyric-shape" d="M7 4l13 8-13 8Z"/></svg></span></button></li>
-          </ol>
-          <div class="lyric-transport"><button class="text-button" id="lyrics-play" data-action="play">暂停演示</button><span data-bind="elapsed">0:28</span><span class="slash">/</span><span data-bind="duration">2:08</span></div>
-        </div>
-        <div class="lyric-detail">
-          <div class="compact-scene" data-ui role="group" aria-label="收起态歌词位置预览">
+      <div class="capsule-grid" data-ui data-cap-demo>
+        <div class="capsule-plate">
+          <div class="compact-scene capsule-scene" aria-hidden="true">
             <div class="scene-top"><span>岛旁歌词 / LYRIC CAPSULE</span><span>DETAIL B</span></div>
-            <div class="compact-rail"><span class="compact-capsule" data-bind="compact-lyric">把时间，留给喜欢的旋律</span><button class="compact-island" data-action="show-hero" aria-label="返回上方操作完整灵动岛"><span class="cover mini-cover" data-cover="window" aria-hidden="true"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button></div>
-            <p class="compact-message" id="lyric-state">歌词就在岛的左侧。</p>
+            <div class="compact-rail">
+              <span class="cap-hit">
+                <span class="cap-live" data-cap-live data-preset="dark">把时间，留给喜欢的旋律</span>
+              </span>
+              <span class="compact-island">
+                <span class="cover mini-cover" data-cover="window"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></span>
+                <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+              </span>
+            </div>
+            <p class="compact-message">鼠标经过歌词，自动隐身；移出即恢复。</p>
           </div>
-          <div class="option-list">
-            <label class="option-row"><span class="option-copy"><span class="option-title">显示歌词</span><span class="option-desc">菜单栏与岛内同步切换</span></span><input id="lyrics-enabled" type="checkbox" class="toggle" checked></label>
-            <label class="option-row"><span class="option-copy"><span class="option-title">暂停时保留</span><span class="option-desc">暂停后仍显示最后一句</span></span><input id="persist-lyrics" type="checkbox" class="toggle" checked></label>
+          <p class="capsule-caption">配色与透明度会保留；歌词可用性取决于歌曲与来源。</p>
+        </div>
+        <div class="capsule-panel">
+          <div class="cap-controls">
+            <div class="cap-control-head"><span>外观 / APPEARANCE</span><span>实时预览</span></div>
+            <div class="cap-seg" role="group" aria-label="胶囊配色预设">
+              <button type="button" class="cap-seg-btn is-on" data-cap-preset="dark" aria-pressed="true">深底浅字</button>
+              <button type="button" class="cap-seg-btn" data-cap-preset="light" aria-pressed="false">浅底深字</button>
+            </div>
+            <div class="cap-slider">
+              <label for="cap-alpha">背景不透明度</label>
+              <input id="cap-alpha" class="cap-alpha" data-cap-alpha type="range" min="0" max="100" value="0" aria-label="胶囊背景不透明度，0% 为完全透明，100% 为完全实色">
+              <output id="cap-out" data-cap-out for="cap-alpha">0%</output>
+            </div>
           </div>
-          <p class="small demo-note">歌词可用性取决于歌曲与来源。</p>
+          <div class="cap-hide">
+            <div class="cap-hide-head"><span>自动隐身 / AUTO-HIDE</span><span>四个真实触发条件</span></div>
+            <ul class="cap-hide-list">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="5"/><path d="M12 6.5V10"/></svg><span class="cap-hide-copy"><strong>鼠标经过</strong><span>指针经过即隐去，移开恢复。</span></span></li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg><span class="cap-hide-copy"><strong>播放暂停</strong><span>暂停播放时自动收起。</span></span></li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3.2L9 5.5h6L16.8 8H20v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg><span class="cap-hide-copy"><strong>系统截图</strong><span>截图时隐藏，不进入画面。</span></span></li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span class="cap-hide-copy"><strong>打开应用菜单</strong><span>菜单展开时让位，关闭后恢复。</span></span></li>
+            </ul>
+            <p class="cap-hide-note">条件解除后，自动恢复。</p>
+          </div>
         </div>
       </div>
     </section>
@@ -175,11 +194,11 @@
         <h2 id="m-capsule-title">胶囊歌词，<br>你的样子</h2>
         <p>收起时，歌词就在岛旁。配色与透明度，动手调。</p>
       </div>
-      <div class="m-cap-demo">
+      <div class="m-cap-demo" data-cap-demo>
         <div class="m-cap-stage" aria-hidden="true">
           <span class="m-cap-island"><i class="m-ci-art"></i><i class="m-ci-eq"><u></u><u></u><u></u><u></u></i></span>
           <span class="m-cap-anchor">
-            <span class="m-cap-live" id="m-cap-live" data-preset="light">晚风慢慢吹</span>
+            <span class="m-cap-live" id="m-cap-live" data-cap-live data-preset="light">晚风慢慢吹</span>
             <span class="m-cap-pointer"><svg viewBox="0 0 24 24"><path d="M3.5 2.5 19 11.5l-6.7 1.7-3.2 7Z"/></svg></span>
           </span>
         </div>
@@ -190,8 +209,8 @@
           </div>
           <label class="m-slider-row">
             <span>背景不透明度</span>
-            <input type="range" id="m-cap-alpha" min="0" max="100" value="0" aria-label="胶囊背景不透明度，0% 为完全透明，100% 为完全实色">
-            <output id="m-cap-out" for="m-cap-alpha">0%</output>
+            <input type="range" id="m-cap-alpha" data-cap-alpha min="0" max="100" value="0" aria-label="胶囊背景不透明度，0% 为完全透明，100% 为完全实色">
+            <output id="m-cap-out" data-cap-out for="m-cap-alpha">0%</output>
           </label>
         </div>
       </div>
