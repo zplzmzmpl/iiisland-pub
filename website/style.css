@@ -1417,6 +1417,7 @@ input {
 /* the demo capsule: geometry is fixed by .cap-hit, the pill animates inside it */
 
 .cap-hit {
+  position: relative;
   display: block;
   flex: 0 1 auto;
   min-width: 0;
@@ -1456,7 +1457,7 @@ input {
   box-shadow:
     inset 0 0 0 0.5px rgba(0, 0, 0, calc(0.12 * var(--cap-a))),
     0 8px 18px rgba(9, 10, 9, calc(0.16 * var(--cap-a)));
-  color: var(--ink);
+  color: var(--island);
 }
 
 /* real pointer: the capsule blurs away under the mouse and floats back */
@@ -1474,6 +1475,90 @@ input {
       filter 0.18s var(--ease),
       transform 0.26s var(--ease);
   }
+}
+
+/* guidance: a drawn cursor and dashed path pointing at the lyric; it never touches the capsule */
+
+.cap-guide {
+  position: absolute;
+  z-index: 3;
+  top: calc(100% + 16px);
+  left: 22px;
+  width: 18px;
+  height: 22px;
+  opacity: 0;
+  color: var(--paper);
+  pointer-events: none;
+  filter: drop-shadow(0 2px 3px rgba(9, 10, 9, 0.35));
+  transform: translate(34px, 48px);
+  animation: cap-guide 7s var(--ease) infinite;
+}
+
+.cap-guide svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  stroke: var(--island);
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+
+.cap-guide-trail {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 18.3px);
+  left: 24.6px;
+  width: 59px;
+  height: 1px;
+  transform: rotate(54.7deg);
+  transform-origin: 0 0;
+  background: repeating-linear-gradient(90deg, rgba(239, 237, 229, 0.65) 0 3px, transparent 3px 7px);
+  opacity: 0;
+  pointer-events: none;
+  animation: cap-guide-trail 7s var(--ease) infinite;
+}
+
+@keyframes cap-guide {
+  0%, 8% {
+    opacity: 0;
+    transform: translate(34px, 48px);
+  }
+  16% {
+    opacity: 1;
+  }
+  38%, 58% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  70%, 100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes cap-guide-trail {
+  0%, 8% {
+    opacity: 0;
+  }
+  16%, 58% {
+    opacity: 1;
+  }
+  70%, 100% {
+    opacity: 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cap-hit:hover .cap-guide,
+  .cap-hit:hover .cap-guide-trail {
+    visibility: hidden;
+  }
+}
+
+html.motion-ready .lyrics:not(.is-live) .cap-guide,
+html.motion-ready .lyrics:not(.is-live) .cap-guide-trail {
+  animation-play-state: paused;
 }
 
 /* appearance controls */
@@ -1614,6 +1699,13 @@ input {
 .cap-alpha:focus-visible {
   outline: 1px solid var(--blue);
   outline-offset: 4px;
+}
+
+.cap-min-note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 /* auto-hide triggers */
@@ -1867,16 +1959,19 @@ input {
 .size-expanded {
   position: absolute;
   top: 50%;
-  right: 9%;
-  left: 9%;
+  left: 50%;
   display: grid;
-  grid-template-columns: 84px minmax(0, 1fr);
+  grid-template-columns: 84px auto;
   align-items: center;
-  gap: 22px 18px;
-  transform: translateY(-50%);
+  gap: 0 18px;
+  width: max-content;
+  max-width: 82%;
+  transform: translate(-50%, -50%);
 }
 
 .size-artwork {
+  grid-column: 1;
+  grid-row: 1 / span 2;
   display: flex;
   padding: 10px;
   aspect-ratio: 1;
@@ -1889,6 +1984,11 @@ input {
   height: 100%;
   object-fit: cover;
   border-radius: 3px;
+}
+
+.size-song {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .size-song p {
@@ -1906,8 +2006,10 @@ input {
 }
 
 .size-lyric {
-  grid-column: 1 / -1;
-  font-size: 18px;
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 11px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -2958,10 +3060,15 @@ footer {
 
   .size-expanded {
     top: 50%;
-    right: 7%;
-    left: 7%;
-    grid-template-columns: 54px minmax(0, 1fr);
-    gap: 18px 12px;
+    right: auto;
+    left: 50%;
+    grid-template-columns: 64px auto;
+    gap: 0 12px;
+    max-width: 86%;
+  }
+
+  .size-artwork {
+    padding: 8px;
   }
 
   .size-compact {
@@ -2977,7 +3084,8 @@ footer {
   }
 
   .size-lyric {
-    font-size: 14px;
+    margin-top: 9px;
+    font-size: 13px;
   }
 
   .player-picker > button {

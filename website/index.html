@@ -138,13 +138,15 @@
         <h2 id="lyrics-title">胶囊歌词，<br>你的样子</h2>
         <p><strong>收起时在岛旁，展开时回到面板。</strong><br>深浅与透明度都可调，四种情况自动隐身。</p>
       </div>
-      <div class="capsule-grid" data-ui data-cap-demo>
+      <div class="capsule-grid" data-ui data-cap-demo data-cap-min-dark="0" data-cap-min-light="60">
         <div class="capsule-plate">
           <div class="compact-scene capsule-scene" aria-hidden="true">
             <div class="scene-top"><span>岛旁歌词</span></div>
             <div class="compact-rail">
               <span class="cap-hit">
                 <span class="cap-live" data-cap-live data-preset="dark">把时间，留给喜欢的旋律</span>
+                <span class="cap-guide-trail" aria-hidden="true"></span>
+                <span class="cap-guide" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 2.5 19 11.5l-6.7 1.7-3.2 7Z"/></svg></span>
               </span>
               <span class="compact-island">
                 <span class="compact-cam" aria-hidden="true"></span>
@@ -168,6 +170,7 @@
               <input id="cap-alpha" class="cap-alpha" data-cap-alpha type="range" min="0" max="100" value="100" aria-label="胶囊背景不透明度，0% 为完全透明，100% 为完全实色">
               <output id="cap-out" data-cap-out for="cap-alpha">100%</output>
             </div>
+            <p class="cap-min-note" data-cap-min-note hidden></p>
           </div>
           <div class="cap-hide">
             <div class="cap-hide-head"><span>自动隐身 / AUTO-HIDE</span><span>四个真实触发条件</span></div>
@@ -188,7 +191,7 @@
         <h2 id="m-capsule-title">胶囊歌词，<br>你的样子</h2>
         <p>收起时，歌词就在岛旁。配色与透明度，动手调。</p>
       </div>
-      <div class="m-cap-demo" data-cap-demo>
+      <div class="m-cap-demo" data-cap-demo data-cap-min-light="0" data-cap-min-dark="60">
         <div class="m-cap-stage" aria-hidden="true">
           <span class="m-cap-island"><i class="m-ci-art"></i><i class="m-ci-eq"><u></u><u></u><u></u><u></u></i></span>
           <span class="m-cap-anchor">
@@ -206,6 +209,7 @@
             <input type="range" id="m-cap-alpha" data-cap-alpha min="0" max="100" value="0" aria-label="胶囊背景不透明度，0% 为完全透明，100% 为完全实色">
             <output id="m-cap-out" data-cap-out for="m-cap-alpha">0%</output>
           </label>
+          <p class="m-cap-min-note" data-cap-min-note hidden></p>
         </div>
       </div>
       <div class="m-hide-block">

@@ -199,12 +199,25 @@
     const alpha=demo.querySelector('[data-cap-alpha]');
     if(!live||!alpha) return;
     const out=demo.querySelector('[data-cap-out]');
+    const note=demo.querySelector('[data-cap-min-note]');
     const presets=[...demo.querySelectorAll('[data-cap-preset]')];
+    const presetLabels={dark:'深底浅字',light:'浅底深字'};
+    const minFor=preset=>Number(demo.dataset['capMin'+preset[0].toUpperCase()+preset.slice(1)])||0;
+    const syncMin=()=>{
+      const preset=live.dataset.preset;
+      const min=minFor(preset);
+      if(Number(alpha.value)<min) alpha.value=String(min);
+      if(note){
+        note.hidden=min<=0;
+        note.textContent=min>0?'为保证可读，「'+presetLabels[preset]+'」最低保留 '+min+'% 底色。':'';
+      }
+    };
     const apply=()=>{
       live.style.setProperty('--cap-a',String(Number(alpha.value)/100));
       alpha.style.setProperty('--fill',alpha.value+'%');
       if(out) out.textContent=alpha.value+'%';
     };
+    const refresh=()=>{syncMin();apply();};
     presets.forEach(btn=>btn.addEventListener('click',()=>{
       presets.forEach(b=>{
         const on=b===btn;
@@ -212,9 +225,10 @@
         b.setAttribute('aria-pressed',String(on));
       });
       live.dataset.preset=btn.dataset.capPreset;
+      refresh();
     }));
-    alpha.addEventListener('input',apply);
-    apply();
+    alpha.addEventListener('input',refresh);
+    refresh();
   }
   $$('[data-cap-demo]').forEach(setupCapsuleDemo);
   let lastTick=performance.now();
@@ -245,7 +259,7 @@
     }
   }
   // 胶囊歌词与岛体的演示循环只在进入视口时播放，离开即冻结
-  const loopSections=$$('.m-capsule-sec,.m-appear-sec');
+  const loopSections=$$('.lyrics,.m-capsule-sec,.m-appear-sec');
   if(loopSections.length&&'IntersectionObserver' in window){
     document.documentElement.classList.add('motion-ready');
     const loopObserver=new IntersectionObserver(entries=>{
