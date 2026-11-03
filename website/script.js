@@ -284,14 +284,14 @@
       $$('.section,.download').forEach(el=>revealer.observe(el));
     }
   }
-  // 外观区的岛体循环只在进入视口时播放，离开即冻结
-  const appearSection=$('.m-appear-sec');
-  if(appearSection&&'IntersectionObserver' in window){
+  // 胶囊歌词与岛体的演示循环只在进入视口时播放，离开即冻结
+  const loopSections=$$('.m-capsule-sec,.m-appear-sec');
+  if(loopSections.length&&'IntersectionObserver' in window){
     document.documentElement.classList.add('motion-ready');
     const loopObserver=new IntersectionObserver(entries=>{
       entries.forEach(entry=>entry.target.classList.toggle('is-live',entry.isIntersecting));
     },{rootMargin:'80px 0px'});
-    loopObserver.observe(appearSection);
+    loopSections.forEach(el=>loopObserver.observe(el));
   }
   render();
 })();
