@@ -31,7 +31,6 @@
 
   <header class="site-head">
     <a class="brand" href="#top" aria-label="iiisland 首页"><img src="assets/app-icon.png" width="34" height="34" alt="">iiisland</a>
-    <p class="head-meta" aria-hidden="true">顶部立面 / ELEVATION · A-01</p>
     <nav aria-label="主导航">
       <a href="#experience">歌词</a>
       <a href="#customize">外观</a>
@@ -45,12 +44,10 @@
       <div class="hero-title">
         <div class="tb tb-title">
           <h1 id="hero-title">音乐，<br>在抬眼之间</h1>
-          <p class="tb-label">图名 / TITLE</p>
         </div>
         <div class="tb tb-note">
           <p><strong>播放控制与同步歌词，就在 Mac 顶部。</strong><br><span class="tb-support">支持 Apple Music、Spotify、QQ 音乐与网易云音乐。</span></p>
           <p class="small">Apple Silicon · macOS 14 或更高版本</p>
-          <p class="tb-label">说明 / NOTE</p>
         </div>
         <div class="tb tb-action">
           <a class="button stamp" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
@@ -59,7 +56,6 @@
             <div><dt>芯片</dt><dd>arm64</dd></div>
             <div><dt>比例</dt><dd>1:1</dd></div>
           </dl>
-          <p class="tb-label">发行 / ISSUE</p>
         </div>
       </div>
 
@@ -125,7 +121,6 @@
           <div class="dim dim-h" aria-hidden="true"><span class="dim-line"></span><span class="dim-value"><span class="v-closed">44</span><span class="v-open">266</span></span><span class="dim-note">高度 / H</span></div>
           <figure class="ref-plate">
             <img src="assets/app-icon.png" width="1024" height="1024" alt="iiisland 应用图标：闭眼听歌、戴耳机的黑白墨线插画">
-            <figcaption>DETAIL A / 1024²</figcaption>
           </figure>
           <div class="desktop-note"><p>你的音乐，<br>不用切换窗口。</p><span class="leader" aria-hidden="true"></span></div>
           <div class="stage-bottom"><button class="text-button" id="expand" data-action="toggle" aria-expanded="true" aria-controls="island-panel"><span class="label">收起面板</span><svg class="arrow" aria-hidden="true"><use href="#icon-arrow-down"/></svg></button></div>
@@ -134,7 +129,6 @@
 
       <div class="hero-foot">
         <p class="demo-caption"><span><span class="hover-hint">面板默认展开；收起后可悬停再展开。拖动进度或切歌。</span><span class="touch-hint">轻触岛体展开；右上角收起。可拖动进度或切歌。</span></span><span>网页交互演示，无音频</span></p>
-        <p class="sheet-ref" aria-hidden="true">A-01 / 07 · 2026</p>
       </div>
       <noscript><p class="no-script">启用 JavaScript 可体验播放与外观演示。下方功能说明、安装要求和下载链接可直接阅读。</p></noscript>
     </section>
@@ -143,17 +137,17 @@
       <div class="section-head">
         <h2 id="lyrics-title">胶囊歌词，<br>你的样子</h2>
         <p><strong>收起时在岛旁，展开时回到面板。</strong><br>深浅与透明度都可调，四种情况自动隐身。</p>
-        <span class="sheet-no" aria-hidden="true">A-02</span>
       </div>
       <div class="capsule-grid" data-ui data-cap-demo>
         <div class="capsule-plate">
           <div class="compact-scene capsule-scene" aria-hidden="true">
-            <div class="scene-top"><span>岛旁歌词 / LYRIC CAPSULE</span><span>DETAIL B</span></div>
+            <div class="scene-top"><span>岛旁歌词</span></div>
             <div class="compact-rail">
               <span class="cap-hit">
                 <span class="cap-live" data-cap-live data-preset="dark">把时间，留给喜欢的旋律</span>
               </span>
               <span class="compact-island">
+                <span class="compact-cam" aria-hidden="true"></span>
                 <span class="cover mini-cover" data-cover="window"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></span>
                 <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
               </span>
@@ -171,8 +165,8 @@
             </div>
             <div class="cap-slider">
               <label for="cap-alpha">背景不透明度</label>
-              <input id="cap-alpha" class="cap-alpha" data-cap-alpha type="range" min="0" max="100" value="0" aria-label="胶囊背景不透明度，0% 为完全透明，100% 为完全实色">
-              <output id="cap-out" data-cap-out for="cap-alpha">0%</output>
+              <input id="cap-alpha" class="cap-alpha" data-cap-alpha type="range" min="0" max="100" value="100" aria-label="胶囊背景不透明度，0% 为完全透明，100% 为完全实色">
+              <output id="cap-out" data-cap-out for="cap-alpha">100%</output>
             </div>
           </div>
           <div class="cap-hide">
@@ -255,7 +249,6 @@
       <div class="section-head">
         <h2 id="customize-title">调成你的样子</h2>
         <p><strong>收起、展开，宽高分别可调。</strong><br>在应用设置中调整尺寸。</p>
-        <span class="sheet-no" aria-hidden="true">A-03</span>
       </div>
       <figure class="size-showcase" aria-labelledby="size-caption">
         <div class="size-visual" data-ui aria-hidden="true">
@@ -268,7 +261,6 @@
           </div>
           <span class="size-dim size-dim-a"><span>收起 / CLOSED</span><b>280 × 44</b></span>
           <span class="size-dim size-dim-b"><span>展开 / OPEN</span><b>440 × 266</b></span>
-          <span class="size-scale">SCALE 1:1</span>
         </div>
         <figcaption id="size-caption"><p>小一点，或宽一点。</p><span>在应用设置中分别调整收起与展开的宽高；岛体轮廓与圆角会随之自然变化。</span></figcaption>
       </figure>
@@ -278,7 +270,6 @@
       <div class="section-head">
         <h2 id="players-title">听你常用的</h2>
         <p><strong>选一款播放器，查看支持能力。</strong><br>应用内，也能自动跟随最近开始播放的来源。</p>
-        <span class="sheet-no" aria-hidden="true">A-04</span>
       </div>
       <div class="players-grid">
         <div class="player-picker" role="group" aria-label="选择演示播放器">
@@ -302,32 +293,30 @@
     </section>
 
     <section id="questions" class="section questions" aria-labelledby="questions-title">
-      <span class="sheet-no faq-sheet" aria-hidden="true">A-05</span>
       <div class="faq-grid">
         <div class="faq-heading">
           <h2 id="questions-title">安装前，<br>了解这些</h2>
           <a href="https://github.com/zplzmzmpl/iiisland-pub">查看项目说明 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
           </div>
         <div class="faq-list">
-          <details><summary><span class="faq-no" aria-hidden="true">N-01</span><span class="faq-q">我的 Mac 可以安装吗？</span></summary><div class="faq-answer"><p><strong>Apple Silicon（M 系列）· macOS 14 或更高版本。</strong><span class="answer-note">暂不提供 Intel 安装包。</span></p></div></details>
-          <details open><summary><span class="faq-no" aria-hidden="true">N-02</span><span class="faq-q">怎样安装和更新？</span></summary><div class="faq-answer"><p><strong>下载 DMG → 拖入 Applications → 启动应用。</strong><span class="answer-note">更新前先退出旧版本，再替换应用。</span></p></div></details>
-          <details><summary><span class="faq-no" aria-hidden="true">N-03</span><span class="faq-q">macOS 提示无法打开？</span></summary><div class="faq-answer"><p><strong>安装包未经 Apple 公证，首次打开可能被系统阻止。</strong><span class="answer-note">当前使用 ad-hoc 本地签名；发布页提供 SHA-256 文件，可校验下载内容。</span></p></div></details>
-          <details><summary><span class="faq-no" aria-hidden="true">N-04</span><span class="faq-q">歌词从哪里来？</span></summary><div class="faq-answer"><p><strong>在线歌词服务、内嵌歌词与本地缓存。</strong><span class="answer-note">歌词可用性与同步准确度取决于歌曲和来源。</span></p></div></details>
-          <details><summary><span class="faq-no" aria-hidden="true">N-05</span><span class="faq-q">可以随播放器启动吗？</span></summary><div class="faq-answer"><p><strong>可以，在播放器设置中开启“随播放器启动”。</strong><span class="answer-note">自动模式响应四款播放器；手动模式只响应选定来源。</span></p></div></details>
+          <details><summary><span class="faq-q">我的 Mac 可以安装吗？</span></summary><div class="faq-answer"><p><strong>Apple Silicon（M 系列）· macOS 14 或更高版本。</strong><span class="answer-note">暂不提供 Intel 安装包。</span></p></div></details>
+          <details open><summary><span class="faq-q">怎样安装和更新？</span></summary><div class="faq-answer"><p><strong>下载 DMG → 拖入 Applications → 启动应用。</strong><span class="answer-note">更新前先退出旧版本，再替换应用。</span></p></div></details>
+          <details><summary><span class="faq-q">macOS 提示无法打开？</span></summary><div class="faq-answer"><p><strong>安装包未经 Apple 公证，首次打开可能被系统阻止。</strong><span class="answer-note">当前使用 ad-hoc 本地签名；发布页提供 SHA-256 文件，可校验下载内容。</span></p></div></details>
+          <details><summary><span class="faq-q">歌词从哪里来？</span></summary><div class="faq-answer"><p><strong>在线歌词服务、内嵌歌词与本地缓存。</strong><span class="answer-note">歌词可用性与同步准确度取决于歌曲和来源。</span></p></div></details>
+          <details><summary><span class="faq-q">可以随播放器启动吗？</span></summary><div class="faq-answer"><p><strong>可以，在播放器设置中开启“随播放器启动”。</strong><span class="answer-note">自动模式响应四款播放器；手动模式只响应选定来源。</span></p></div></details>
         </div>
       </div>
     </section>
 
     <section class="download" id="install" aria-labelledby="install-title">
-      <div class="issue-top"><span>发行 / ISSUE</span><span>0.8.23 · build 32</span></div>
+      <div class="issue-top"><span>0.8.23 · build 32</span></div>
       <h2 id="install-title">给音乐一个位置</h2>
       <a id="download" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest" class="big-download">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
-      <div class="issue-bottom"><p>Apple Silicon · macOS 14+ · 在 GitHub 获取最新版本</p><span class="barcode" aria-hidden="true"></span><span class="issue-code" aria-hidden="true">IIISLAND · A-06</span></div>
+      <div class="issue-bottom"><p>Apple Silicon · macOS 14+ · 在 GitHub 获取最新版本</p><span class="barcode" aria-hidden="true"></span></div>
     </section>
   </main>
 
   <footer>
-    <div class="footer-top"><span>COLOPHON / 版权与致谢</span><span>A-07 / 07</span></div>
     <div class="footer-mark" aria-hidden="true">iiisland</div>
     <div class="footer-row"><p>把喜欢的音乐，留在眼前。</p><div><a href="https://github.com/zplzmzmpl/iiisland-pub">项目主页</a><a href="https://github.com/zplzmzmpl/iiisland-pub/blob/main/README.en.md">English guide</a><a href="#top">返回顶部 <svg aria-hidden="true"><use href="#icon-arrow-up"/></svg></a></div></div>
     <div class="credits"><p>开源致谢：基于 <a href="https://github.com/TheBoredTeam/boring.notch">boring.notch</a> 与 <a href="https://github.com/MxIris-LyricsX-Project/LyricsX">LyricsX</a> 的成果。<a href="https://github.com/zplzmzmpl/iiisland-pub/blob/main/NOTICE.md">完整第三方说明</a></p><p>页面歌曲、歌词与封面为原创演示内容。</p></div>

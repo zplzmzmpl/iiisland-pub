@@ -1381,22 +1381,37 @@ input {
 
 .capsule-scene .compact-rail {
   align-items: center;
-  gap: clamp(10px, 1.4vw, 16px);
-  margin-top: clamp(28px, 4vw, 52px);
+  gap: clamp(8px, 1vw, 12px);
+  margin-top: 0;
   padding: 0 clamp(14px, 2vw, 26px);
 }
 
 .capsule-scene .compact-island {
+  position: relative;
   width: min(50%, 260px);
   min-width: 0;
-  min-height: 52px;
-  gap: 18px;
-  padding: 10px 14px;
+  min-height: 46px;
+  gap: 16px;
+  padding: 8px 14px;
 }
 
 .capsule-scene .compact-island .mini-cover {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
+}
+
+/* the notch camera dot, so the pair reads as the top edge of the screen */
+
+.compact-cam {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 35% 30%, #3a3a3f, #050505 72%);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.4px rgba(255, 255, 255, 0.12);
 }
 
 /* the demo capsule: geometry is fixed by .cap-hit, the pill animates inside it */
@@ -1409,7 +1424,7 @@ input {
 }
 
 .cap-live {
-  --cap-a: 0;
+  --cap-a: 1;
   display: block;
   max-width: 100%;
   overflow: hidden;
@@ -1548,7 +1563,7 @@ input {
 }
 
 .cap-alpha {
-  --fill: 0%;
+  --fill: 100%;
   width: 100%;
   min-width: 0;
   height: 44px;
@@ -2324,7 +2339,7 @@ input {
 
 .faq-list summary {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 32px;
+  grid-template-columns: minmax(0, 1fr) 32px;
   align-items: center;
   gap: 12px;
   padding: 21px 0;
@@ -2365,7 +2380,7 @@ input {
 
 .faq-answer {
   max-width: 720px;
-  padding: 0 44px 26px 56px;
+  padding: 0 0 26px;
 }
 
 .faq-answer p {
@@ -3485,7 +3500,11 @@ body {
 /* lyric scene: blue field, paper text, black mini island */
 
 .compact-scene {
-  background: var(--blue);
+  background-color: var(--blue);
+  background-image:
+    linear-gradient(to right, rgba(25, 26, 25, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(25, 26, 25, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
   color: var(--paper);
   border-color: var(--line-paper-strong);
 }
