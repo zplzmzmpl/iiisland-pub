@@ -162,7 +162,7 @@ A warm paper ground with graphite ink and a single working blue; sage and pale b
 ### Named Rules
 **The Native Voice Rule.** Use the system stack everywhere, including display. It is a commitment to the product's platform, not an unresolved font choice; do not introduce a webfont.
 
-**The Measured Label Rule.** Labels are 11px, tracked, and factual: 440 × 266, 280 × 44, 0.8.23, 版本, 芯片. They sit in margins, title blocks and dimension lines; they never become a kicker above a heading.
+**The Measured Label Rule.** Labels are 11px, tracked, and factual: 440 × 266, 280 × 44, 0.8.24, 版本, 芯片. They sit in margins, title blocks and dimension lines; they never become a kicker above a heading.
 
 **The One Clear Step Rule.** The headline is the largest text; displays step down once; titles step down again. Do not let a section heading meet or exceed the headline.
 
@@ -280,3 +280,10 @@ A paper card on the sage field, 1:1: a 440 × 266 black notch and a 280 × 44 co
 ## 滚动浮现
 
 `script.js` 仅在 ≤760px 且允许动效时向 `<html>` 添加 `reveal-ready` 并观察 `.section/.download`（进入视口加 `.arrive`）。隐藏态由 `html.reveal-ready` 门控——无 JS 时类名不存在，内容全部可见；减少动态效果时不启用且显式复位。
+
+
+## 0.8.24 胶囊演示同步（2026-11-05）
+
+本节替代上文的深底浅字／浅底深字与最低底色规则。背景统一使用网页近似玻璃效果，只切换浅色／深色字体；透明度滑杆及手动输入支持 0–100%、一位小数，初始 4%，0% 保留完整玻璃、100% 隐去背景。桌面初始浅字，移动初始深字；不再按字体改变底色或强制最低不透明度。深色字体在原生应用的独立全屏空间临时变浅，固定浅色不检测，网页只说明该系统行为。保留现有桌面与移动设计体系、自动隐身演示；网页玻璃为效果示意，不冒充 NSGlassEffectView。
+
+手机端不提供透明度滑杆、输入框或透明度调节说明，仅保留字体选择与固定玻璃预览；桌面透明度控件保留。

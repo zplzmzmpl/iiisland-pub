@@ -31,7 +31,7 @@ The product's own mechanism: the Mac's top edge becomes the music surface. Artwo
 - The build is ad-hoc signed and not notarized, so first launch may be blocked by Gatekeeper; the release page ships SHA-256 checksums.
 - Lyrics come from online services, embedded lyrics, and a local cache; availability and sync accuracy vary by track and source.
 - QQ 音乐 and 网易云音乐 depend on the system media focus for transport; volume/shuffle/repeat are not available there.
-- The landing page includes a no-audio interactive demo of opening, transport, seek, volume, capsule appearance, hover auto-hide, player switching, and auto-detect.
+- The landing page includes a no-audio interactive demo of opening, transport, seek, volume, fixed glass capsule with selectable text color and editable transparency, hover auto-hide, player switching, and auto-detect.
 - Visitors may arrive on a phone or a non-Mac to evaluate the product, even though the app itself is Mac-only.
 
 ## Capabilities and Constraints
@@ -58,7 +58,7 @@ Site constraints:
 
 - `website/assets/app-icon.png` — 1024×1024 ink illustration with transparency.
 - `assets/website-preview.jpg` — a 1440×900 render of the current website, not a screenshot of the app.
-- Real product copy in `README.md` and the existing `website/index.html`: feature descriptions, support matrix, FAQ, install steps, version `0.8.22 · build 31`.
+- Real product copy in `README.md` and the existing `website/index.html`: feature descriptions, support matrix, FAQ, install steps, version `0.8.24 · build 33`.
 - Interactive demo content: three original tracks and four lyric lines each, all authored for the page.
 - No real app screenshots, customer quotes, or press coverage exist in the repository. Do not invent them; if an app-facing image is needed, author it as an explicitly synthetic interface illustration rather than a photo of the product.
 

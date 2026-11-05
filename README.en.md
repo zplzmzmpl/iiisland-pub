@@ -8,7 +8,7 @@
 
 *The image shows an interactive website illustration with original demo songs and lyrics. It is not a screenshot of a connected music player.*
 
-[Try the website](https://iiisland.pages.dev): expand or collapse the island, switch tracks, adjust progress and volume, tune the capsule's colors and opacity and hover the lyric to see it hide, and choose a player to see its supported features. An automatically looping size animation shows that collapsed and expanded width and height can be adjusted in the app, with no controls to operate. The playback demo works on phones and computers and does not play audio.
+[Try the website](https://iiisland.pages.dev): expand or collapse the island, switch tracks, adjust progress and volume, choose the capsule's text color, adjust transparency on desktop and hover the lyric to see it hide, and choose a player to see its supported features. An automatically looping size animation shows that collapsed and expanded width and height can be adjusted in the app, with no controls to operate. Desktop visitors can use playback and transparency controls; phones retain capsule text-color choices. The website does not play audio.
 
 ## Keep your music within reach
 
@@ -36,11 +36,11 @@ An optional setting under Player connects browsers, video players and other apps
 
 ## Download and install
 
-Current version: **0.8.23 · build 32**, with the installer updated on **October 31, 2026**.
+Current version: **0.8.24 · build 33**, with the installer updated on **November 5, 2026**.
 
 Requires an **Apple Silicon (arm64) Mac running macOS 14 or later**. An Intel installer is not currently available. Native Liquid Glass requires macOS 26.
 
-1. Download `iiisland-0.8.23-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
+1. Download `iiisland-0.8.24-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 2. Open the DMG and drag `iiisland.app` into the adjacent `Applications` folder.
 3. Launch iiisland from Applications and play a song in your music player.
 
@@ -53,16 +53,28 @@ To update, quit the previous version before replacing the app.
 Download both the DMG and its matching `.sha256` file, then run this in the download directory:
 
 ```sh
-shasum -a 256 -c iiisland-0.8.23-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.24-arm64.dmg.sha256
 ```
 
 SHA-256 for this installer:
 
 ```text
-50ffc4dfdd21dfeb6a03b61c306976774d67d45925e4b78a48d0084f77f51535
+e3e3623f2f312d40b78f73fcacd1dc9631f42a535904ba7097f2c452bc5eebe9
 ```
 
-## What is new in 0.8.23
+## What is new in 0.8.24
+
+- The capsule now uses one clear Liquid Glass background with light or dark text. Systems below macOS 26 use a frosted-glass fallback.
+- Dark text temporarily becomes light only in the current display's native fullscreen Space, then returns on exit. Filling or maximizing a window on a regular desktop, or adding ordinary desktops, does not trigger it. Fixed light text never starts detection.
+- Adjust transparency with the slider or enter 0%–100% to one decimal place. At 0% the full glass effect remains; at 100% only the background disappears. Defaults to light text and 4% transparency.
+- Removed automatic background sampling and its permission path. No Screen Recording or Accessibility permission is requested for font switching. Font cards now stay on one line; layout choices are limited to with or without a notch, with a corrected illustration.
+- Idle titles now read “is that u ?”. Passed 1,734 capsule checks, 334 full-app host checks and fullscreen lifecycle checks, including release of 60 Settings windows.
+
+Fullscreen switching uses a non-public system Space API. If reading fails, the selected dark text remains. Native fullscreen was verified on this host; other OS versions and display combinations still require testing.
+
+See the [0.8.24 release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.24).
+
+### Previously released: 0.8.23
 
 - Lyrics → Capsule Background offers two fixed presets: a dark background with light text, or a light background with dark text. The capsule no longer follows the app's day/night mode.
 - Adjust background transparency from 0% to 100%, with a live preview and reset to defaults. At 0% the background is opaque; at 100% the background and outline are transparent. Text strength is unaffected.

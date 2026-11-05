@@ -196,39 +196,40 @@
   // Capsule playgrounds: desktop hover preview + mobile auto-hide demo
   function setupCapsuleDemo(demo){
     const live=demo.querySelector('[data-cap-live]');
-    const alpha=demo.querySelector('[data-cap-alpha]');
-    if(!live||!alpha) return;
-    const out=demo.querySelector('[data-cap-out]');
-    const note=demo.querySelector('[data-cap-min-note]');
-    const presets=[...demo.querySelectorAll('[data-cap-preset]')];
-    const presetLabels={dark:'深底浅字',light:'浅底深字'};
-    const minFor=preset=>Number(demo.dataset['capMin'+preset[0].toUpperCase()+preset.slice(1)])||0;
-    const syncMin=()=>{
-      const preset=live.dataset.preset;
-      const min=minFor(preset);
-      if(Number(alpha.value)<min) alpha.value=String(min);
-      if(note){
-        note.hidden=min<=0;
-        note.textContent=min>0?'为保证可读，「'+presetLabels[preset]+'」最低保留 '+min+'% 底色。':'';
-      }
-    };
-    const apply=()=>{
-      live.style.setProperty('--cap-a',String(Number(alpha.value)/100));
-      alpha.style.setProperty('--fill',alpha.value+'%');
-      if(out) out.textContent=alpha.value+'%';
-    };
-    const refresh=()=>{syncMin();apply();};
-    presets.forEach(btn=>btn.addEventListener('click',()=>{
-      presets.forEach(b=>{
-        const on=b===btn;
-        b.classList.toggle('is-on',on);
-        b.setAttribute('aria-pressed',String(on));
+    if(!live) return;
+    const fonts=[...demo.querySelectorAll('[data-cap-font]')];
+    fonts.forEach(btn=>btn.addEventListener('click',()=>{
+      fonts.forEach(other=>{
+        const on=other===btn;
+        other.classList.toggle('is-on',on);
+        other.setAttribute('aria-pressed',String(on));
       });
-      live.dataset.preset=btn.dataset.capPreset;
-      refresh();
+      live.dataset.font=btn.dataset.capFont;
     }));
-    alpha.addEventListener('input',refresh);
-    refresh();
+    const slider=demo.querySelector('[data-cap-transparency]');
+    const input=demo.querySelector('[data-cap-input]');
+    if(!slider||!input) return;
+    let transparency=Number(slider.value);
+    const apply=value=>{
+      transparency=Math.round(Math.min(100,Math.max(0,value))*10)/10;
+      slider.value=String(transparency);
+      input.value=String(transparency);
+      live.style.setProperty('--cap-a',String(1-transparency/100));
+      slider.style.setProperty('--fill',transparency+'%');
+      slider.setAttribute('aria-valuetext',transparency+'% 透明度');
+    };
+    const commit=()=>{
+      const value=input.value.trim()===''?NaN:Number(input.value);
+      apply(Number.isFinite(value)?value:transparency);
+    };
+    slider.addEventListener('input',()=>apply(Number(slider.value)));
+    input.addEventListener('change',commit);
+    input.addEventListener('blur',commit);
+    input.addEventListener('keydown',event=>{
+      if(event.key==='Enter'){event.preventDefault();commit();input.blur();}
+      if(event.key==='Escape'){event.preventDefault();input.value=String(transparency);input.blur();}
+    });
+    apply(transparency);
   }
   $$('[data-cap-demo]').forEach(setupCapsuleDemo);
   let lastTick=performance.now();

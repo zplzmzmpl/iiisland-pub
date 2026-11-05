@@ -52,7 +52,7 @@
         <div class="tb tb-action">
           <a class="button stamp" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
           <dl class="tb-specs">
-            <div><dt>版本</dt><dd>0.8.23</dd></div>
+            <div><dt>版本</dt><dd>0.8.24</dd></div>
             <div><dt>芯片</dt><dd>arm64</dd></div>
             <div><dt>比例</dt><dd>1:1</dd></div>
           </dl>
@@ -136,15 +136,15 @@
     <section id="experience" class="section lyrics" aria-labelledby="lyrics-title">
       <div class="section-head">
         <h2 id="lyrics-title">胶囊歌词，<br>你的样子</h2>
-        <p><strong>收起时在岛旁，展开时回到面板。</strong><br>深浅与透明度都可调，四种情况自动隐身。</p>
+        <p><strong>收起时在岛旁，展开时回到面板。</strong><br>固定玻璃背景，字体深浅与透明度由你决定。</p>
       </div>
-      <div class="capsule-grid" data-ui data-cap-demo data-cap-min-dark="0" data-cap-min-light="60">
+      <div class="capsule-grid" data-ui data-cap-demo>
         <div class="capsule-plate">
           <div class="compact-scene capsule-scene" aria-hidden="true">
             <div class="scene-top"><span>岛旁歌词</span></div>
             <div class="compact-rail">
               <span class="cap-hit">
-                <span class="cap-live" data-cap-live data-preset="dark">把时间，留给喜欢的旋律</span>
+                <span class="cap-live" data-cap-live data-font="light">把时间，留给喜欢的旋律</span>
                 <span class="cap-guide-trail" aria-hidden="true"><svg viewBox="0 0 360 330" width="360" height="330"><defs><marker id="cap-arrow" viewBox="0 0 14 14" refX="11" refY="7" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path class="cap-guide-head" d="M3 3 L11 7 L3 11"/></marker></defs><path class="cap-guide-line" d="M340 310C200 300 70 190 24.9 50.5" marker-end="url(#cap-arrow)"/></svg></span>
               </span>
               <span class="compact-island">
@@ -155,21 +155,21 @@
             </div>
             <p class="compact-message">鼠标经过歌词，自动隐身；移出即恢复。</p>
           </div>
-          <p class="capsule-caption">配色与透明度会保留；歌词可用性取决于歌曲与来源。</p>
+          <p class="capsule-caption">字体与透明度会保留。网页为效果示意，原生液态玻璃需要 macOS 26。</p>
         </div>
         <div class="capsule-panel">
           <div class="cap-controls">
             <div class="cap-control-head"><span>外观 / APPEARANCE</span><span>实时预览</span></div>
-            <div class="cap-seg" role="group" aria-label="胶囊配色预设">
-              <button type="button" class="cap-seg-btn is-on" data-cap-preset="dark" aria-pressed="true">深底浅字</button>
-              <button type="button" class="cap-seg-btn" data-cap-preset="light" aria-pressed="false">浅底深字</button>
+            <div class="cap-seg" role="group" aria-label="胶囊字体颜色">
+              <button type="button" class="cap-seg-btn is-on" data-cap-font="light" aria-pressed="true">浅色字体</button>
+              <button type="button" class="cap-seg-btn" data-cap-font="dark" aria-pressed="false">深色字体</button>
             </div>
             <div class="cap-slider">
-              <label for="cap-alpha">背景不透明度</label>
-              <input id="cap-alpha" class="cap-alpha" data-cap-alpha type="range" min="0" max="100" value="30" aria-label="胶囊背景不透明度，0% 为完全透明，100% 为完全实色">
-              <output id="cap-out" data-cap-out for="cap-alpha">30%</output>
+              <label for="cap-alpha">透明度</label>
+              <input id="cap-alpha" class="cap-alpha" data-cap-transparency type="range" min="0" max="100" step="0.1" value="4" aria-label="胶囊背景透明度，0% 保留完整玻璃，100% 隐去背景">
+              <span class="cap-value"><input data-cap-input type="number" min="0" max="100" step="0.1" value="4" inputmode="decimal" aria-label="输入胶囊透明度，百分比"><span>%</span></span>
             </div>
-            <p class="cap-min-note" data-cap-min-note hidden></p>
+            <p class="cap-note" data-cap-note>深色字体只在独立全屏空间临时变浅；固定浅色不检测。无需录屏权限。</p>
           </div>
           <div class="cap-hide">
             <div class="cap-hide-head"><span>自动隐身 / AUTO-HIDE</span><span>四个真实触发条件</span></div>
@@ -188,27 +188,22 @@
     <section class="section m-capsule-sec" hidden aria-labelledby="m-capsule-title">
       <div class="section-head">
         <h2 id="m-capsule-title">胶囊歌词，<br>你的样子</h2>
-        <p>收起时，歌词就在岛旁。配色与透明度，动手调。</p>
+        <p>玻璃背景，浅色或深色字体由你选。</p>
       </div>
-      <div class="m-cap-demo" data-cap-demo data-cap-min-light="0" data-cap-min-dark="60">
+      <div class="m-cap-demo" data-cap-demo data-ui>
         <div class="m-cap-stage" aria-hidden="true">
           <span class="m-cap-island"><i class="m-ci-art"></i><i class="m-ci-eq"><u></u><u></u><u></u><u></u></i></span>
           <span class="m-cap-anchor">
-            <span class="m-cap-live" id="m-cap-live" data-cap-live data-preset="light">晚风慢慢吹</span>
+            <span class="m-cap-live" id="m-cap-live" data-cap-live data-font="dark">晚风慢慢吹</span>
             <span class="m-cap-pointer"><svg viewBox="0 0 24 24"><path d="M3.5 2.5 19 11.5l-6.7 1.7-3.2 7Z"/></svg></span>
           </span>
         </div>
         <div class="m-cap-controls">
-          <div class="m-seg" role="group" aria-label="胶囊配色预设">
-            <button type="button" class="m-seg-btn" data-cap-preset="dark" aria-pressed="false">深底浅字</button>
-            <button type="button" class="m-seg-btn is-on" data-cap-preset="light" aria-pressed="true">浅底深字</button>
+          <div class="m-seg" role="group" aria-label="胶囊字体颜色">
+            <button type="button" class="m-seg-btn" data-cap-font="light" aria-pressed="false">浅色字体</button>
+            <button type="button" class="m-seg-btn is-on" data-cap-font="dark" aria-pressed="true">深色字体</button>
           </div>
-          <label class="m-slider-row">
-            <span>背景不透明度</span>
-            <input type="range" id="m-cap-alpha" data-cap-alpha min="0" max="100" value="0" aria-label="胶囊背景不透明度，0% 为完全透明，100% 为完全实色">
-            <output id="m-cap-out" data-cap-out for="m-cap-alpha">0%</output>
-          </label>
-          <p class="m-cap-min-note" data-cap-min-note hidden></p>
+          <p class="m-cap-note" data-cap-note>深色字体只在独立全屏空间临时变浅；固定浅色不检测。无需录屏权限。</p>
         </div>
       </div>
       <div class="m-hide-block">
@@ -305,6 +300,7 @@
           <details><summary><span class="faq-q">我的 Mac 可以安装吗？</span></summary><div class="faq-answer"><p><strong>Apple Silicon（M 系列）· macOS 14 或更高版本。</strong><span class="answer-note">暂不提供 Intel 安装包。</span></p></div></details>
           <details open><summary><span class="faq-q">怎样安装和更新？</span></summary><div class="faq-answer"><p><strong>下载 DMG → 拖入 Applications → 启动应用。</strong><span class="answer-note">更新前先退出旧版本，再替换应用。</span></p></div></details>
           <details><summary><span class="faq-q">macOS 提示无法打开？</span></summary><div class="faq-answer"><p><strong>安装包未经 Apple 公证，首次打开可能被系统阻止。</strong><span class="answer-note">当前使用 ad-hoc 本地签名；发布页提供 SHA-256 文件，可校验下载内容。</span></p></div></details>
+          <details><summary><span class="faq-q">深色字体何时变浅？</span></summary><div class="faq-answer"><p><strong>仅在当前显示器进入独立全屏空间时临时变浅，退出后恢复。</strong><span class="answer-note">普通桌面内铺满窗口或增加普通桌面不触发；单独选择浅色字体时始终为浅色，无需录屏权限。</span></p></div></details>
           <details><summary><span class="faq-q">歌词从哪里来？</span></summary><div class="faq-answer"><p><strong>在线歌词服务、内嵌歌词与本地缓存。</strong><span class="answer-note">歌词可用性与同步准确度取决于歌曲和来源。</span></p></div></details>
           <details><summary><span class="faq-q">可以随播放器启动吗？</span></summary><div class="faq-answer"><p><strong>可以，在播放器设置中开启“随播放器启动”。</strong><span class="answer-note">自动模式响应四款播放器；手动模式只响应选定来源。</span></p></div></details>
         </div>
@@ -312,10 +308,10 @@
     </section>
 
     <section class="download" id="install" aria-labelledby="install-title">
-      <div class="issue-top"><span>0.8.23 · build 32</span></div>
+      <div class="issue-top"><span>0.8.24 · build 33</span></div>
       <h2 id="install-title">给音乐一个位置</h2>
       <a id="download" href="https://github.com/zplzmzmpl/iiisland-pub/releases/latest" class="big-download">下载 Mac 版 <svg aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
-      <div class="issue-bottom"><p>Apple Silicon · macOS 14+ · 在 GitHub 获取最新版本</p><span class="barcode" aria-hidden="true"></span></div>
+      <div class="issue-bottom"><p>Apple Silicon · macOS 14+ · <a href="https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.24">0.8.24 更新说明</a></p><span class="barcode" aria-hidden="true"></span></div>
     </section>
   </main>
 
