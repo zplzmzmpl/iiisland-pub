@@ -58,7 +58,7 @@ Site constraints:
 
 - `website/assets/app-icon.png` — 1024×1024 ink illustration with transparency.
 - `assets/website-preview.jpg` — a 1440×900 render of the current website, not a screenshot of the app.
-- Real product copy in `README.md` and the existing `website/index.html`: feature descriptions, support matrix, FAQ, install steps, version `0.8.24 · build 33`.
+- Real product copy in `README.md` and the existing `website/index.html`: feature descriptions, support matrix, FAQ, install steps, version `0.8.27 · build 36`.
 - Interactive demo content: three original tracks and four lyric lines each, all authored for the page.
 - No real app screenshots, customer quotes, or press coverage exist in the repository. Do not invent them; if an app-facing image is needed, author it as an explicitly synthetic interface illustration rather than a photo of the product.
 

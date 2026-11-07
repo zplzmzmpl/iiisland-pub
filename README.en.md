@@ -15,8 +15,8 @@
 See the cover, check a lyric, or skip a track without switching windows. iiisland keeps your music at the top of the screen, compact while you work and ready to expand on hover or click.
 
 - **Follow what is playing.** Works with Apple Music, Spotify, QQ Music and NetEase Cloud Music. Automatically follows the player that most recently started playback, or stays with a player you choose.
-- **One lyric, two places.** Lyrics sit beside the collapsed island and move into the expanded panel. Choose automatic capsule hiding for pointer hover, pause, screenshots or the app menu; lyrics return when the condition clears. In-island lyrics have a separate switch.
-- **Fine-tune lyric timing.** Enter an offset, adjust it in 100 ms steps or reset it from Lyrics settings or the menu's lyric-offset entry. The calibration window stays open while you adjust and listen in your player.
+- **One lyric, two places.** Lyrics sit beside the collapsed island and move into the expanded panel. All four automatic capsule hiding options default to off and can be enabled individually. In-island lyrics default to on and follow the island switch, with a separate setting available.
+- **Fine-tune lyric timing.** Enter an offset, adjust it in 100 ms steps or reset it under Lyrics → Time Sync, within the same Settings window.
 - **Fit your screen.** Adjust collapsed and expanded width and height separately, with layouts for displays with or without a notch.
 - **Choose your look.** Use classic black or native Liquid Glass on macOS 26. Switch between day and night modes, with your choice remembered.
 - **Launch with your player.** Enable the option to open iiisland when a supported music player starts.
@@ -36,11 +36,11 @@ An optional setting under Player connects browsers, video players and other apps
 
 ## Download and install
 
-Current version: **0.8.24 · build 33**, with the installer updated on **November 5, 2026**.
+Current version: **0.8.27 · build 36**, with the installer updated on **November 7, 2026**.
 
 Requires an **Apple Silicon (arm64) Mac running macOS 14 or later**. An Intel installer is not currently available. Native Liquid Glass requires macOS 26.
 
-1. Download `iiisland-0.8.24-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
+1. Download `iiisland-0.8.27-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 2. Open the DMG and drag `iiisland.app` into the adjacent `Applications` folder.
 3. Launch iiisland from Applications and play a song in your music player.
 
@@ -53,16 +53,26 @@ To update, quit the previous version before replacing the app.
 Download both the DMG and its matching `.sha256` file, then run this in the download directory:
 
 ```sh
-shasum -a 256 -c iiisland-0.8.24-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.27-arm64.dmg.sha256
 ```
 
 SHA-256 for this installer:
 
 ```text
-e3e3623f2f312d40b78f73fcacd1dc9631f42a535904ba7097f2c452bc5eebe9
+d4fe9e1dbc9faaaa00f3f43b435bc885598abd832f02490d4c6a54a09ae885b7
 ```
 
-## What is new in 0.8.24
+## What is new in 0.8.27
+
+- Menus now contain only Settings and Quit. Adjust lyric timing, day/night mode and text colors in one Settings window.
+- Choose text colors with inline swatches or a six-digit HEX value. The chosen color stays fixed across fullscreen, desktops and appearance changes.
+- In-island lyrics are enabled by default and turn off/on with the island.
+- All four capsule auto-hide options now default to off: pointer hover, pause, screenshots and the app menu. Enable them individually in Settings; saved choices are preserved.
+- Migrated to Swift 6, with explicit concurrency boundaries for lyric loading and caching, shared background events and improved cancellation and resource lifetimes.
+
+See the [0.8.27 release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.27).
+
+### Previously released: 0.8.24
 
 - The capsule now uses one clear Liquid Glass background with light or dark text. Systems below macOS 26 use a frosted-glass fallback.
 - Dark text temporarily becomes light only in the current display's native fullscreen Space, then returns on exit. Filling or maximizing a window on a regular desktop, or adding ordinary desktops, does not trigger it. Fixed light text never starts detection.
