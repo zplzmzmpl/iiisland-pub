@@ -31,7 +31,13 @@
   --h1: clamp(44px, 5.2vw, 76px);
   --display: clamp(38px, 4.4vw, 64px);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --ease-island: cubic-bezier(0.22, 0.9, 0.24, 1);
+  /* The island's own motion: one spring that arrives early, overshoots once and settles.
+     Nothing else on the sheet moves this way — only the living object. */
+  --spring-island: cubic-bezier(0.3, 1.36, 0.4, 1);
+  --spring-content: cubic-bezier(0.32, 1.34, 0.44, 1);
+  --ease-island-close: cubic-bezier(0.32, 0.5, 0.2, 1);
+  --island-open-ms: 470ms;
+  --island-close-ms: 320ms;
   --radius-island: 18px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
     "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
@@ -484,13 +490,17 @@ input {
     linear-gradient(to right, rgba(25, 26, 25, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(25, 26, 25, 0.06) 1px, transparent 1px);
   background-size: 48px 48px;
-  --island-w: min(280px, 30cqw);
-  --island-h: 44px;
+  --island-w-closed: min(280px, 30cqw);
+  --island-w-open: min(440px, calc(100cqw - 40px));
+  --island-w: var(--island-w-closed);
+  --island-h-closed: 44px;
+  --island-h-open: 266px;
+  --island-h: var(--island-h-closed);
 }
 
 .screen:has(.music-island.is-open) {
-  --island-w: min(440px, calc(100cqw - 40px));
-  --island-h: 266px;
+  --island-w: var(--island-w-open);
+  --island-h: var(--island-h-open);
 }
 
 .island-rail {
@@ -504,12 +514,6 @@ input {
   align-items: start;
   gap: 10px;
   pointer-events: none;
-}
-
-.island-rail:has(.music-island.is-open) {
-  grid-template-columns: 0 minmax(0, auto) 0;
-  justify-content: center;
-  gap: 0;
 }
 
 .capsule {
@@ -531,15 +535,20 @@ input {
   white-space: nowrap;
   text-overflow: ellipsis;
   pointer-events: none;
-  transition: opacity 0.18s, transform 0.35s, width 0.4s, padding 0.4s;
+  transform-origin: 100% 50%;
+  transition:
+    opacity 0.14s var(--ease),
+    transform 0.26s var(--ease-island-close);
 }
 
+/* The capsule keeps its width and is carried left by the rail as the island widens,
+   so it never snaps; it only lets go and fades. */
 .island-rail:has(.music-island.is-open) > .capsule {
-  width: 0;
-  padding: 0;
-  margin-top: 0;
   opacity: 0;
-  transform: translateX(10px);
+  transform: translateX(-8px) scale(0.97);
+  transition:
+    opacity 0.13s var(--ease),
+    transform 0.2s var(--ease-island-close);
 }
 
 .rail-spacer {
@@ -562,14 +571,20 @@ input {
     0 18px 38px rgba(9, 10, 9, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   pointer-events: auto;
+  /* keep the morph a single-box change: descendants neither reflow the sheet nor repaint outside it */
+  contain: layout paint;
   transition:
-    width 0.64s var(--ease-island),
-    height 0.64s var(--ease-island),
-    border-radius 0.64s var(--ease-island);
+    width var(--island-close-ms) var(--ease-island-close),
+    height var(--island-close-ms) var(--ease-island-close),
+    border-radius var(--island-close-ms) var(--ease-island-close);
 }
 
 .music-island.is-open {
   border-radius: 0 0 28px 28px;
+  transition:
+    width var(--island-open-ms) var(--spring-island),
+    height var(--island-open-ms) var(--spring-island),
+    border-radius var(--island-open-ms) var(--spring-island);
 }
 
 .closed-trigger {
@@ -580,17 +595,26 @@ input {
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  height: var(--island-h);
+  height: var(--island-h-closed);
   padding: 8px 13px;
   color: inherit;
   text-align: left;
-  transition: opacity 0.16s;
+  transform-origin: 50% 0;
+  transition:
+    opacity 0.22s var(--ease),
+    transform 0.34s var(--spring-content),
+    visibility 0s;
 }
 
 .music-island.is-open .closed-trigger {
   visibility: hidden;
   opacity: 0;
+  transform: translateY(-4px) scale(0.97);
   pointer-events: none;
+  transition:
+    opacity 0.13s var(--ease),
+    transform 0.16s var(--ease-island-close),
+    visibility 0s 0.16s;
 }
 
 .closed-title {
@@ -687,22 +711,35 @@ input {
   }
 }
 
+/* The panel is laid out once, at its open size, and cropped by the island as the
+   island grows: the morph resizes one box instead of reflowing the player every frame. */
 .island-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
   display: flex;
   flex-direction: column;
-  height: var(--island-h);
+  width: var(--island-w-open);
+  height: var(--island-h-open);
   padding: 17px 20px 16px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-7px);
-  transition: opacity 0.2s, transform 0.4s, visibility 0s 0.2s;
+  transform: translate(-50%, -12px) scale(0.97);
+  transform-origin: 50% 0;
+  transition:
+    opacity 0.12s var(--ease),
+    transform 0.2s var(--ease-island-close),
+    visibility 0s 0.2s;
 }
 
 .music-island.is-open .island-content {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
-  transition: opacity 0.3s 0.16s, transform 0.45s 0.1s, visibility 0s;
+  transform: translate(-50%, 0) scale(1);
+  transition:
+    opacity 0.22s var(--ease) 0.06s,
+    transform 0.46s var(--spring-content) 0.04s,
+    visibility 0s;
 }
 
 .island-header {
@@ -993,14 +1030,27 @@ input {
 
 /* dimensions */
 
+/* The dimension lines measure the living object, so they ride the same spring and
+   never drift off its edge. */
 .dim {
   position: absolute;
   z-index: 3;
   color: var(--accent-ink);
   pointer-events: none;
   font-variant-numeric: tabular-nums;
-  transition: width 0.64s var(--ease-island), height 0.64s var(--ease-island),
-    left 0.64s var(--ease-island), top 0.64s var(--ease-island);
+  transition:
+    width var(--island-close-ms) var(--ease-island-close),
+    height var(--island-close-ms) var(--ease-island-close),
+    left var(--island-close-ms) var(--ease-island-close),
+    top var(--island-close-ms) var(--ease-island-close);
+}
+
+.screen:has(.music-island.is-open) .dim {
+  transition:
+    width var(--island-open-ms) var(--spring-island),
+    height var(--island-open-ms) var(--spring-island),
+    left var(--island-open-ms) var(--spring-island),
+    top var(--island-open-ms) var(--spring-island);
 }
 
 .dim-w {
@@ -2699,8 +2749,18 @@ footer {
    -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: no-preference) {
-  .screen {
-    animation: sheet-plot 1s var(--ease) both;
+  /* The sheet plots in from the left edge. A paper sheet on its own composited layer
+     wipes the field: one transform instead of re-rasterising the screen's ruled
+     background every frame — cheaper on engines that do not composite clip-path. */
+  .screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 9;
+    background: var(--paper);
+    transform-origin: 100% 0;
+    animation: sheet-plot 0.95s var(--ease) both;
+    pointer-events: none;
   }
 
   .hero-title {
@@ -2716,10 +2776,10 @@ footer {
 
   @keyframes sheet-plot {
     from {
-      clip-path: inset(0 100% 0 0);
+      transform: scaleX(1);
     }
     to {
-      clip-path: inset(0);
+      transform: scaleX(0);
     }
   }
 
@@ -2746,18 +2806,18 @@ footer {
 
 @keyframes cover-in {
   from {
-    opacity: 0.5;
-    transform: translateY(7px);
+    opacity: 0.35;
+    transform: translateY(9px) scale(0.96);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .track-change .full-cover,
 .track-change .track-info {
-  animation: cover-in 0.32s ease-out;
+  animation: cover-in 0.46s var(--spring-content);
 }
 
 /* --------------------------------------------------------------------------
@@ -3850,6 +3910,8 @@ footer {
   .screen {
     --island-w: 50cqw;
     --island-h: 44px;
+    --island-w-open: 50cqw;
+    --island-h-open: 150px;
   }
 
   .screen:has(.music-island.is-open) {

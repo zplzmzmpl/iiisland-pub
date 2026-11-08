@@ -114,7 +114,10 @@
     switch(target.dataset.action) {
       case 'open': setOpen(true);break;
       case 'close': setOpen(false,true);break;
-      case 'toggle': setOpen(!state.open,true);break;
+      // Only a control inside the island has to suppress hover: the pointer is still
+      // on it. The drawing's text button sits outside, so hovering the notch after it
+      // must open the panel straight away.
+      case 'toggle': setOpen(!state.open,!!target.closest('.music-island'));break;
       case 'play': state.playing=!state.playing;render();break;
       case 'next': changeTrack(1);break;
       case 'previous': changeTrack(-1);break;
@@ -131,19 +134,19 @@
     el.addEventListener('pointerenter',event=>{
       if(event.pointerType!=='mouse') return;
       clearTimeout(hoverTimer);
-      if(!hoverSuppressed&&!state.open) hoverTimer=setTimeout(()=>setOpen(true),180);
+      if(!hoverSuppressed&&!state.open) hoverTimer=setTimeout(()=>setOpen(true),90);
     });
     el.addEventListener('pointerleave',event=>{
       if(event.pointerType!=='mouse') return;
       clearTimeout(hoverTimer);
       hoverSuppressed=false;
-      if(!el.querySelector(':focus-visible')) hoverTimer=setTimeout(()=>setOpen(false),280);
+      if(!el.querySelector(':focus-visible')) hoverTimer=setTimeout(()=>setOpen(false),220);
     });
     el.addEventListener('focusout',()=>{
       requestAnimationFrame(()=>{
         if(matchMedia('(hover: hover)').matches&&!el.contains(document.activeElement)&&!el.matches(':hover')) {
           clearTimeout(hoverTimer);
-          hoverTimer=setTimeout(()=>setOpen(false),280);
+          hoverTimer=setTimeout(()=>setOpen(false),220);
         }
       });
     });
