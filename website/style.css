@@ -754,18 +754,37 @@ input {
   font-variant-numeric: tabular-nums;
 }
 
+/* The hit area stays 44px; the circle it draws is 34px, so a 44px disc never
+   dominates a 180px-tall panel. */
 .icon-button {
+  position: relative;
   display: grid;
   place-items: center;
   min-width: 44px;
   min-height: 44px;
   padding: 10px;
   color: inherit;
+  background: none;
   border-radius: 50%;
-  transition: background 0.18s, transform 0.18s;
+  transition: transform 0.18s;
 }
 
-.icon-button:hover {
+.icon-button svg {
+  position: relative;
+  z-index: 1;
+}
+
+.icon-button::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.18s;
+  pointer-events: none;
+}
+
+.icon-button:hover::before {
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -781,6 +800,10 @@ input {
   min-height: 30px;
   padding: 7px;
   margin: -5px 0;
+}
+
+.collapse-button::before {
+  inset: 0;
 }
 
 .collapse-button::after {
@@ -960,15 +983,20 @@ input {
 }
 
 .play-button {
-  background: var(--island-ink);
   color: var(--island);
 }
 
-.play-button:hover {
+.play-button::before {
+  background: var(--island-ink);
+}
+
+.play-button:hover::before {
   background: #fff;
 }
 
 .play-button svg {
+  width: 15px;
+  height: 15px;
   stroke-width: 3;
 }
 
