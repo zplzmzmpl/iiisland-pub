@@ -721,7 +721,7 @@ input {
   flex-direction: column;
   width: var(--island-w-open);
   height: var(--island-h-open);
-  padding: 17px 20px 16px;
+  padding: 13px 20px;
   opacity: 0;
   visibility: hidden;
   transform: translate(-50%, -16px) scale(0.985);
@@ -746,8 +746,8 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 22px;
-  margin-bottom: 8px;
+  min-height: 20px;
+  margin-bottom: 5px;
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--island-muted);
@@ -773,10 +773,21 @@ input {
   transform: scale(0.92);
 }
 
+/* The chevron is drawn small so the header stays a line rather than a band, but its
+   hit area is still 44px. */
 .collapse-button {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 10px;
+  position: relative;
+  min-width: 30px;
+  min-height: 30px;
+  padding: 7px;
+  margin: -5px 0;
+}
+
+.collapse-button::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
 }
 
 .collapse-button svg {
@@ -786,15 +797,16 @@ input {
 
 .now-playing {
   display: flex;
+  flex: 1;
   align-items: center;
-  gap: 15px;
+  gap: 14px;
   min-width: 0;
 }
 
 .full-cover {
-  width: 80px;
-  height: 80px;
-  padding: 8px;
+  width: 120px;
+  height: 120px;
+  padding: 11px;
   border-radius: 6px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
 }
@@ -815,13 +827,13 @@ input {
 }
 
 .track-artist {
-  margin-top: 4px;
+  margin-top: 3px;
   font-size: 12px;
   color: var(--island-muted);
 }
 
 .island-lyric {
-  margin-top: 11px;
+  margin-top: 9px;
   overflow: hidden;
   font-size: 13px;
   line-height: 1.5;
@@ -830,11 +842,14 @@ input {
   text-overflow: ellipsis;
 }
 
+/* The seek row and the transport close into one control bar at the bottom; the free
+   space collects above the artwork instead of being split into thin bands. */
 .seek-row {
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin-top: 10px;
+  gap: 10px;
+  height: 30px;
+  margin-top: auto;
   font-size: 11px;
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -853,7 +868,7 @@ input {
   --fill: 22%;
   width: 100%;
   min-width: 0;
-  height: 44px;
+  height: 30px;
   margin: 0;
   padding: 0;
   appearance: none;
@@ -865,7 +880,7 @@ input {
 
 .seek::-webkit-slider-runnable-track,
 .volume::-webkit-slider-runnable-track {
-  height: 2px;
+  height: 3px;
   border-radius: 0;
   background:
     linear-gradient(to right, var(--island-ink) var(--fill), transparent var(--fill)),
@@ -875,16 +890,16 @@ input {
 
 .seek::-moz-range-track,
 .volume::-moz-range-track {
-  height: 2px;
+  height: 3px;
   border-radius: 0;
   background: var(--island-rail);
 }
 
 .seek::-webkit-slider-thumb,
 .volume::-webkit-slider-thumb {
-  width: 9px;
-  height: 9px;
-  margin-top: -3.5px;
+  width: 11px;
+  height: 11px;
+  margin-top: -4px;
   appearance: none;
   -webkit-appearance: none;
   background: var(--island-ink);
@@ -894,8 +909,8 @@ input {
 
 .seek::-moz-range-thumb,
 .volume::-moz-range-thumb {
-  width: 9px;
-  height: 9px;
+  width: 11px;
+  height: 11px;
   background: var(--island-ink);
   border: 0;
   border-radius: 50%;
@@ -911,14 +926,14 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  margin-top: auto;
+  gap: 10px;
+  margin-top: 3px;
 }
 
 .play-buttons {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0;
 }
 
 .play-buttons svg {
@@ -952,7 +967,7 @@ input {
 .volume-control {
   display: flex;
   align-items: center;
-  width: 104px;
+  width: 156px;
   gap: 0;
 }
 
