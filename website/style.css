@@ -494,7 +494,7 @@ input {
   --island-w-open: min(440px, calc(100cqw - 40px));
   --island-w: var(--island-w-closed);
   --island-h-closed: 44px;
-  --island-h-open: 266px;
+  --island-h-open: 180px;
   --island-h: var(--island-h-closed);
 }
 
@@ -721,7 +721,7 @@ input {
   flex-direction: column;
   width: var(--island-w-open);
   height: var(--island-h-open);
-  padding: 13px 20px;
+  padding: 12px 20px;
   opacity: 0;
   visibility: hidden;
   transform: translate(-50%, -16px) scale(0.985);
@@ -747,7 +747,7 @@ input {
   align-items: center;
   justify-content: space-between;
   min-height: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--island-muted);
@@ -795,18 +795,21 @@ input {
   height: 16px;
 }
 
+/* The artwork is exactly as tall as the title, artist and lyric stacked, so the row
+   reads as one block rather than a card with a picture in it. */
 .now-playing {
   display: flex;
-  flex: 1;
   align-items: center;
   gap: 14px;
+  height: 76px;
   min-width: 0;
 }
 
 .full-cover {
-  width: 120px;
-  height: 120px;
-  padding: 11px;
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1;
+  padding: 8px;
   border-radius: 6px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
 }
@@ -827,9 +830,32 @@ input {
 }
 
 .track-artist {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
   margin-top: 3px;
   font-size: 12px;
   color: var(--island-muted);
+}
+
+.track-artist-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* The timecodes ride the metadata line, which frees the control bar for the rail. */
+.track-time {
+  flex-shrink: 0;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.track-time-sep {
+  margin: 0 3px;
+  opacity: 0.55;
 }
 
 .island-lyric {
@@ -840,20 +866,6 @@ input {
   color: var(--island-ink);
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-/* The seek row and the transport close into one control bar at the bottom; the free
-   space collects above the artwork instead of being split into thin bands. */
-.seek-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 30px;
-  margin-top: auto;
-  font-size: 11px;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-  color: var(--island-muted);
 }
 
 .seek-label {
@@ -922,12 +934,13 @@ input {
   outline-offset: 4px;
 }
 
+/* One control bar: transport, rail and volume share a single 44px row. */
 .transport {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 3px;
+  gap: 12px;
+  height: 44px;
+  margin-top: 10px;
 }
 
 .play-buttons {
@@ -967,7 +980,7 @@ input {
 .volume-control {
   display: flex;
   align-items: center;
-  width: 156px;
+  width: 116px;
   gap: 0;
 }
 
@@ -1949,7 +1962,7 @@ input {
 .size-silhouette {
   position: relative;
   width: min(440px, 100%);
-  aspect-ratio: 440 / 266;
+  aspect-ratio: 440 / 180;
 }
 
 .size-shape {
@@ -2159,7 +2172,7 @@ input {
   60%,
   100% {
     width: 63.636%;
-    height: 16.541%;
+    height: 24.444%;
     border-radius: 0 0 18px 18px;
   }
 }

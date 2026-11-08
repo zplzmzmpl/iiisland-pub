@@ -102,11 +102,11 @@
                 <div class="island-header"><span data-bind="source">Apple Music · 演示</span><button class="icon-button collapse-button" data-action="close" title="收起播放面板" aria-label="收起播放面板"><svg><use href="#icon-chevron"/></svg></button></div>
                 <div class="now-playing">
                   <div class="cover full-cover" data-cover="window" aria-hidden="true"><img src="assets/app-icon.png" alt="" width="1024" height="1024"></div>
-                  <div class="track-info"><p class="track-title" data-bind="title">慢一点，也没关系</p><p class="track-artist">窗边电台 · 原创演示</p><p class="island-lyric" data-bind="lyric">把时间，留给喜欢的旋律</p></div>
+                  <div class="track-info"><p class="track-title" data-bind="title">慢一点，也没关系</p><p class="track-artist"><span class="track-artist-name">窗边电台 · 原创演示</span><span class="track-time"><span data-bind="elapsed">0:28</span><span class="track-time-sep" aria-hidden="true">/</span><span data-bind="duration">2:08</span></span></p><p class="island-lyric" data-bind="lyric">把时间，留给喜欢的旋律</p></div>
                 </div>
-                <div class="seek-row"><span data-bind="elapsed">0:28</span><label class="seek-label"><span class="sr-only">播放进度</span><input type="range" class="seek" data-action="seek" min="0" max="128" value="28" aria-label="播放进度"></label><span data-bind="duration">2:08</span></div>
                 <div class="transport">
                   <div class="play-buttons"><button class="icon-button" data-action="previous" title="上一首演示曲目" aria-label="上一首演示曲目"><svg><use href="#icon-prev"/></svg></button><button class="icon-button play-button" data-action="play" title="暂停演示" aria-label="暂停演示" aria-pressed="true"><svg viewBox="0 0 24 24"><path class="play-shape" d="M8 5v14M16 5v14"/></svg></button><button class="icon-button" data-action="next" title="下一首演示曲目" aria-label="下一首演示曲目"><svg><use href="#icon-next"/></svg></button></div>
+                  <label class="seek-label"><span class="sr-only">播放进度</span><input type="range" class="seek" data-action="seek" min="0" max="128" value="28" aria-label="播放进度"></label>
                   <div class="volume-control"><button class="icon-button" data-action="mute" title="静音演示" aria-label="静音演示" aria-pressed="false"><svg><use href="#icon-volume"/></svg></button><input type="range" class="volume" data-action="volume" min="0" max="100" value="65" aria-label="演示音量"></div>
                 </div>
               </div>
@@ -118,7 +118,7 @@
             <div class="menu-right"><span class="menu-app"><i></i>iiisland</span><span class="menu-status"><svg><use href="#icon-wifi"/></svg><svg class="battery"><use href="#icon-battery"/></svg></span><span>21:41</span></div>
           </div>
           <div class="dim dim-w" aria-hidden="true"><span class="dim-line"></span><span class="dim-value"><span class="v-closed">280</span><span class="v-open">440</span></span><span class="dim-note">宽度 / W</span></div>
-          <div class="dim dim-h" aria-hidden="true"><span class="dim-line"></span><span class="dim-value"><span class="v-closed">44</span><span class="v-open">266</span></span><span class="dim-note">高度 / H</span></div>
+          <div class="dim dim-h" aria-hidden="true"><span class="dim-line"></span><span class="dim-value"><span class="v-closed">44</span><span class="v-open">180</span></span><span class="dim-note">高度 / H</span></div>
           <figure class="ref-plate">
             <img src="assets/app-icon.png" width="1024" height="1024" alt="iiisland 应用图标：闭眼听歌、戴耳机的黑白墨线插画">
           </figure>
@@ -258,7 +258,7 @@
             </div>
           </div>
           <span class="size-dim size-dim-a"><span>收起 / CLOSED</span><b>280 × 44</b></span>
-          <span class="size-dim size-dim-b"><span>展开 / OPEN</span><b>440 × 266</b></span>
+          <span class="size-dim size-dim-b"><span>展开 / OPEN</span><b>440 × 180</b></span>
         </div>
         <figcaption id="size-caption"><p>小一点，或宽一点。</p><span>在应用设置中分别调整收起与展开的宽高；岛体轮廓与圆角会随之自然变化。</span></figcaption>
       </figure>
