@@ -31,13 +31,13 @@
   --h1: clamp(44px, 5.2vw, 76px);
   --display: clamp(38px, 4.4vw, 64px);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-  /* The island's own motion: one spring that arrives early, overshoots once and settles.
-     Nothing else on the sheet moves this way — only the living object. */
-  --spring-island: cubic-bezier(0.3, 1.36, 0.4, 1);
-  --spring-content: cubic-bezier(0.32, 1.34, 0.44, 1);
-  --ease-island-close: cubic-bezier(0.32, 0.5, 0.2, 1);
-  --island-open-ms: 470ms;
-  --island-close-ms: 320ms;
+  /* The island's own motion: a soft wind-up, one long glide, and a settle you notice
+     more than you see. Nothing else on the sheet moves this way. */
+  --spring-island: cubic-bezier(0.4, 0.44, 0.2, 1.16);
+  --spring-content: cubic-bezier(0.3, 1.08, 0.38, 1);
+  --ease-island-close: cubic-bezier(0.4, 0.3, 0.24, 1);
+  --island-open-ms: 660ms;
+  --island-close-ms: 480ms;
   --radius-island: 18px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
     "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
@@ -537,18 +537,18 @@ input {
   pointer-events: none;
   transform-origin: 100% 50%;
   transition:
-    opacity 0.14s var(--ease),
-    transform 0.26s var(--ease-island-close);
+    opacity 0.3s var(--ease),
+    transform 0.44s var(--spring-content);
 }
 
 /* The capsule keeps its width and is carried left by the rail as the island widens,
    so it never snaps; it only lets go and fades. */
 .island-rail:has(.music-island.is-open) > .capsule {
   opacity: 0;
-  transform: translateX(-8px) scale(0.97);
+  transform: translateX(-10px) scale(0.97);
   transition:
-    opacity 0.13s var(--ease),
-    transform 0.2s var(--ease-island-close);
+    opacity 0.24s var(--ease),
+    transform 0.36s var(--ease-island-close);
 }
 
 .rail-spacer {
@@ -601,20 +601,20 @@ input {
   text-align: left;
   transform-origin: 50% 0;
   transition:
-    opacity 0.22s var(--ease),
-    transform 0.34s var(--spring-content),
+    opacity 0.32s var(--ease),
+    transform 0.48s var(--spring-content),
     visibility 0s;
 }
 
 .music-island.is-open .closed-trigger {
   visibility: hidden;
   opacity: 0;
-  transform: translateY(-4px) scale(0.97);
+  transform: translateY(-5px) scale(0.97);
   pointer-events: none;
   transition:
-    opacity 0.13s var(--ease),
-    transform 0.16s var(--ease-island-close),
-    visibility 0s 0.16s;
+    opacity 0.3s var(--ease),
+    transform 0.34s var(--ease-island-close),
+    visibility 0s 0.34s;
 }
 
 .closed-title {
@@ -724,12 +724,12 @@ input {
   padding: 17px 20px 16px;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, -12px) scale(0.97);
+  transform: translate(-50%, -16px) scale(0.985);
   transform-origin: 50% 0;
   transition:
-    opacity 0.12s var(--ease),
-    transform 0.2s var(--ease-island-close),
-    visibility 0s 0.2s;
+    opacity 0.16s var(--ease),
+    transform 0.24s var(--ease-island-close),
+    visibility 0s 0.24s;
 }
 
 .music-island.is-open .island-content {
@@ -737,8 +737,8 @@ input {
   visibility: visible;
   transform: translate(-50%, 0) scale(1);
   transition:
-    opacity 0.22s var(--ease) 0.06s,
-    transform 0.46s var(--spring-content) 0.04s,
+    opacity 0.3s var(--ease) 0.26s,
+    transform 0.54s var(--spring-content) 0.22s,
     visibility 0s;
 }
 
@@ -2759,7 +2759,7 @@ footer {
     z-index: 9;
     background: var(--paper);
     transform-origin: 100% 0;
-    animation: sheet-plot 0.95s var(--ease) both;
+    animation: sheet-plot 1.05s var(--ease) both;
     pointer-events: none;
   }
 
@@ -2817,7 +2817,7 @@ footer {
 
 .track-change .full-cover,
 .track-change .track-info {
-  animation: cover-in 0.46s var(--spring-content);
+  animation: cover-in 0.58s var(--spring-content);
 }
 
 /* --------------------------------------------------------------------------
