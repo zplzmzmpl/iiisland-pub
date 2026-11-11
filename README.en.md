@@ -17,7 +17,7 @@ See the cover, check a lyric, or skip a track without switching windows. iiislan
 - **Follow what is playing.** Works with Apple Music, Spotify, QQ Music and NetEase Cloud Music. Automatically follows the player that most recently started playback, or stays with a player you choose.
 - **One lyric, two places.** Lyrics sit beside the collapsed island and move into the expanded panel. All four automatic capsule hiding options default to off and can be enabled individually. In-island lyrics default to on and follow the island switch, with a separate setting available.
 - **Fine-tune lyric timing.** Enter an offset, adjust it in 100 ms steps or reset it under Lyrics → Time Sync, within the same Settings window.
-- **Fit your screen.** Adjust collapsed and expanded width and height separately, with layouts for displays with or without a notch.
+- **Fit your screen.** Size the collapsed and expanded island separately and adjust the notch clearance above the expanded controls.
 - **Choose your look.** Use classic black or native Liquid Glass on macOS 26. Switch between day and night modes, with your choice remembered.
 - **Launch with your player.** Enable the option to open iiisland when a supported music player starts.
 
@@ -36,15 +36,15 @@ An optional setting under Player connects browsers, video players and other apps
 
 ## Download and install
 
-Current version: **0.8.27 · build 36**, with the installer updated on **November 7, 2026**.
+**Version 0.8.29 (build 38)** was released on **November 11, 2026**.
 
 Requires an **Apple Silicon (arm64) Mac running macOS 14 or later**. An Intel installer is not currently available. Native Liquid Glass requires macOS 26.
 
-1. Download `iiisland-0.8.27-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
+1. Download `iiisland-0.8.29-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 2. Open the DMG and drag `iiisland.app` into the adjacent `Applications` folder.
 3. Launch iiisland from Applications and play a song in your music player.
 
-To update, quit the previous version before replacing the app.
+In 0.8.28 or later, click **Check for Updates** beside the version number in Settings, then install and relaunch. For older versions, quit iiisland and replace it with the app from the DMG.
 
 **First launch:** The installer uses an ad-hoc local signature and has not been Developer ID signed or notarized by Apple. macOS may block the first launch. Apple Music or Spotify may request Automation permission on first connection. Reading media information from QQ Music and NetEase Cloud Music does not require Accessibility or Screen Recording permission.
 
@@ -53,59 +53,22 @@ To update, quit the previous version before replacing the app.
 Download both the DMG and its matching `.sha256` file, then run this in the download directory:
 
 ```sh
-shasum -a 256 -c iiisland-0.8.27-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.29-arm64.dmg.sha256
 ```
 
 SHA-256 for this installer:
 
 ```text
-d4fe9e1dbc9faaaa00f3f43b435bc885598abd832f02490d4c6a54a09ae885b7
+b19c0ab30ede15428ab3c63e8d69be33e28b4916462bcc781204d221b593d739
 ```
 
-## What is new in 0.8.27
+## What’s new in 0.8.29
 
-- Menus now contain only Settings and Quit. Adjust lyric timing, day/night mode and text colors in one Settings window.
-- Choose text colors with inline swatches or a six-digit HEX value. The chosen color stays fixed across fullscreen, desktops and appearance changes.
-- In-island lyrics are enabled by default and turn off/on with the island.
-- All four capsule auto-hide options now default to off: pointer hover, pause, screenshots and the app menu. Enable them individually in Settings; saved choices are preserved.
-- Migrated to Swift 6, with explicit concurrency boundaries for lyric loading and caching, shared background events and improved cancellation and resource lifetimes.
+- The collapsed island fades in after the screen wakes and unlocks. With Reduce Motion enabled, it appears without a fade.
+- Shorter Settings tooltips and no inline descriptions for the two lyrics retrieval controls.
+- An optional Musixmatch user token in Lyrics settings, blank by default.
 
-See the [0.8.27 release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.27).
-
-### Previously released: 0.8.24
-
-- The capsule now uses one clear Liquid Glass background with light or dark text. Systems below macOS 26 use a frosted-glass fallback.
-- Dark text temporarily becomes light only in the current display's native fullscreen Space, then returns on exit. Filling or maximizing a window on a regular desktop, or adding ordinary desktops, does not trigger it. Fixed light text never starts detection.
-- Adjust transparency with the slider or enter 0%–100% to one decimal place. At 0% the full glass effect remains; at 100% only the background disappears. Defaults to light text and 4% transparency.
-- Removed automatic background sampling and its permission path. No Screen Recording or Accessibility permission is requested for font switching. Font cards now stay on one line; layout choices are limited to with or without a notch, with a corrected illustration.
-- Idle titles now read “is that u ?”. Passed 1,734 capsule checks, 334 full-app host checks and fullscreen lifecycle checks, including release of 60 Settings windows.
-
-Fullscreen switching uses a non-public system Space API. If reading fails, the selected dark text remains. Native fullscreen was verified on this host; other OS versions and display combinations still require testing.
-
-See the [0.8.24 release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.24).
-
-### Previously released: 0.8.23
-
-- Lyrics → Capsule Background offers two fixed presets: a dark background with light text, or a light background with dark text. The capsule no longer follows the app's day/night mode.
-- Adjust background transparency from 0% to 100%, with a live preview and reset to defaults. At 0% the background is opaque; at 100% the background and outline are transparent. Text strength is unaffected.
-- The preset and transparency persist across restarts. Appearance changes preserve visible lyric windows and line transitions without searching for lyrics again.
-- Passed 1,549 capsule checks and 332 full-app host checks, including release checks for 60 actual Settings windows. Native UI checks also verified preset selection, transparency, persistence after restarting and reset.
-
-See the [0.8.23 release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.23) for details.
-
-### Previously released: 0.8.22
-
-- Fix intermittent hover expansion, stale control highlights during rapid pointer movement, and delayed island/status-bar menu highlighting after opening or closing Settings.
-- Wait for actual activation before opening a menu. Return focus to the previous app when dismissed, and keep Settings focused when opened from the menu.
-- Narrow playback-driven view updates and remove unused animations. Serialize artwork decoding and discard outdated requests during rapid track changes.
-- Improve resource release when Settings closes. Synchronize player-launch preferences in the background and retain the final choice during rapid changes.
-- All 20 regression scripts passed, including 332 full-app host checks, release checks for 60 actual Settings windows and 333 native hover/menu checks. The user confirmed normal operation of the optimized build.
-
-The first Settings visit loads system controls and process caches. Memory need not return to the baseline from before that first visit; this version does not promise a fixed reduction. Lyric calibration, automatic hiding, player support and optional system media remain available.
-
-Screenshot hiding detects the Command-Shift chord and the system Screenshot tool. Other Command-Shift shortcuts also hide briefly; very fast or remapped shortcuts and third-party capture or recording may still show the capsule. Browser and video-player compatibility depends on their system media-session support.
-
-See the [release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.22) for details.
+See the [0.8.29 release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.29). Earlier releases are listed on [GitHub Releases](https://github.com/zplzmzmpl/iiisland-pub/releases).
 
 ## Feedback and acknowledgements
 
