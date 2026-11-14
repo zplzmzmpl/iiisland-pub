@@ -36,11 +36,11 @@ An optional setting under Player connects browsers, video players and other apps
 
 ## Download and install
 
-**Version 0.8.29 (build 38)** was released on **November 11, 2026**.
+**Version 0.8.30 (build 39)** was released on **November 14, 2026**.
 
 Requires an **Apple Silicon (arm64) Mac running macOS 14 or later**. An Intel installer is not currently available. Native Liquid Glass requires macOS 26.
 
-1. Download `iiisland-0.8.29-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
+1. Download `iiisland-0.8.30-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 2. Open the DMG and drag `iiisland.app` into the adjacent `Applications` folder.
 3. Launch iiisland from Applications and play a song in your music player.
 
@@ -53,22 +53,23 @@ In 0.8.28 or later, click **Check for Updates** beside the version number in Set
 Download both the DMG and its matching `.sha256` file, then run this in the download directory:
 
 ```sh
-shasum -a 256 -c iiisland-0.8.29-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.30-arm64.dmg.sha256
 ```
 
 SHA-256 for this installer:
 
 ```text
-b19c0ab30ede15428ab3c63e8d69be33e28b4916462bcc781204d221b593d739
+6b431b58242268b4dcc1686953a003776583280ea4d9f83efa6ab097d6cce5f5
 ```
 
-## What’s new in 0.8.29
+## What’s new in 0.8.30
 
-- The collapsed island fades in after the screen wakes and unlocks. With Reduce Motion enabled, it appears without a fade.
-- Shorter Settings tooltips and no inline descriptions for the two lyrics retrieval controls.
-- An optional Musixmatch user token in Lyrics settings, blank by default.
+- Choose from 20 native Liquid Glass variants independently for the island and lyric capsule.
+- Verify and save a custom Musixmatch token in Lyrics settings.
+- Updated size, capsule color and transparency defaults, restored unticked size sliders, and added input-boundary tests.
+- Regression scripts reuse build products. When GitHub rate-limits release metadata requests, the app checks the signed update feed directly.
 
-See the [0.8.29 release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.29). Earlier releases are listed on [GitHub Releases](https://github.com/zplzmzmpl/iiisland-pub/releases).
+See the [0.8.30 release notes](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.30). Earlier releases are listed on [GitHub Releases](https://github.com/zplzmzmpl/iiisland-pub/releases).
 
 ## Feedback and acknowledgements
 

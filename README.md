@@ -36,11 +36,11 @@
 
 ## 下载与安装
 
-当前版本为 **0.8.29（构建 38）**，发布于 **2026-11-11**。
+当前版本为 **0.8.30（构建 39）**，发布于 **2026-11-14**。
 
 要求 **Apple Silicon（arm64）Mac、macOS 14 或更高版本**。当前不提供 Intel 安装包；原生液态玻璃需要 macOS 26。
 
-1. 在 [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 `iiisland-0.8.29-arm64.dmg`。
+1. 在 [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 `iiisland-0.8.30-arm64.dmg`。
 2. 打开 DMG，将 `iiisland.app` 拖入旁边的 `Applications` 文件夹。
 3. 从“应用程序”启动 iiisland，并在音乐播放器中播放一首歌。
 
@@ -53,22 +53,23 @@
 同时下载 DMG 与同名 `.sha256` 文件，在下载目录运行：
 
 ```sh
-shasum -a 256 -c iiisland-0.8.29-arm64.dmg.sha256
+shasum -a 256 -c iiisland-0.8.30-arm64.dmg.sha256
 ```
 
 本次安装包 SHA-256：
 
 ```text
-b19c0ab30ede15428ab3c63e8d69be33e28b4916462bcc781204d221b593d739
+6b431b58242268b4dcc1686953a003776583280ea4d9f83efa6ab097d6cce5f5
 ```
 
-## 0.8.29 有什么更新
+## 0.8.30 有什么更新
 
-- 解锁且屏幕唤醒后，收起态灵动岛在原位淡入。开启「减少动态效果」时直接显示。
-- 精简设置页提示，移除「获取歌词」两项的行内说明。
-- 「设置 → 歌词」支持选填 Musixmatch 用户 token，默认留空。
+- 灵动岛与歌词胶囊可独立选择 20 种原生液态玻璃变体。
+- 歌词设置可验证并保存自定义 Musixmatch token。
+- 更新尺寸、胶囊配色和透明度的默认值，恢复无刻度尺寸滑块并补齐输入边界测试。
+- 回归脚本复用编译产物。GitHub 发布查询限流时，应用改用签名更新源检查更新。
 
-详见 [0.8.29 发布说明](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.29)。旧版记录见 [GitHub Releases](https://github.com/zplzmzmpl/iiisland-pub/releases)。
+详见 [0.8.30 发布说明](https://github.com/zplzmzmpl/iiisland-pub/releases/tag/v0.8.30)。旧版记录见 [GitHub Releases](https://github.com/zplzmzmpl/iiisland-pub/releases)。
 
 ## 反馈与致谢
 
