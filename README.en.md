@@ -36,11 +36,11 @@ An optional setting under Player connects browsers, video players and other apps
 
 ## Download and install
 
-**Version 0.8.31 (build 41)** was released on **November 20, 2026**.
+See the version, build, publication date, and release notes on the [latest stable release](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 
 Requires an **Apple Silicon (arm64) Mac running macOS 14 or later**. An Intel installer is not currently available. Native Liquid Glass requires macOS 26.
 
-1. Download `iiisland-0.8.31-arm64.dmg` from [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
+1. Download the arm64 DMG from the [latest stable release](https://github.com/zplzmzmpl/iiisland-pub/releases/latest).
 2. Open the DMG and drag `iiisland.app` into the adjacent `Applications` folder.
 3. Launch iiisland from Applications and play a song in your music player.
 
@@ -53,16 +53,10 @@ In 0.8.28 or later, click **Check for Updates** beside the version number in Set
 Download both the DMG and its matching `.sha256` file, then run this in the download directory:
 
 ```sh
-shasum -a 256 -c iiisland-0.8.31-arm64.dmg.sha256
+shasum -a 256 -c iiisland-*-arm64.dmg.sha256
 ```
 
-SHA-256 for this installer:
-
-```text
-492f3ce361676e567316d7af21bbaadd59b4a22f2cdf276aadd198bac8ab0640
-```
-
-Read the release notes on [GitHub Releases](https://github.com/zplzmzmpl/iiisland-pub/releases).
+Each installer has a matching SHA-256 file. [GitHub Releases](https://github.com/zplzmzmpl/iiisland-pub/releases)
 
 ## Feedback and acknowledgements
 

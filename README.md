@@ -36,11 +36,11 @@
 
 ## 下载与安装
 
-当前版本为 **0.8.31（构建 41）**，发布于 **2026-11-20**。
+版本、构建号、发布日期和更新说明见 [最新正式发布](https://github.com/zplzmzmpl/iiisland-pub/releases/latest)。
 
 要求 **Apple Silicon（arm64）Mac、macOS 14 或更高版本**。当前不提供 Intel 安装包；原生液态玻璃需要 macOS 26。
 
-1. 在 [Releases](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 `iiisland-0.8.31-arm64.dmg`。
+1. 在 [最新正式发布](https://github.com/zplzmzmpl/iiisland-pub/releases/latest) 下载 arm64 DMG。
 2. 打开 DMG，将 `iiisland.app` 拖入旁边的 `Applications` 文件夹。
 3. 从“应用程序”启动 iiisland，并在音乐播放器中播放一首歌。
 
@@ -53,16 +53,10 @@
 同时下载 DMG 与同名 `.sha256` 文件，在下载目录运行：
 
 ```sh
-shasum -a 256 -c iiisland-0.8.31-arm64.dmg.sha256
+shasum -a 256 -c iiisland-*-arm64.dmg.sha256
 ```
 
-本次安装包 SHA-256：
-
-```text
-492f3ce361676e567316d7af21bbaadd59b4a22f2cdf276aadd198bac8ab0640
-```
-
-版本更新说明见 [GitHub Releases](https://github.com/zplzmzmpl/iiisland-pub/releases)。
+各版本的 SHA-256 文件随安装包一起发布。[GitHub Releases](https://github.com/zplzmzmpl/iiisland-pub/releases)
 
 ## 反馈与致谢
 

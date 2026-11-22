@@ -32,6 +32,12 @@ Cloudflare Pages 仅保留正式项目 `iiisland`，连接 GitHub 仓库 `zplzmz
 
 关闭 JavaScript 后仍可阅读说明、FAQ 和下载链接；遵循系统减少动态效果。无外部字体、统计脚本或第三方运行时。
 
+### 自动同步版本
+
+公开 Release 发布后，GitHub Actions 读取 GitHub 当前标记为 latest 的正式版本，更新首页的版本号、构建号和对应的更新说明链接。只有内容变化时才提交首页，之后由现有 Cloudflare Pages Git 集成部署。发布页保存更新说明和校验文件，中英文安装指南直接引用发布页。
+
+发布标签采用 `vX.Y.Z`，标题采用 `iiisland X.Y.Z · build N`。工作流确认 arm64 DMG、对应 SHA-256 文件和 `appcast.xml` 都已上传，再更新首页。可从 Actions 页手动运行 **Sync website release**，重新同步当前正式版本。
+
 ## 正式域名
 
 唯一正式地址为 `https://iiisland.pages.dev`。旧 Pages 域名已停用，不再提供回迁入口。GitHub 仓库名仍为 `iiisland-pub`，与正式 Pages 项目名不同。
